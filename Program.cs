@@ -35,13 +35,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainDbContext>(options =>
 {
-    var connectionString = "server=localhost;database=indiefm;user=indiefm;password=glassanimals";
+    var connectionString = "server=localhost;database=projeto_aplicado_ii;user=projeto_aplicado_ii;password=sesisenai";
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), dboptions =>
     {
         dboptions.CommandTimeout(60);
     })
     .EnableSensitiveDataLogging()
     .LogTo(Console.WriteLine, LogLevel.Information);
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", builder =>
+    {
+        builder.WithOrigins("http://127.0.0.1:5500", "http://localhost:5500")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMvc();
@@ -64,6 +73,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseAuthentication();
