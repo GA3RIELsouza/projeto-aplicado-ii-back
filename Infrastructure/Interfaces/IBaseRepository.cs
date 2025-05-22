@@ -1,6 +1,6 @@
-﻿using Base_API.Entities;
+﻿using Projeto_Aplicado_II_API.Entities;
 
-namespace Base_API.Infrastructure.Interfaces
+namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
 {
     public interface IBaseRepository<TEntity> : IDisposable where TEntity : EntityBase
     {

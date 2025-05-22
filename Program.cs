@@ -1,8 +1,8 @@
-using Base_API.Infrastructure.Context;
-using Base_API.Infrastructure.Middlewares;
-using Base_API.Infrastructure.Repositories;
-using Base_API.Infrastructure.Validations.Validators;
-using Base_API.Services;
+using Projeto_Aplicado_II_API.Infrastructure.Context;
+using Projeto_Aplicado_II_API.Infrastructure.Middlewares;
+using Projeto_Aplicado_II_API.Infrastructure.Repositories;
+using Projeto_Aplicado_II_API.Infrastructure.Validations.Validators;
+using Projeto_Aplicado_II_API.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

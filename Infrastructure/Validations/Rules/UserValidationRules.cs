@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Base_API.Infrastructure.Validations.Rules
+namespace Projeto_Aplicado_II_API.Infrastructure.Validations.Rules
 {
     public static class UserValidationRules
     {

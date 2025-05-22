@@ -1,8 +1,8 @@
-﻿using Base_API.Infrastructure.Exceptions;
+﻿using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 
-namespace Base_API.Infrastructure.Middlewares
+namespace Projeto_Aplicado_II_API.Infrastructure.Middlewares
 {
     public class ExceptionHandlerMiddleware : IMiddleware
     {

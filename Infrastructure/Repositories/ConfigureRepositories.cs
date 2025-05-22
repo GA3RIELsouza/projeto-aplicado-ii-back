@@ -1,6 +1,6 @@
-﻿using Base_API.Infrastructure.Interfaces;
+﻿using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
-namespace Base_API.Infrastructure.Repositories
+namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 {
     public static class ConfigureServices
     {

@@ -1,4 +1,4 @@
-﻿namespace Base_API.Services;
+﻿namespace Projeto_Aplicado_II_API.Services;
 
 public static class ConfigureServices
 {

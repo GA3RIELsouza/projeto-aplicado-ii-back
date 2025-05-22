@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Base_API.Infrastructure.Validations.Validators
+namespace Projeto_Aplicado_II_API.Infrastructure.Validations.Validators
 {
     public static class ConfigureValidators
     {

@@ -1,8 +1,8 @@
-﻿using Base_API.DTO;
-using Base_API.Infrastructure.Validations.Rules;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Infrastructure.Validations.Rules;
 using FluentValidation;
 
-namespace Base_API.Infrastructure.Validations.Validators
+namespace Projeto_Aplicado_II_API.Infrastructure.Validations.Validators
 {
     public class RegisterDtoValidator : AbstractValidator<RegisterDto>
     {

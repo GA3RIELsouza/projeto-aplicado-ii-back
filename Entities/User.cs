@@ -1,9 +1,9 @@
-﻿using Base_API.DTO;
-using Base_API.Infrastructure.Extensions;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Infrastructure.Extensions;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Base_API.Entities
+namespace Projeto_Aplicado_II_API.Entities
 {
     [Table("user")]
     public class User : EntityBase

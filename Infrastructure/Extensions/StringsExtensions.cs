@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Base_API.Infrastructure.Extensions
+namespace Projeto_Aplicado_II_API.Infrastructure.Extensions
 {
     public static class StringsExtensions
     {

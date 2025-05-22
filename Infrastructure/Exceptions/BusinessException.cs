@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Base_API.Infrastructure.Exceptions
+namespace Projeto_Aplicado_II_API.Infrastructure.Exceptions
 {
     public class BusinessException(string message, HttpStatusCode statusCode) : Exception(message)
     {

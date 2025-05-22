@@ -1,11 +1,11 @@
-﻿using Base_API.Entities;
-using Base_API.Infrastructure.Context;
-using Base_API.Infrastructure.Exceptions;
-using Base_API.Infrastructure.Interfaces;
+﻿using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Infrastructure.Context;
+using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
+using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
-namespace Base_API.Infrastructure.Repositories
+namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 {
     public abstract class BaseRepository<TEntity>(MainDbContext db) : IBaseRepository<TEntity>, IDisposable where TEntity : EntityBase
     {

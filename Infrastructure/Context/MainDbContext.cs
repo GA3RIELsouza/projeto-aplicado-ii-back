@@ -1,9 +1,9 @@
-﻿using Base_API.Entities;
+﻿using Projeto_Aplicado_II_API.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Base_API.Infrastructure.Context
+namespace Projeto_Aplicado_II_API.Infrastructure.Context
 {
     public class MainDbContext : DbContext
     {

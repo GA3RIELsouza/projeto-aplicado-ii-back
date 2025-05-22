@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Base_API.Entities
+namespace Projeto_Aplicado_II_API.Entities
 {
     public abstract class EntityBase
     {

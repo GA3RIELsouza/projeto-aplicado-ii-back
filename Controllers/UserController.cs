@@ -1,8 +1,8 @@
-﻿using Base_API.DTO;
-using Base_API.Services;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Base_API.Controllers
+namespace Projeto_Aplicado_II_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

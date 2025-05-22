@@ -1,6 +1,6 @@
-﻿using Base_API.Entities;
+﻿using Projeto_Aplicado_II_API.Entities;
 
-namespace Base_API.DTO
+namespace Projeto_Aplicado_II_API.DTO
 {
     public class UserDto
     {

@@ -1,11 +1,11 @@
-﻿using Base_API.DTO;
-using Base_API.Entities;
-using Base_API.Infrastructure.Context;
-using Base_API.Infrastructure.Exceptions;
-using Base_API.Infrastructure.Interfaces;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Infrastructure.Context;
+using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
+using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 using System.Net;
 
-namespace Base_API.Services
+namespace Projeto_Aplicado_II_API.Services
 {
     public class UserService(MainDbContext db, IUserRepository userRepository, AuthService authService)
     {

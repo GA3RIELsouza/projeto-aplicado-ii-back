@@ -1,4 +1,4 @@
-﻿namespace Base_API.Infrastructure.Middlewares
+﻿namespace Projeto_Aplicado_II_API.Infrastructure.Middlewares
 {
     public static class ConfigureMiddlewares
     {
