@@ -1,5 +1,4 @@
 ﻿using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
-using Microsoft.AspNetCore.Http;
 using System.Net;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Middlewares

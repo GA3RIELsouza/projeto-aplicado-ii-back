@@ -1,34 +1,27 @@
-﻿using Projeto_Aplicado_II_API.Entities;
-using Projeto_Aplicado_II_API.Infrastructure.Context;
+﻿using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 {
     public abstract class BaseRepository<TEntity>(MainDbContext db) : IBaseRepository<TEntity>, IDisposable where TEntity : EntityBase
     {
-        private readonly string entityName = typeof(TEntity).Name.ToLower();
+        private readonly string entityName = typeof(TEntity).Name;
 
         private readonly MainDbContext _db = db;
         private protected readonly DbSet<TEntity> _dbSet = db.Set<TEntity>();
         
         public async Task AddAsync(TEntity entity)
         {
-            entity.SetInsertedNow();
-
-            await _db.AddAsync(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(params TEntity[] entities)
         {
-            foreach (var entity in entities)
-            {
-                entity.SetInsertedNow();
-            }
-
-            await _db.AddRangeAsync(entities);
+            await _dbSet.AddRangeAsync(entities);
         }
 
         public async ValueTask<TEntity?> GetByIdAsync(uint id)
@@ -40,7 +33,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         {
             message ??= $"No {entityName} with ID {id} could be found.";
 
-            return await _dbSet.FindAsync(id) ?? throw new BusinessException(message, HttpStatusCode.NotFound);
+            return await GetByIdAsync(id) ?? throw new BusinessException(message, HttpStatusCode.NotFound);
         }
 
         public void Update(TEntity entity)

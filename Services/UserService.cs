@@ -1,5 +1,4 @@
 ﻿using Projeto_Aplicado_II_API.DTO;
-using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
@@ -26,7 +25,7 @@ namespace Projeto_Aplicado_II_API.Services
 
             user.UpdateFromDto(dto);
 
-            await _db.ExecuteInTrasactionAsync(() =>
+            await _db.RunInTransactionAsync(() =>
             {
                 _userRepository.Update(user);
             });
@@ -38,19 +37,14 @@ namespace Projeto_Aplicado_II_API.Services
         {
             var user = await _userRepository.GetByIdThrowsIfNullAsync(id);
 
-            return await Delete(user);
-        }
-
-        public async Task<UserDto> Delete(User user)
-        {
-            var loggedUser = await _authService.GetLoggedUser();
+            var loggedUser = await _authService.GetLoggedUserAsync();
 
             if ((loggedUser?.Id ?? 0) == user.Id)
             {
                 throw new BusinessException("You cannot delete your own user.", HttpStatusCode.Forbidden);
             }
 
-            await _db.ExecuteInTrasactionAsync(() =>
+            await _db.RunInTransactionAsync(() =>
             {
                 _userRepository.Remove(user);
             });

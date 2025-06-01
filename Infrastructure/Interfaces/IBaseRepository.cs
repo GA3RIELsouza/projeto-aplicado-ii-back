@@ -1,4 +1,4 @@
-﻿using Projeto_Aplicado_II_API.Entities;
+﻿using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
 {

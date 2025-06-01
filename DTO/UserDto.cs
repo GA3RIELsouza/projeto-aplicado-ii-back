@@ -5,10 +5,8 @@ namespace Projeto_Aplicado_II_API.DTO
     public class UserDto
     {
         public uint Id { get; set; }
-        public string Email { get; set; } = String.Empty;
-        public string Name { get; set; } = String.Empty;
-        public DateTime InsertedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
         public static UserDto FromUser(User user)
         {
@@ -16,15 +14,13 @@ namespace Projeto_Aplicado_II_API.DTO
             {
                 Id = user.Id,
                 Email = user.Email,
-                Name = user.Name,
-                InsertedAt = user.InsertedAt,
-                UpdatedAt = user.UpdatedAt
+                Name = user.Name
             };
         }
     }
 
     public class UpdateUserDto
     {
-        public string Name { get; set; } = String.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

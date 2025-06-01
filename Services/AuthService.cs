@@ -25,12 +25,12 @@ namespace Projeto_Aplicado_II_API.Services
 
             if (userWithEmailExists)
             {
-                throw new BusinessException($"The e-mail {dto.Email} is already in use.", HttpStatusCode.Conflict);
+                throw new BusinessException($"The e-mail \"{dto.Email}\" is already in use.", HttpStatusCode.Conflict);
             }
 
             var user = User.FromRegisterDto(dto);
 
-            await _db.ExecuteInTrasactionAsync(async () =>
+            await _db.RunInTransactionAsync(async () =>
             {
                 await _userRepository.AddAsync(user);
             });
@@ -83,9 +83,9 @@ namespace Projeto_Aplicado_II_API.Services
             return email;
         }
 
-        public async Task<User?> GetLoggedUser()
+        public async Task<User?> GetLoggedUserAsync()
         {
-            var email = GetLoggedUserEmail() ?? String.Empty;
+            var email = GetLoggedUserEmail() ?? string.Empty;
             var user = await _userRepository.GetByEmailAsync(email);
 
             return user;

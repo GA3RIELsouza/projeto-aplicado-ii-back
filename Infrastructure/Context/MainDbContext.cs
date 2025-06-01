@@ -1,13 +1,19 @@
-﻿using Projeto_Aplicado_II_API.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
+using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Entities.Base;
+using System.Reflection;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Context
 {
     public class MainDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Company> Companies => Set<Company>();
+        public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
+        public DbSet<Branch> Branches => Set<Branch>();
+        public DbSet<UnityOfMeasure> UnitiesOfMeasure => Set<UnityOfMeasure>();
+        public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
+        public DbSet<Product> Products => Set<Product>();
 
         public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
         {
@@ -17,14 +23,14 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .Property(user => user.IsAdmin)
-                .ValueGeneratedOnAdd()
-                .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(modelBuilder);
         }
 
-        public async Task ExecuteInTrasactionAsync(Action query)
+        public async Task RunInTransactionAsync(Action query)
         {
+            await Database.OpenConnectionAsync();
             using var transaction = await Database.BeginTransactionAsync();
 
             try
@@ -39,10 +45,15 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
                 await transaction.RollbackAsync();
                 throw;
             }
+            finally
+            {
+                await Database.CloseConnectionAsync();
+            }
         }
 
-        public async Task ExecuteInTrasactionAsync(Func<Task> query)
+        public async Task RunInTransactionAsync(Func<Task> query)
         {
+            await Database.OpenConnectionAsync();
             using var transaction = await Database.BeginTransactionAsync();
 
             try
@@ -57,23 +68,13 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
                 await transaction.RollbackAsync();
                 throw;
             }
+            finally
+            {
+                await Database.CloseConnectionAsync();
+            }
         }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-        {
-            SetEntitiesInsertedUpdated();
-
-            return await base.SaveChangesAsync(cancellationToken);
-        }
-
-        public override int SaveChanges()
-        {
-            SetEntitiesInsertedUpdated();
-
-            return base.SaveChanges();
-        }
-
-        private void SetEntitiesInsertedUpdated()
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in ChangeTracker.Entries<EntityBase>())
             {
@@ -82,7 +83,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entity.SetInsertedNow();
+                        entity.SetCreatedNow();
                         break;
 
                     case EntityState.Modified:
@@ -90,6 +91,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
                         break;
                 }
             }
+
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

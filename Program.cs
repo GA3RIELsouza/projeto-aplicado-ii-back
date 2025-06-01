@@ -1,14 +1,13 @@
-using Projeto_Aplicado_II_API.Infrastructure.Context;
-using Projeto_Aplicado_II_API.Infrastructure.Middlewares;
-using Projeto_Aplicado_II_API.Infrastructure.Repositories;
-using Projeto_Aplicado_II_API.Infrastructure.Validations.Validators;
-using Projeto_Aplicado_II_API.Services;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Projeto_Aplicado_II_API.Infrastructure.Context;
+using Projeto_Aplicado_II_API.Infrastructure.Middlewares;
+using Projeto_Aplicado_II_API.Infrastructure.Repositories;
+using Projeto_Aplicado_II_API.Infrastructure.Validations.Validators;
+using Projeto_Aplicado_II_API.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,13 +34,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainDbContext>(options =>
 {
-    var connectionString = "server=localhost;database=projeto_aplicado_ii;user=projeto_aplicado_ii;password=sesisenai";
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), dboptions =>
-    {
-        dboptions.CommandTimeout(60);
-    })
-    .EnableSensitiveDataLogging()
-    .LogTo(Console.WriteLine, LogLevel.Information);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")!)
+        .EnableSensitiveDataLogging()
+        .LogTo(Console.WriteLine, LogLevel.Information);
 });
 builder.Services.AddCors(options =>
 {
@@ -72,6 +67,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SeuProjeto API v1");
+});
+
 
 app.UseCors("AllowFrontend");
 app.UseHttpsRedirection();
