@@ -32,12 +32,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasForeignKey(x => x.ClientId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(false);
-
-            builder.HasMany(x => x.SaleItems)
-                .WithOne(y => y.Sale)
-                .HasForeignKey(x => x.SaleId)
-                .OnDelete(DeleteBehavior.Cascade)
-                .IsRequired(true);
         }
     }
 }

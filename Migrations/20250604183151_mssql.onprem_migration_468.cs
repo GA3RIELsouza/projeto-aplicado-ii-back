@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqlonprem_migration_338 : Migration
+    public partial class mssqlonprem_migration_468 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -114,8 +114,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                     is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    company_id = table.Column<long>(type: "bigint", nullable: false),
-                    CompanyId1 = table.Column<long>(type: "bigint", nullable: true)
+                    company_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -126,11 +125,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         principalTable: "branch_size",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_branch_company_CompanyId1",
-                        column: x => x.CompanyId1,
-                        principalTable: "company",
-                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_branch_company_company_id",
                         column: x => x.company_id,
@@ -181,14 +175,14 @@ namespace Projeto_Aplicado_II_API.Migrations
                     description = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CompanyId = table.Column<long>(type: "bigint", nullable: false)
+                    company_id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_product_category", x => x.id);
                     table.ForeignKey(
-                        name: "FK_product_category_company_CompanyId",
-                        column: x => x.CompanyId,
+                        name: "FK_product_category_company_company_id",
+                        column: x => x.company_id,
                         principalTable: "company",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -234,6 +228,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     user_id = table.Column<long>(type: "bigint", nullable: false),
                     BranchId1 = table.Column<long>(type: "bigint", nullable: true),
+                    UserId1 = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -253,11 +248,16 @@ namespace Projeto_Aplicado_II_API.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_user_branch_user_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "user",
+                        principalColumn: "id");
+                    table.ForeignKey(
                         name: "FK_user_branch_user_user_id",
                         column: x => x.user_id,
                         principalTable: "user",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -272,7 +272,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                     product_category_id = table.Column<long>(type: "bigint", nullable: false),
                     unitary_selling_price = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
                     unity_of_measure_id = table.Column<long>(type: "bigint", nullable: false),
-                    ProductCategoryId1 = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -286,11 +285,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         principalTable: "company",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_product_product_category_ProductCategoryId1",
-                        column: x => x.ProductCategoryId1,
-                        principalTable: "product_category",
-                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_product_product_category_product_category_id",
                         column: x => x.product_category_id,
@@ -602,11 +596,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "company_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_branch_CompanyId1",
-                table: "branch",
-                column: "CompanyId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_client_company_id",
                 table: "client",
                 column: "company_id");
@@ -614,7 +603,8 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_company_tax_id",
                 table: "company",
-                column: "tax_id");
+                column: "tax_id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_order_company_id",
@@ -653,19 +643,14 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "product_category_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_product_ProductCategoryId1",
-                table: "product",
-                column: "ProductCategoryId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_product_unity_of_measure_id",
                 table: "product",
                 column: "unity_of_measure_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_product_category_CompanyId",
+                name: "IX_product_category_company_id",
                 table: "product_category",
-                column: "CompanyId");
+                column: "company_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_in_inventory_BatchId",
@@ -741,7 +726,8 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_user_email",
                 table: "user",
-                column: "email");
+                column: "email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_user_branch_BranchId1",
@@ -758,6 +744,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                 table: "user_branch",
                 columns: new[] { "user_id", "company_id" },
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_branch_UserId1",
+                table: "user_branch",
+                column: "UserId1");
         }
 
         /// <inheritdoc />

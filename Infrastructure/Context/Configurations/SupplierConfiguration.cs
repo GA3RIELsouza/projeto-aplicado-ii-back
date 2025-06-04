@@ -39,18 +39,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("is_active")
                 .IsRequired(true)
                 .HasDefaultValue(true);
-
-            builder.HasMany(x => x.Orders)
-                .WithOne(y => y.Supplier)
-                .HasForeignKey(x => x.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.Sales)
-                .WithOne(y => y.Supplier)
-                .HasForeignKey(x => x.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
         }
     }
 }

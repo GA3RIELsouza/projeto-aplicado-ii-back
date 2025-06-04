@@ -5,7 +5,7 @@ using Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 {
-    public class ProductCategoryConfiguration : EntityBaseConfiguration<ProductCategory>
+    public class ProductCategoryConfiguration : CompanyOwnedEntityBaseConfiguration<ProductCategory>
     {
         public override void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
@@ -16,12 +16,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.Property(x => x.Descrtiption)
                 .HasColumnName("description")
                 .HasMaxLength(128)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.Products)
-                .WithOne()
-                .HasForeignKey(p => p.ProductCategoryId)
-                .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
 
             builder.HasOne(x => x.Company)

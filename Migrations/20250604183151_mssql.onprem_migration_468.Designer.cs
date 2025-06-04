@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250601090021_mssql.onprem_migration_338")]
-    partial class mssqlonprem_migration_338
+    [Migration("20250604183151_mssql.onprem_migration_468")]
+    partial class mssqlonprem_migration_468
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,9 +80,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
 
-                    b.Property<long?>("CompanyId1")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -104,8 +101,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("BranchSizeId");
 
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("CompanyId1");
 
                     b.ToTable("branch", (string)null);
                 });
@@ -277,7 +272,8 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaxId");
+                    b.HasIndex("TaxId")
+                        .IsUnique();
 
                     b.ToTable("company", (string)null);
                 });
@@ -462,9 +458,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("product_category_id");
 
-                    b.Property<long?>("ProductCategoryId1")
-                        .HasColumnType("bigint");
-
                     b.Property<decimal>("UnitarySellingPrice")
                         .HasPrecision(8, 2)
                         .HasColumnType("decimal(8,2)")
@@ -484,8 +477,6 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.HasIndex("ProductCategoryId1");
-
                     b.HasIndex("UnityOfMeasureId");
 
                     b.ToTable("product", (string)null);
@@ -501,7 +492,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<long>("CompanyId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("company_id");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -938,7 +930,8 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email");
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("user", (string)null);
 
@@ -986,11 +979,16 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
 
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BranchId");
 
                     b.HasIndex("BranchId1");
+
+                    b.HasIndex("UserId1");
 
                     b.HasIndex("UserId", "BranchId")
                         .IsUnique();
@@ -1017,15 +1015,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Company", null)
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.Company", "Company")
                         .WithMany("Branches")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId1");
 
                     b.OwnsOne("Projeto_Aplicado_II_API.ValueObjects.Address", "Address", b1 =>
                         {
@@ -1195,14 +1189,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.ProductCategory", "ProductCategory")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.ProductCategory", null)
-                        .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId1");
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.UnityOfMeasure", "UnityOfMeasure")
                         .WithMany()
@@ -1419,10 +1409,14 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasForeignKey("BranchId1");
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.User", "User")
-                        .WithMany("UserBranches")
+                        .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.User", null)
+                        .WithMany("UserBranches")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("Branch");
 

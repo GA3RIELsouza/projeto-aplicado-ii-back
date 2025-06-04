@@ -17,11 +17,11 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasMaxLength(128)
                 .IsRequired(true);
 
-            builder.HasMany(x => x.Orders)
-                .WithOne(x => x.OrderStatus)
-                .HasForeignKey(x => x.OrderStatusId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
+            //builder.HasMany(x => x.Orders)
+            //    .WithOne(x => x.OrderStatus)
+            //    .HasForeignKey(x => x.OrderStatusId)
+            //    .OnDelete(DeleteBehavior.Restrict)
+            //    .IsRequired(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<OrderStatus> builder)

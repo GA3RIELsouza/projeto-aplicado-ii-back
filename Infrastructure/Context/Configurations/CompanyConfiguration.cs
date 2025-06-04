@@ -36,24 +36,13 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasComment("CNPJ")
                 .IsRequired(true);
 
-            builder.HasIndex(x => x.TaxId);
-
             builder.Property(x => x.IsActive)
                 .HasColumnName("is_active")
                 .HasDefaultValue(true)
                 .IsRequired(true);
 
-            builder.HasMany(x => x.Branches)
-                .WithOne()
-                .HasForeignKey(b => b.CompanyId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.Products)
-                .WithOne()
-                .HasForeignKey(cp => cp.CompanyId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
+            builder.HasIndex(x => x.TaxId)
+                .IsUnique(true);
         }
     }
 }

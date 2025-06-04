@@ -42,7 +42,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired(true);
 
             builder.HasOne(x => x.ProductCategory)
-                .WithMany()
+                .WithMany(y => y.Products)
                 .HasForeignKey(x => x.ProductCategoryId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
@@ -56,24 +56,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.HasOne(x => x.Company)
                 .WithMany(y => y.Products)
                 .HasForeignKey(x => x.CompanyId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.SaleItems)
-                .WithOne(y => y.Product)
-                .HasForeignKey(y => y.ProductId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.Batches)
-                .WithOne(y => y.Product)
-                .HasForeignKey(y => y.ProductId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasMany(x => x.ProductsInInventory)
-                .WithOne(y => y.Product)
-                .HasForeignKey(y => y.ProductId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }

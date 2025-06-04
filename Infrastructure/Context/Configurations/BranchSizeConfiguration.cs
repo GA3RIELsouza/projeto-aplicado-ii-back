@@ -18,12 +18,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("description")
                 .HasMaxLength(32)
                 .IsRequired(true);
-
-            builder.HasMany(x => x.Branches)
-                .WithOne(b => b.BranchSize)
-                .HasForeignKey(b => b.BranchSizeId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<BranchSize> builder)

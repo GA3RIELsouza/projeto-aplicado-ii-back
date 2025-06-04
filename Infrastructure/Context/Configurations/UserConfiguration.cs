@@ -23,8 +23,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasMaxLength(254)
                 .IsRequired(true);
 
-            builder.HasIndex(x => x.Email);
-
             builder.Property(x => x.PasswordHash)
                 .HasColumnName("password_hash")
                 .HasMaxLength(32)
@@ -48,11 +46,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasDefaultValue(true)
                 .IsRequired(true);
 
-            builder.HasMany(x => x.UserBranches)
-                .WithOne(y => y.User)
-                .HasForeignKey(x => x.UserId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
+            builder.HasIndex(x => x.Email)
+                .IsUnique(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<User> builder)

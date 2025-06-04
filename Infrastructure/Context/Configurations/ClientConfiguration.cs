@@ -44,12 +44,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired(false);
 
             builder.OwnsOne(x => x.Address, DEFAULT_NULLABLE_ADDRESS_BUILDER);
-
-            builder.HasMany(x => x.Sales)
-                .WithOne(y => y.Client)
-                .HasForeignKey(x => x.ClientId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(false);
         }
     }
 }
