@@ -4,8 +4,8 @@ namespace Projeto_Aplicado_II_API.Entities
 {
     public class ProductCategory : CompanyOwnedEntityBase
     {
-        public string Descrtiption { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
 
-        public virtual ICollection<Product>? Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

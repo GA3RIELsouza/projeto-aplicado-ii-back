@@ -12,7 +12,7 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public virtual BranchSize? BranchSize { get; set; }
 
-        public virtual ICollection<UserBranch>? UserBranches { get; set; }
-        public virtual ICollection<Order>? Orders { get; set; }
+        public ICollection<UserBranch>? UserBranches { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 using Projeto_Aplicado_II_API.Entities.Base;
+using System.Linq.Expressions;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 {
@@ -34,6 +35,25 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
             message ??= $"No {entityName} with ID {id} could be found.";
 
             return await GetByIdAsync(id) ?? throw new BusinessException(message, HttpStatusCode.NotFound);
+        }
+
+        public async Task<TEntity?> GetByIdIncludesAsync(uint id, params Expression<Func<TEntity, dynamic?>>[] includes)
+        {
+            var query = _dbSet.Where(x => x.Id == id);
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<TEntity> GetByIdIncludesThrowsIfNullAsync(uint id, string? message = null, params Expression<Func<TEntity, dynamic?>>[] includes)
+        {
+            message ??= $"No {entityName} with ID {id} could be found.";
+
+            return await GetByIdIncludesAsync(id, includes) ?? throw new BusinessException(message, HttpStatusCode.NotFound);
         }
 
         public void Update(TEntity entity)

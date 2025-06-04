@@ -6,5 +6,6 @@ public static class ConfigureServices
     {
         services.AddScoped<UserService>();
         services.AddScoped<AuthService>();
+        services.AddScoped<ProductService>();
     }
 }

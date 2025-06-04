@@ -12,6 +12,6 @@ namespace Projeto_Aplicado_II_API.Entities
         public virtual Supplier? Supplier { get; set; }
         public virtual OrderStatus? OrderStatus { get; set; }
 
-        public virtual ICollection<OrderItem>? OrderItems { get; set; }
+        public ICollection<OrderItem>? OrderItems { get; set; }
     }
 }

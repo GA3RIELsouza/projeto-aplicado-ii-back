@@ -13,7 +13,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
             builder.ToTable("product_category");
 
-            builder.Property(x => x.Descrtiption)
+            builder.Property(x => x.Description)
                 .HasColumnName("description")
                 .HasMaxLength(128)
                 .IsRequired(true);

@@ -48,7 +48,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired(true);
 
             builder.HasOne(x => x.UnityOfMeasure)
-                .WithMany()
+                .WithMany(y => y.Products)
                 .HasForeignKey(x => x.UnityOfMeasureId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);

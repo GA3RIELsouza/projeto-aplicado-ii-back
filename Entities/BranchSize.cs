@@ -6,6 +6,6 @@ namespace Projeto_Aplicado_II_API.Entities
     {
         public string Description { get; set; } = string.Empty;
 
-        public virtual ICollection<Branch>? Branches { get; set; }
+        public ICollection<Branch>? Branches { get; set; }
     }
 }

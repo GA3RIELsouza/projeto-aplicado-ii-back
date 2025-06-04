@@ -13,6 +13,6 @@ namespace Projeto_Aplicado_II_API.Entities
         public string? Phone { get; set; }
         public Address? Address { get; set; }
 
-        public virtual ICollection<Sale>? Sales { get; set; }
+        public ICollection<Sale>? Sales { get; set; }
     }
 }

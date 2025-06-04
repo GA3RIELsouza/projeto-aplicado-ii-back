@@ -1,4 +1,5 @@
-﻿using Projeto_Aplicado_II_API.Entities.Base;
+﻿using System.Linq.Expressions;
+using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
 {
@@ -8,6 +9,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
         Task AddRangeAsync(params TEntity[] entities);
         ValueTask<TEntity?> GetByIdAsync(uint id);
         ValueTask<TEntity> GetByIdThrowsIfNullAsync(uint id, string? message = null);
+        Task<TEntity?> GetByIdIncludesAsync(uint id, params Expression<Func<TEntity, dynamic?>>[] includes);
+        Task<TEntity> GetByIdIncludesThrowsIfNullAsync(uint id, string? message = null, params Expression<Func<TEntity, dynamic?>>[] includes);
         void Update(TEntity entity);
         void UpdateRange(params TEntity[] entities);
         void Remove(TEntity entity);

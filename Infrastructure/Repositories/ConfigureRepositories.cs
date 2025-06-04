@@ -7,6 +7,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         public static void AddRepositories(this IServiceCollection repositories)
         {
             repositories.AddScoped<IUserRepository, UserRepository>();
+            repositories.AddScoped<IProductRepository, ProductRepository>();
+            repositories.AddScoped<ICompanyRepository, CompanyRepository>();
         }
     }
 }

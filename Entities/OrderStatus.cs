@@ -6,6 +6,6 @@ namespace Projeto_Aplicado_II_API.Entities
     {
         public string Description { get; set; } = string.Empty;
 
-        public virtual ICollection<Order>? Orders { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

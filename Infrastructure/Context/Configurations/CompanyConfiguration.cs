@@ -28,7 +28,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.Property(x => x.Phone)
                 .HasColumnName("phone")
                 .HasMaxLength(32)
-                .IsRequired(true);
+                .IsRequired(false);
 
             builder.Property(x => x.TaxId)
                 .HasColumnName("tax_id")

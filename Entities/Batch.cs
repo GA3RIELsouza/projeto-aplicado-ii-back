@@ -10,6 +10,6 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public virtual Product? Product { get; set; }
 
-        public virtual ICollection<ProductInInventory>? ProductsInInventory { get; set; }
+        public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
     }
 }

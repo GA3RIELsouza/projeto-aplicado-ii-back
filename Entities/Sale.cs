@@ -10,6 +10,6 @@ namespace Projeto_Aplicado_II_API.Entities
         public Supplier? Supplier { get; set; }
         public Client? Client { get; set; }
 
-        public virtual ICollection<SaleItem>? SaleItems { get; set; }
+        public ICollection<SaleItem>? SaleItems { get; set; }
     }
 }

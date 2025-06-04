@@ -13,8 +13,8 @@ namespace Projeto_Aplicado_II_API.Entities
         public string TaxId { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
 
-        public virtual ICollection<Order>? Orders { get; set; }
-        public virtual ICollection<Sale>? Sales { get; set; }
-        public virtual ICollection<SupplierProduct>? SupplierProducts { get; set; }
+        public ICollection<Order>? Orders { get; set; }
+        public ICollection<Sale>? Sales { get; set; }
+        public ICollection<SupplierProduct>? SupplierProducts { get; set; }
     }
 }

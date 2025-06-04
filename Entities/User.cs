@@ -14,7 +14,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public bool IsAdmin { get; set; } = false;
         public bool IsActive { get; set; } = true;
 
-        public virtual ICollection<UserBranch>? UserBranches { get; set; }
+        public ICollection<UserBranch>? UserBranches { get; set; }
 
         public static User FromRegisterDto(RegisterDto dto)
         {
