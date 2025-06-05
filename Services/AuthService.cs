@@ -38,29 +38,35 @@ namespace Projeto_Aplicado_II_API.Services
             return UserDto.FromUser(user);
         }
 
-        public async Task<string> LoginAsync(LoginDto dto)
+        public async Task<LoginResponseDto> LoginAsync(LoginDto dto)
         {
-            var user = await _userRepository.GetByEmailAsync(dto.Email) ?? throw new BusinessException("Invalid e-mail/password.", HttpStatusCode.NotFound);
+            var incorrectEmailPasswordException = new BusinessException("E-mail e/ou senha incorretos.", HttpStatusCode.NotFound);
+
+            var user = await _userRepository.GetByEmailAsync(dto.Email) ?? throw incorrectEmailPasswordException;
 
             var correctPassword = dto.Password.VerifyPassword(user.PasswordHash, user.PasswordSaltHash);
 
             if (!correctPassword)
             {
-                throw new BusinessException("Invalid e-mail/password.", HttpStatusCode.NotFound);
+                throw incorrectEmailPasswordException;
             }
 
             var bearerToken = GenerateBearerToken(user);
 
-            return bearerToken;
+            return new()
+            {
+                UserId = user.Id,
+                Token = bearerToken
+            };
         }
 
         private string GenerateBearerToken(User user)
         {
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim("id", user.Id.ToString()),
+                new Claim("email", user.Email),
+                new Claim("name", user.Name)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Auth:BearerToken"]!));
@@ -76,17 +82,28 @@ namespace Projeto_Aplicado_II_API.Services
             return tokenStr;
         }
 
+        public uint? GetLoggedUserId()
+        {
+            var httpContext = _httpContextAccessor.HttpContext;
+            var user = httpContext?.User;
+            var idStr = user?.FindFirstValue("id");
+
+            if (!UInt32.TryParse(idStr, out var id)) return null;
+
+            return id;
+        }
+
         public string? GetLoggedUserEmail()
         {
-            var email = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
+            var email = _httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Email);
 
             return email;
         }
 
-        public async Task<User?> GetLoggedUserAsync()
+        public async Task<User> GetLoggedUserAsync()
         {
-            var email = GetLoggedUserEmail() ?? string.Empty;
-            var user = await _userRepository.GetByEmailAsync(email);
+            var id = GetLoggedUserId() ?? 0;
+            var user = await _userRepository.GetByIdThrowsIfNullAsync(id);
 
             return user;
         }

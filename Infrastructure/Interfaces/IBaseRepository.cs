@@ -7,6 +7,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
     {
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(params TEntity[] entities);
+        Task ThrowIfNotExists(Expression<Func<TEntity, bool>> where);
         ValueTask<TEntity?> GetByIdAsync(uint id);
         ValueTask<TEntity> GetByIdThrowsIfNullAsync(uint id, string? message = null);
         Task<TEntity?> GetByIdIncludesAsync(uint id, params Expression<Func<TEntity, dynamic?>>[] includes);

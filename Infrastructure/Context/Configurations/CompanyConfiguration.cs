@@ -44,5 +44,20 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.HasIndex(x => x.TaxId)
                 .IsUnique(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<Company> builder)
+        {
+            var defaultCompany = new Company
+            {
+                Id = 1,
+                LegalName = "Empresa Padrão",
+                BusinessName = "Empresa Padrão LTDA",
+                Phone = "0000-0000",
+                TaxId = "00.000.000/0001-91",
+                IsActive = true
+            };
+
+            builder.HasData(defaultCompany);
+        }
     }
 }

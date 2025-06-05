@@ -14,4 +14,10 @@ namespace Projeto_Aplicado_II_API.DTO
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
+
+    public class LoginResponseDto
+    {
+        public uint UserId { get; set; }
+        public string Token { get; set; } = string.Empty;
+    }
 }

@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250604183151_mssql.onprem_migration_468")]
-    partial class mssqlonprem_migration_468
+    [Migration("20250605211006_mssql.onprem_migration_882")]
+    partial class mssqlonprem_migration_882
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,9 +76,21 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("branch_size_id");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("city");
+
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("country");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -92,6 +104,35 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Neighborhood")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("neighborhood");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)")
+                        .HasColumnName("number");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("state");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
+                        .HasColumnName("street");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
@@ -103,6 +144,53 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("branch", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BranchSizeId = 1L,
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Filial Padrão 1",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "123",
+                            State = "EX",
+                            Street = "Rua Exemplo 1"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BranchSizeId = 2L,
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Filial Padrão 2",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "124",
+                            State = "EX",
+                            Street = "Rua Exemplo 2"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BranchSizeId = 3L,
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Filial Padrão 3",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "125",
+                            State = "EX",
+                            Street = "Rua Exemplo 3"
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.BranchSize", b =>
@@ -168,9 +256,19 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("date")
                         .HasColumnName("birth_date");
 
+                    b.Property<string>("City")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("city");
+
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("country");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -195,10 +293,30 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(64)")
                         .HasColumnName("last_name");
 
+                    b.Property<string>("Neighborhood")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("neighborhood");
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)")
+                        .HasColumnName("number");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)")
                         .HasColumnName("phone");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("state");
+
+                    b.Property<string>("Street")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
+                        .HasColumnName("street");
 
                     b.Property<string>("TaxId")
                         .IsRequired()
@@ -254,7 +372,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasComment("Razão Social");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)")
                         .HasColumnName("phone");
@@ -276,6 +393,18 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .IsUnique();
 
                     b.ToTable("company", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BusinessName = "Empresa Padrão LTDA",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Empresa Padrão",
+                            Phone = "0000-0000",
+                            TaxId = "00.000.000/0001-91"
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Order", b =>
@@ -501,7 +630,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<string>("Descrtiption")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)")
@@ -673,9 +802,21 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasColumnName("business_name");
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("city");
+
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("country");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
@@ -695,11 +836,35 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasColumnName("legal_name");
 
+                    b.Property<string>("Neighborhood")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("neighborhood");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)")
+                        .HasColumnName("number");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)")
                         .HasColumnName("phone");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("state");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
+                        .HasColumnName("street");
 
                     b.Property<string>("TaxId")
                         .IsRequired()
@@ -940,7 +1105,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         {
                             Id = 1L,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin@gmail.com",
+                            Email = "admin@admin.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Admin",
@@ -994,6 +1159,29 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .IsUnique();
 
                     b.ToTable("user_branch", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BranchId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BranchId = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Batch", b =>
@@ -1021,58 +1209,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.OwnsOne("Projeto_Aplicado_II_API.ValueObjects.Address", "Address", b1 =>
-                        {
-                            b1.Property<long>("BranchId")
-                                .HasColumnType("bigint");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("city");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("country");
-
-                            b1.Property<string>("Neighborhood")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("neighborhood");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasMaxLength(10)
-                                .HasColumnType("nvarchar(10)")
-                                .HasColumnName("number");
-
-                            b1.Property<string>("State")
-                                .IsRequired()
-                                .HasMaxLength(2)
-                                .HasColumnType("nvarchar(2)")
-                                .HasColumnName("state");
-
-                            b1.Property<string>("Street")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("street");
-
-                            b1.HasKey("BranchId");
-
-                            b1.ToTable("branch");
-
-                            b1.WithOwner()
-                                .HasForeignKey("BranchId");
-                        });
-
-                    b.Navigation("Address")
-                        .IsRequired();
-
                     b.Navigation("BranchSize");
 
                     b.Navigation("Company");
@@ -1085,51 +1221,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.OwnsOne("Projeto_Aplicado_II_API.ValueObjects.Address", "Address", b1 =>
-                        {
-                            b1.Property<long>("ClientId")
-                                .HasColumnType("bigint");
-
-                            b1.Property<string>("City")
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("city");
-
-                            b1.Property<string>("Country")
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("country");
-
-                            b1.Property<string>("Neighborhood")
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("neighborhood");
-
-                            b1.Property<string>("Number")
-                                .HasMaxLength(10)
-                                .HasColumnType("nvarchar(10)")
-                                .HasColumnName("number");
-
-                            b1.Property<string>("State")
-                                .HasMaxLength(2)
-                                .HasColumnType("nvarchar(2)")
-                                .HasColumnName("state");
-
-                            b1.Property<string>("Street")
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("street");
-
-                            b1.HasKey("ClientId");
-
-                            b1.ToTable("client");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ClientId");
-                        });
-
-                    b.Navigation("Address");
 
                     b.Navigation("Company");
                 });
@@ -1195,7 +1286,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.UnityOfMeasure", "UnityOfMeasure")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("UnityOfMeasureId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1304,58 +1395,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .WithMany()
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("Projeto_Aplicado_II_API.ValueObjects.Address", "Address", b1 =>
-                        {
-                            b1.Property<long>("SupplierId")
-                                .HasColumnType("bigint");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("city");
-
-                            b1.Property<string>("Country")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("country");
-
-                            b1.Property<string>("Neighborhood")
-                                .IsRequired()
-                                .HasMaxLength(50)
-                                .HasColumnType("nvarchar(50)")
-                                .HasColumnName("neighborhood");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasMaxLength(10)
-                                .HasColumnType("nvarchar(10)")
-                                .HasColumnName("number");
-
-                            b1.Property<string>("State")
-                                .IsRequired()
-                                .HasMaxLength(2)
-                                .HasColumnType("nvarchar(2)")
-                                .HasColumnName("state");
-
-                            b1.Property<string>("Street")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("nvarchar(100)")
-                                .HasColumnName("street");
-
-                            b1.HasKey("SupplierId");
-
-                            b1.ToTable("supplier");
-
-                            b1.WithOwner()
-                                .HasForeignKey("SupplierId");
-                        });
-
-                    b.Navigation("Address")
                         .IsRequired();
 
                     b.Navigation("Company");
@@ -1494,6 +1533,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.Navigation("Sales");
 
                     b.Navigation("SupplierProducts");
+                });
+
+            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.UnityOfMeasure", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.User", b =>

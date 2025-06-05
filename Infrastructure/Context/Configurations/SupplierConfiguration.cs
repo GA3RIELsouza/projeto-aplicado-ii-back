@@ -23,7 +23,35 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasMaxLength(128)
                 .IsRequired(true);
 
-            builder.OwnsOne(x => x.Address, DEFAULT_ADDRESS_BUILDER);
+            builder.Property(x => x.Street)
+                .HasColumnName("street")
+                .HasMaxLength(256)
+                .IsRequired(true);
+
+            builder.Property(x => x.Number)
+                .HasColumnName("number")
+                .HasMaxLength(16)
+                .IsRequired(true);
+
+            builder.Property(x => x.Neighborhood)
+                .HasColumnName("neighborhood")
+                .HasMaxLength(128)
+                .IsRequired(true);
+
+            builder.Property(x => x.City)
+                .HasColumnName("city")
+                .HasMaxLength(128)
+                .IsRequired(true);
+
+            builder.Property(x => x.State)
+                .HasColumnName("state")
+                .HasMaxLength(128)
+                .IsRequired(true);
+
+            builder.Property(x => x.Country)
+                .HasColumnName("country")
+                .HasMaxLength(128)
+                .IsRequired(true);
 
             builder.Property(x => x.Phone)
                 .HasColumnName("phone")

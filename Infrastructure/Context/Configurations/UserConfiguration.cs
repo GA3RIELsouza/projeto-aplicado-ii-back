@@ -56,7 +56,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             {
                 Id = 1,
                 Name = "Admin",
-                Email = "admin@gmail.com",
+                Email = "admin@admin.com",
                 PasswordHash = // sesisenai
                 [
                     0x6A, 0x51, 0x2C, 0x50, 0x4B, 0x9D, 0xDC, 0xCF,

@@ -33,5 +33,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("branches")]
+        public async Task<IActionResult> GetUserBranches()
+        {
+            var response = await _userService.GetUserBranches();
+
+            return Ok(response);
+        }
     }
 }

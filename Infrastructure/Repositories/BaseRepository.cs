@@ -25,6 +25,16 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
             await _dbSet.AddRangeAsync(entities);
         }
 
+        public async Task ThrowIfNotExists(Expression<Func<TEntity, bool>> where)
+        {
+            var exists = await _dbSet.AnyAsync(where);
+
+            if (!exists)
+            {
+                throw new BusinessException($"Não foi possível encontrar {entityName}.", HttpStatusCode.NotFound);
+            }
+        }
+
         public async ValueTask<TEntity?> GetByIdAsync(uint id)
         {
             return await _dbSet.FindAsync(id);
@@ -32,7 +42,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 
         public async ValueTask<TEntity> GetByIdThrowsIfNullAsync(uint id, string? message = null)
         {
-            message ??= $"No {entityName} with ID {id} could be found.";
+            message ??= $"Não foi possível encontrar {entityName}.";
 
             return await GetByIdAsync(id) ?? throw new BusinessException(message, HttpStatusCode.NotFound);
         }

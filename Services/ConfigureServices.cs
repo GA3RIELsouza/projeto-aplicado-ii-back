@@ -7,5 +7,8 @@ public static class ConfigureServices
         services.AddScoped<UserService>();
         services.AddScoped<AuthService>();
         services.AddScoped<ProductService>();
+        services.AddScoped<BranchService>();
+        services.AddScoped<CompanyService>();
+        services.AddScoped<ProductCategoryService>();
     }
 }

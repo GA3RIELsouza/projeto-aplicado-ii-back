@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqlonprem_migration_468 : Migration
+    public partial class mssqlonprem_migration_882 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,7 +36,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     legal_name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false, comment: "Razão Social"),
                     business_name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false, comment: "Nome Fantasia"),
-                    phone = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    phone = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: true),
                     tax_id = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false, comment: "CNPJ"),
                     is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -104,12 +104,13 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    number = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    neighborhood = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    city = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    state = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
-                    country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    street = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    neighborhood = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    city = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    state = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    country = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     branch_size_id = table.Column<long>(type: "bigint", nullable: false),
                     is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -145,12 +146,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                     birth_date = table.Column<DateOnly>(type: "date", nullable: true),
                     email = table.Column<string>(type: "nvarchar(254)", maxLength: 254, nullable: true),
                     phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    number = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    neighborhood = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    city = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    state = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
-                    country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    street = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
+                    neighborhood = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    city = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    state = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    country = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -196,12 +197,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     legal_name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     business_name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    number = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    neighborhood = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    city = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    state = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
-                    country = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    street = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    neighborhood = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    city = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    state = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    country = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     tax_id = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
@@ -550,6 +551,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "company",
+                columns: new[] { "id", "business_name", "is_active", "legal_name", "phone", "tax_id", "updated_at" },
+                values: new object[] { 1L, "Empresa Padrão LTDA", true, "Empresa Padrão", "0000-0000", "00.000.000/0001-91", null });
+
+            migrationBuilder.InsertData(
                 table: "order_status",
                 columns: new[] { "id", "created_at", "Description", "updated_at" },
                 values: new object[,]
@@ -578,7 +584,27 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "id", "created_at", "email", "is_active", "is_admin", "name", "password_hash", "password_salt_hash", "updated_at" },
-                values: new object[] { 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@gmail.com", true, true, "Admin", new byte[] { 106, 81, 44, 80, 75, 157, 220, 207, 185, 250, 202, 13, 10, 59, 117, 138, 172, 230, 74, 223, 189, 1, 152, 66, 146, 180, 174, 9, 104, 9, 3, 126 }, new byte[] { 99, 212, 93, 197, 93, 127, 86, 151, 50, 94, 80, 108, 64, 232, 22, 152 }, null });
+                values: new object[] { 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@admin.com", true, true, "Admin", new byte[] { 106, 81, 44, 80, 75, 157, 220, 207, 185, 250, 202, 13, 10, 59, 117, 138, 172, 230, 74, 223, 189, 1, 152, 66, 146, 180, 174, 9, 104, 9, 3, 126 }, new byte[] { 99, 212, 93, 197, 93, 127, 86, 151, 50, 94, 80, 108, 64, 232, 22, 152 }, null });
+
+            migrationBuilder.InsertData(
+                table: "branch",
+                columns: new[] { "id", "branch_size_id", "city", "company_id", "country", "is_active", "Name", "neighborhood", "number", "state", "street", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, 1L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 1", "Bairro Exemplo", "123", "EX", "Rua Exemplo 1", null },
+                    { 2L, 2L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 2", "Bairro Exemplo", "124", "EX", "Rua Exemplo 2", null },
+                    { 3L, 3L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 3", "Bairro Exemplo", "125", "EX", "Rua Exemplo 3", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "user_branch",
+                columns: new[] { "id", "company_id", "BranchId1", "updated_at", "user_id", "UserId1" },
+                values: new object[,]
+                {
+                    { 1L, 1L, null, null, 1L, null },
+                    { 2L, 2L, null, null, 1L, null },
+                    { 3L, 3L, null, null, 1L, null }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_batch_product_id",

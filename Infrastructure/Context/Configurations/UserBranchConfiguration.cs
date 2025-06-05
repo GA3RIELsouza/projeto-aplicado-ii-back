@@ -32,5 +32,32 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.HasIndex(x => new { x.UserId, x.BranchId })
                 .IsUnique(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<UserBranch> builder)
+        {
+            var defaultUserBranches = new UserBranch[]
+            {
+                new()
+                {
+                    Id = 1,
+                    UserId = 1,
+                    BranchId = 1
+                },
+                new()
+                {
+                    Id = 2,
+                    UserId = 1,
+                    BranchId = 2
+                },
+                new()
+                {
+                    Id = 3,
+                    UserId = 1,
+                    BranchId = 3
+                }
+            };
+
+            builder.HasData(defaultUserBranches);
+        }
     }
 }

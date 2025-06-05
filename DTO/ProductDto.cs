@@ -7,7 +7,7 @@ namespace Projeto_Aplicado_II_API.DTO
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
-        public ProductCategoryDto? ProductCategory { get; set; }
+        public CreateProductCategoryDto? ProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public UnityOfMeasureDto? UnityOfMeasure { get; set; }
 
@@ -18,7 +18,7 @@ namespace Projeto_Aplicado_II_API.DTO
                 Name = product.Name,
                 Description = product.Description,
                 ImageUrl = product.ImageUrl,
-                ProductCategory = product.ProductCategory != null ? new ProductCategoryDto { Description = product.ProductCategory.Description } : null,
+                ProductCategory = product.ProductCategory != null ? new CreateProductCategoryDto { Description = product.ProductCategory.Description } : null,
                 UnitarySellingPrice = product.UnitarySellingPrice,
                 UnityOfMeasure = product.UnityOfMeasure != null ? new UnityOfMeasureDto { Description = product.UnityOfMeasure.Description } : null
             };

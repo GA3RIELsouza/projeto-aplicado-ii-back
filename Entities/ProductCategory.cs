@@ -1,4 +1,5 @@
-﻿using Projeto_Aplicado_II_API.Entities.Base;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Entities
 {
@@ -7,5 +8,14 @@ namespace Projeto_Aplicado_II_API.Entities
         public string Description { get; set; } = string.Empty;
 
         public ICollection<Product>? Products { get; set; }
+
+        public static ProductCategory CreateFromDto(CreateProductCategoryDto dto)
+        {
+            return new()
+            {
+                CompanyId = dto.CompanyId,
+                Description = dto.Description,
+            };
+        }
     }
 }
