@@ -40,7 +40,7 @@ namespace Projeto_Aplicado_II_API.Services
 
         public async Task<LoginResponseDto> LoginAsync(LoginDto dto)
         {
-            var incorrectEmailPasswordException = new BusinessException("E-mail e/ou senha incorretos.", HttpStatusCode.NotFound);
+            var incorrectEmailPasswordException = new BusinessException("E-mail e/ou senha incorreto(s).", HttpStatusCode.NotFound);
 
             var user = await _userRepository.GetByEmailAsync(dto.Email) ?? throw incorrectEmailPasswordException;
 

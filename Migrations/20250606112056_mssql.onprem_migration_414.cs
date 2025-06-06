@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqlonprem_migration_882 : Migration
+    public partial class mssqlonprem_migration_414 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -273,6 +273,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                     product_category_id = table.Column<long>(type: "bigint", nullable: false),
                     unitary_selling_price = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
                     unity_of_measure_id = table.Column<long>(type: "bigint", nullable: false),
+                    is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)

@@ -25,5 +25,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("{id}/products")]
+        public async Task<IActionResult> ListBranchProducts(uint id)
+        {
+            var response = await _branchService.ListBranchProducts(id);
+
+            return Ok(response);
+        }
     }
 }

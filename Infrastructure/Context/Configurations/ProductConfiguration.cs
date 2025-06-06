@@ -41,6 +41,11 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("unity_of_measure_id")
                 .IsRequired(true);
 
+            builder.Property(x => x.IsActive)
+                .HasColumnName("is_active")
+                .HasDefaultValue(true)
+                .IsRequired(true);
+
             builder.HasOne(x => x.ProductCategory)
                 .WithMany(y => y.Products)
                 .HasForeignKey(x => x.ProductCategoryId)

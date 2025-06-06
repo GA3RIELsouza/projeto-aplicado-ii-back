@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250605211006_mssql.onprem_migration_882")]
-    partial class mssqlonprem_migration_882
+    [Migration("20250606112056_mssql.onprem_migration_414")]
+    partial class mssqlonprem_migration_414
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -576,6 +576,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("image_url");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
 
                     b.Property<string>("Name")
                         .IsRequired()

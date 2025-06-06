@@ -574,6 +574,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("image_url");
 
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128)

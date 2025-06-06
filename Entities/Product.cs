@@ -1,9 +1,10 @@
 ﻿using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities.Base;
+using Projeto_Aplicado_II_API.Entities.Interfaces;
 
 namespace Projeto_Aplicado_II_API.Entities
 {
-    public class Product : CompanyOwnedEntityBase
+    public class Product : CompanyOwnedEntityBase, IActivatable
     {
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -11,6 +12,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual ProductCategory? ProductCategory { get; set; }
         public virtual UnityOfMeasure? UnityOfMeasure { get; set; }

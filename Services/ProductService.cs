@@ -5,10 +5,11 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class ProductService(MainDbContext db, IProductRepository productRepository)
+    public class ProductService(MainDbContext db, IProductRepository productRepository, ICompanyRepository companyRepository)
     {
         private readonly MainDbContext _db = db;
         private readonly IProductRepository _productRepository = productRepository;
+        private readonly ICompanyRepository _companyRepository = companyRepository;
 
         public async Task<uint> CreateAsync(CreateProductDto dto)
         {
@@ -27,6 +28,13 @@ namespace Projeto_Aplicado_II_API.Services
             var product = await _productRepository.GetByIdIncludesThrowsIfNullAsync(id, null, p => p.ProductCategory, p => p.UnityOfMeasure);
 
             return ProductDto.FromProduct(product);
+        }
+
+        public async Task<List<CompanyProductDto>> ListCompanyProducts(uint companyId)
+        {
+            await _companyRepository.ThrowIfNotExists(c => c.Id == companyId);
+
+            return await _productRepository.ListCompanyProducts(companyId);
         }
     }
 }
