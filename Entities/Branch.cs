@@ -18,6 +18,7 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public virtual BranchSize? BranchSize { get; set; }
 
+        public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
         public ICollection<UserBranch>? UserBranches { get; set; }
         public ICollection<Order>? Orders { get; set; }
 

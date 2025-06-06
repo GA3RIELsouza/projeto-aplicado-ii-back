@@ -28,5 +28,10 @@ namespace Projeto_Aplicado_II_API.Services
 
             return ProductDto.FromProduct(product);
         }
+
+        public async Task ListCompanyProducts(uint companyId)
+        {
+
+        }
     }
 }

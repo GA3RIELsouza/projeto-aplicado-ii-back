@@ -52,8 +52,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 Id = 1,
                 LegalName = "Empresa Padrão",
                 BusinessName = "Empresa Padrão LTDA",
-                Phone = "0000-0000",
-                TaxId = "00.000.000/0001-91",
+                Phone = "55 47 0001-0001",
+                TaxId = "00.000.000/0001-01",
                 IsActive = true
             };
 

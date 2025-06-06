@@ -71,51 +71,26 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
         private protected override void SetData(EntityTypeBuilder<Branch> builder)
         {
-            var defaultBranches = new Branch[]
+            const int count = 3;
+            var defaultBranches = new Branch[count];
+
+            for (int i = 1; i <= count; i++)
             {
-                new()
+                defaultBranches[i - 1] = new()
                 {
-                    Id = 1,
+                    Id = (uint)i,
                     CompanyId = 1,
-                    Name = "Filial Padrão 1",
-                    Street = "Rua Exemplo 1",
-                    Number = "123",
+                    Name = $"Filial Padrão {i}",
+                    Street = $"Rua Exemplo {i}",
+                    Number = $"{i}1",
                     Neighborhood = "Bairro Exemplo",
                     City = "Cidade Exemplo",
                     State = "EX",
                     Country = "Brasil",
-                    BranchSizeId = 1,
+                    BranchSizeId = (uint)(i),
                     IsActive = true
-                },
-                new()
-                {
-                    Id = 2,
-                    CompanyId = 1,
-                    Name = "Filial Padrão 2",
-                    Street = "Rua Exemplo 2",
-                    Number = "124",
-                    Neighborhood = "Bairro Exemplo",
-                    City = "Cidade Exemplo",
-                    State = "EX",
-                    Country = "Brasil",
-                    BranchSizeId = 2,
-                    IsActive = true
-                },
-                new()
-                {
-                    Id = 3,
-                    CompanyId = 1,
-                    Name = "Filial Padrão 3",
-                    Street = "Rua Exemplo 3",
-                    Number = "125",
-                    Neighborhood = "Bairro Exemplo",
-                    City = "Cidade Exemplo",
-                    State = "EX",
-                    Country = "Brasil",
-                    BranchSizeId = 3,
-                    IsActive = true
-                }
-            };
+                };
+            }
 
             builder.HasData(defaultBranches);
         }

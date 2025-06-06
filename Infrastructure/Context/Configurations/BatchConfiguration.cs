@@ -31,5 +31,56 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<Batch> builder)
+        {
+            var defaultBatches = new Batch[]
+            {
+                new()
+                {
+                    Id = 1,
+                    ProductId = 1,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                },
+                new()
+                {
+                    Id = 2,
+                    ProductId = 2,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                },
+                new()
+                {
+                    Id = 3,
+                    ProductId = 3,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                },
+                new()
+                {
+                    Id = 4,
+                    ProductId = 4,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                },
+                new()
+                {
+                    Id = 5,
+                    ProductId = 5,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                },
+                new()
+                {
+                    Id = 6,
+                    ProductId = 6,
+                    BatchDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT),
+                    ExpirationDate = DateOnly.FromDateTime(DEFAULT_CREATED_AT)
+                }
+            };
+
+            builder.HasData(defaultBatches);
+        }
     }
 }

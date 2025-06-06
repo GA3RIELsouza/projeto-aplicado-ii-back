@@ -24,7 +24,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
         private protected override void SetData(EntityTypeBuilder<UnityOfMeasure> builder)
         {
-            var unitiesOfMeasure = new List<UnityOfMeasure>
+            var unitiesOfMeasure = new UnityOfMeasure[]
             {
                 new() { Id = 1, Description = "Unidade", Symbol = "UN" },
                 new() { Id = 2, Description = "Quilograma", Symbol = "kg" },

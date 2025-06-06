@@ -13,5 +13,6 @@ namespace Projeto_Aplicado_II_API.Entities
         public virtual OrderStatus? OrderStatus { get; set; }
 
         public ICollection<OrderItem>? OrderItems { get; set; }
+        public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
     }
 }

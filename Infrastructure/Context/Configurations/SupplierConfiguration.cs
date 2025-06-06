@@ -68,5 +68,33 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired(true)
                 .HasDefaultValue(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<Supplier> builder)
+        {
+            const int count = 6;
+            var defaultSuppliers = new Supplier[count];
+
+            for (int i = 1; i <= count; i++)
+            {
+                defaultSuppliers[i - 1] = new()
+                {
+                    Id = (uint)i,
+                    CompanyId = 1,
+                    LegalName = $"Fornecedor Padrão {i}",
+                    BusinessName = "Fornecedor Padrão {i}",
+                    Street = $"Rua Exemplo {i}",
+                    Number = $"{i}2",
+                    Neighborhood = "Bairro Exemplo",
+                    City = "Cidade Exemplo",
+                    State = "EX",
+                    Country = "Brasil",
+                    Phone = $"55 47 000{i}-0002",
+                    TaxId = $"00.000.000/000{i}-02",
+                    IsActive = true
+                };
+            }
+
+            builder.HasData(defaultSuppliers);
+        }
     }
 }

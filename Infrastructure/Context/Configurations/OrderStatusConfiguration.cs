@@ -16,17 +16,11 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.Property(x => x.Description)
                 .HasMaxLength(128)
                 .IsRequired(true);
-
-            //builder.HasMany(x => x.Orders)
-            //    .WithOne(x => x.OrderStatus)
-            //    .HasForeignKey(x => x.OrderStatusId)
-            //    .OnDelete(DeleteBehavior.Restrict)
-            //    .IsRequired(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<OrderStatus> builder)
         {
-            var orderStatuses = new OrderStatus[]
+            var defaultOrderStatuses = new OrderStatus[]
             {
                 new()
                 {
@@ -51,7 +45,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 }
             };
 
-            builder.HasData(orderStatuses);
+            builder.HasData(defaultOrderStatuses);
         }
     }
 }
