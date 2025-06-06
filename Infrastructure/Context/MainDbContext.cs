@@ -7,13 +7,23 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
 {
     public class MainDbContext : DbContext
     {
-        public DbSet<User> Users => Set<User>();
-        public DbSet<Company> Companies => Set<Company>();
-        public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
+
         public DbSet<Branch> Branches => Set<Branch>();
-        public DbSet<UnityOfMeasure> UnitiesOfMeasure => Set<UnityOfMeasure>();
-        public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
+        public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
+        public DbSet<Client> Clients => Set<Client>();
+        public DbSet<Company> Companies => Set<Company>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderStatus> OrderStatuses => Set<OrderStatus>();
         public DbSet<Product> Products => Set<Product>();
+        public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
+        public DbSet<ProductInInventory> ProductsInInventory => Set<ProductInInventory>();
+        public DbSet<Sale> Sales => Set<Sale>();
+        public DbSet<SaleItem> SaleItems => Set<SaleItem>();
+        public DbSet<Supplier> Suppliers => Set<Supplier>();
+        public DbSet<SupplierProduct> SupplierProducts => Set<SupplierProduct>();
+        public DbSet<UnityOfMeasure> UnitiesOfMeasure => Set<UnityOfMeasure>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<UserBranch> UserBranches => Set<UserBranch>();
 
         public MainDbContext(DbContextOptions<MainDbContext> options) : base(options)
         {

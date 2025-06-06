@@ -12,8 +12,13 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
+<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.Designer.cs
     [Migration("20250606112056_mssql.onprem_migration_414")]
     partial class mssqlonprem_migration_414
+========
+    [Migration("20250606003350_mssql.onprem_migration_694")]
+    partial class mssqlonprem_migration_694
+>>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +66,56 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("batch", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BatchDate = new DateOnly(2025, 1, 1),
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ExpirationDate = new DateOnly(2025, 1, 1),
+                            ProductId = 6L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Branch", b =>
@@ -157,7 +212,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                             IsActive = true,
                             Name = "Filial Padrão 1",
                             Neighborhood = "Bairro Exemplo",
-                            Number = "123",
+                            Number = "11",
                             State = "EX",
                             Street = "Rua Exemplo 1"
                         },
@@ -172,7 +227,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                             IsActive = true,
                             Name = "Filial Padrão 2",
                             Neighborhood = "Bairro Exemplo",
-                            Number = "124",
+                            Number = "21",
                             State = "EX",
                             Street = "Rua Exemplo 2"
                         },
@@ -187,7 +242,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                             IsActive = true,
                             Name = "Filial Padrão 3",
                             Neighborhood = "Bairro Exemplo",
-                            Number = "125",
+                            Number = "31",
                             State = "EX",
                             Street = "Rua Exemplo 3"
                         });
@@ -402,8 +457,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             LegalName = "Empresa Padrão",
-                            Phone = "0000-0000",
-                            TaxId = "00.000.000/0001-91"
+                            Phone = "55 47 0001-0001",
+                            TaxId = "00.000.000/0001-01"
                         });
                 });
 
@@ -455,6 +510,68 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("order", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 4L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 5L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            OrderStatusId = 3L,
+                            SupplierId = 6L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderItem", b =>
@@ -577,11 +694,19 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("image_url");
 
+<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.Designer.cs
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
+========
+                    b.Property<int>("MinimalStockQuantity")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(10)
+                        .HasColumnName("minimal_stock_quantity");
+>>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.Designer.cs
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -615,6 +740,86 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("UnityOfMeasureId");
 
                     b.ToTable("product", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Banana Prata",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/152c5248ec73694bf1cf8be92c1d8e4720240227033525/450/banana-prata-kg_2019.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Banana Prata",
+                            ProductCategoryId = 1L,
+                            UnitarySellingPrice = 6.89m,
+                            UnityOfMeasureId = 2L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Batata Inglesa Lavada",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/fb1a588af874d79db3c0c6ae8512a83e20240226225359/450/batata-inglesa-lavada-kg_7172.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Batata Inglesa Lavada",
+                            ProductCategoryId = 1L,
+                            UnitarySellingPrice = 5.98m,
+                            UnityOfMeasureId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Suco Integral Laranja Prat's Garrafa 1,5l",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/0b2f3c4a5e6f7b8c9d0e1f2a3b4c5d6e20240226225359/450/suco-integral-laranja-prats-garrafa-15l_7172.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Suco Integral Laranja Prat's Garrafa 1,5l",
+                            ProductCategoryId = 2L,
+                            UnitarySellingPrice = 23.99m,
+                            UnityOfMeasureId = 1L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/e7e4a170a063c2102b4470ce991b714a20250409101224/450/vinho-chileno-cabernet-sauvignon-montes-reserva-garrafa-750ml_8040.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
+                            ProductCategoryId = 2L,
+                            UnitarySellingPrice = 99.90m,
+                            UnityOfMeasureId = 1L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Costela Bovina Precoce Verdi",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/620ec78bf82c5deb224d95c0544a8f1e20250514171231/450/costela-bovina-precoce-verdi-kg_2380.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Costela Bovina Precoce Verdi",
+                            ProductCategoryId = 3L,
+                            UnitarySellingPrice = 36.98m,
+                            UnityOfMeasureId = 2L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Filé Simples Bovino Precoce Verdi",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/8e15f72024db65d4faac6f3f07b2777920250509081238/450/file-simples-bovino-precoce-verdi-kg_4970.jpg",
+                            MinimalStockQuantity = 10,
+                            Name = "Filé Simples Bovino Precoce Verdi",
+                            ProductCategoryId = 3L,
+                            UnitarySellingPrice = 47.90m,
+                            UnityOfMeasureId = 2L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.ProductCategory", b =>
@@ -651,6 +856,29 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("product_category", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Hortifruti"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Bebidas"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CompanyId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Carnes, Aves e Peixes"
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.ProductInInventory", b =>
@@ -669,7 +897,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnName("bar_code");
 
                     b.Property<long>("BatchId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("batch_id");
 
                     b.Property<long>("BranchId")
                         .HasColumnType("bigint")
@@ -682,13 +911,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("IsSold")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(false)
                         .HasColumnName("is_sold");
 
                     b.Property<long>("OrderId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("order_id");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint")
@@ -709,6 +937,668 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("product_in_inventory", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BarCode = "1234567890121",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BarCode = "1234567890122",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BarCode = "1234567890123",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BarCode = "1234567890124",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BarCode = "1234567890125",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BarCode = "1234567890126",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            BarCode = "1234567890127",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            BarCode = "1234567890128",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            BarCode = "1234567890129",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            BarCode = "12345678901210",
+                            BatchId = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 1L,
+                            ProductId = 1L
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            BarCode = "12345678901211",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            BarCode = "12345678901212",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            BarCode = "12345678901213",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 14L,
+                            BarCode = "12345678901214",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 15L,
+                            BarCode = "12345678901215",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 16L,
+                            BarCode = "12345678901216",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 17L,
+                            BarCode = "12345678901217",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 18L,
+                            BarCode = "12345678901218",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 19L,
+                            BarCode = "12345678901219",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 20L,
+                            BarCode = "12345678901220",
+                            BatchId = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 2L,
+                            ProductId = 2L
+                        },
+                        new
+                        {
+                            Id = 21L,
+                            BarCode = "12345678901221",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 22L,
+                            BarCode = "12345678901222",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 23L,
+                            BarCode = "12345678901223",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 24L,
+                            BarCode = "12345678901224",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 25L,
+                            BarCode = "12345678901225",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 26L,
+                            BarCode = "12345678901226",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 27L,
+                            BarCode = "12345678901227",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 28L,
+                            BarCode = "12345678901228",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 29L,
+                            BarCode = "12345678901229",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 30L,
+                            BarCode = "12345678901230",
+                            BatchId = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 3L,
+                            ProductId = 3L
+                        },
+                        new
+                        {
+                            Id = 31L,
+                            BarCode = "12345678901231",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 32L,
+                            BarCode = "12345678901232",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 33L,
+                            BarCode = "12345678901233",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 34L,
+                            BarCode = "12345678901234",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 35L,
+                            BarCode = "12345678901235",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 36L,
+                            BarCode = "12345678901236",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 37L,
+                            BarCode = "12345678901237",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 38L,
+                            BarCode = "12345678901238",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 39L,
+                            BarCode = "12345678901239",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 40L,
+                            BarCode = "12345678901240",
+                            BatchId = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 4L,
+                            ProductId = 4L
+                        },
+                        new
+                        {
+                            Id = 41L,
+                            BarCode = "12345678901241",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 42L,
+                            BarCode = "12345678901242",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 43L,
+                            BarCode = "12345678901243",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 44L,
+                            BarCode = "12345678901244",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 45L,
+                            BarCode = "12345678901245",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 46L,
+                            BarCode = "12345678901246",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 47L,
+                            BarCode = "12345678901247",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 48L,
+                            BarCode = "12345678901248",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 49L,
+                            BarCode = "12345678901249",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 50L,
+                            BarCode = "12345678901250",
+                            BatchId = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 5L,
+                            ProductId = 5L
+                        },
+                        new
+                        {
+                            Id = 51L,
+                            BarCode = "12345678901251",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 52L,
+                            BarCode = "12345678901252",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 53L,
+                            BarCode = "12345678901253",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 54L,
+                            BarCode = "12345678901254",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 55L,
+                            BarCode = "12345678901255",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 56L,
+                            BarCode = "12345678901256",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 57L,
+                            BarCode = "12345678901257",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 58L,
+                            BarCode = "12345678901258",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 59L,
+                            BarCode = "12345678901259",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        },
+                        new
+                        {
+                            Id = 60L,
+                            BarCode = "12345678901260",
+                            BatchId = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsSold = false,
+                            OrderId = 6L,
+                            ProductId = 6L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Sale", b =>
@@ -887,6 +1777,110 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("supplier", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 1",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "12",
+                            Phone = "55 47 0001-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 1",
+                            TaxId = "00.000.000/0001-02"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 2",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "22",
+                            Phone = "55 47 0002-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 2",
+                            TaxId = "00.000.000/0002-02"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 3",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "32",
+                            Phone = "55 47 0003-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 3",
+                            TaxId = "00.000.000/0003-02"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 4",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "42",
+                            Phone = "55 47 0004-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 4",
+                            TaxId = "00.000.000/0004-02"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 5",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "52",
+                            Phone = "55 47 0005-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 5",
+                            TaxId = "00.000.000/0005-02"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BusinessName = "Fornecedor Padrão {i}",
+                            City = "Cidade Exemplo",
+                            CompanyId = 1L,
+                            Country = "Brasil",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            LegalName = "Fornecedor Padrão 6",
+                            Neighborhood = "Bairro Exemplo",
+                            Number = "62",
+                            Phone = "55 47 0006-0002",
+                            State = "EX",
+                            Street = "Rua Exemplo 6",
+                            TaxId = "00.000.000/0006-02"
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.SupplierProduct", b =>
@@ -1324,15 +2318,15 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Branch", "Branch")
-                        .WithMany()
+                        .WithMany("ProductsInInventory")
                         .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Order", "Order")
-                        .WithMany()
+                        .WithMany("ProductsInInventory")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Product", "Product")
@@ -1477,6 +2471,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     b.Navigation("Orders");
 
+                    b.Navigation("ProductsInInventory");
+
                     b.Navigation("UserBranches");
                 });
 
@@ -1502,6 +2498,8 @@ namespace Projeto_Aplicado_II_API.Migrations
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
+
+                    b.Navigation("ProductsInInventory");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderStatus", b =>

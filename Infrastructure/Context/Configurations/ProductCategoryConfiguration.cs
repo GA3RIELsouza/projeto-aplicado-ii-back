@@ -24,5 +24,17 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<ProductCategory> builder)
+        {
+            var defaultProductCategories = new ProductCategory[]
+            {
+                new() { Id = 1, CompanyId = 1, Description = "Hortifruti" },
+                new() { Id = 2, CompanyId = 1, Description = "Bebidas" },
+                new() { Id = 3, CompanyId = 1, Description = "Carnes, Aves e Peixes" }
+            };
+
+            builder.HasData(defaultProductCategories);
+        }
     }
 }

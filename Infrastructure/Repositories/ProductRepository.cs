@@ -29,4 +29,4 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 .ToListAsync();
         }
     }
-}
+ }

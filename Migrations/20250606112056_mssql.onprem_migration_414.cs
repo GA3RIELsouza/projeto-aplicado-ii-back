@@ -8,7 +8,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.cs
     public partial class mssqlonprem_migration_414 : Migration
+========
+    public partial class mssqlonprem_migration_694 : Migration
+>>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -273,7 +277,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                     product_category_id = table.Column<long>(type: "bigint", nullable: false),
                     unitary_selling_price = table.Column<decimal>(type: "decimal(8,2)", precision: 8, scale: 2, nullable: false),
                     unity_of_measure_id = table.Column<long>(type: "bigint", nullable: false),
+<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.cs
                     is_active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
+========
+                    minimal_stock_quantity = table.Column<int>(type: "int", nullable: false, defaultValue: 10),
+>>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.cs
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -504,10 +512,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     product_id = table.Column<long>(type: "bigint", nullable: false),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false),
-                    BatchId = table.Column<long>(type: "bigint", nullable: false),
+                    order_id = table.Column<long>(type: "bigint", nullable: false),
+                    batch_id = table.Column<long>(type: "bigint", nullable: false),
                     bar_code = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    is_sold = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    is_sold = table.Column<bool>(type: "bit", nullable: false),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     branch_id = table.Column<long>(type: "bigint", nullable: false)
@@ -516,8 +524,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     table.PrimaryKey("PK_product_in_inventory", x => x.id);
                     table.ForeignKey(
-                        name: "FK_product_in_inventory_batch_BatchId",
-                        column: x => x.BatchId,
+                        name: "FK_product_in_inventory_batch_batch_id",
+                        column: x => x.batch_id,
                         principalTable: "batch",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -526,13 +534,13 @@ namespace Projeto_Aplicado_II_API.Migrations
                         column: x => x.branch_id,
                         principalTable: "branch",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_product_in_inventory_order_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_product_in_inventory_order_order_id",
+                        column: x => x.order_id,
                         principalTable: "order",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_product_in_inventory_product_product_id",
                         column: x => x.product_id,
@@ -554,7 +562,7 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.InsertData(
                 table: "company",
                 columns: new[] { "id", "business_name", "is_active", "legal_name", "phone", "tax_id", "updated_at" },
-                values: new object[] { 1L, "Empresa Padrão LTDA", true, "Empresa Padrão", "0000-0000", "00.000.000/0001-91", null });
+                values: new object[] { 1L, "Empresa Padrão LTDA", true, "Empresa Padrão", "55 47 0001-0001", "00.000.000/0001-01", null });
 
             migrationBuilder.InsertData(
                 table: "order_status",
@@ -592,9 +600,58 @@ namespace Projeto_Aplicado_II_API.Migrations
                 columns: new[] { "id", "branch_size_id", "city", "company_id", "country", "is_active", "Name", "neighborhood", "number", "state", "street", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, 1L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 1", "Bairro Exemplo", "123", "EX", "Rua Exemplo 1", null },
-                    { 2L, 2L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 2", "Bairro Exemplo", "124", "EX", "Rua Exemplo 2", null },
-                    { 3L, 3L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 3", "Bairro Exemplo", "125", "EX", "Rua Exemplo 3", null }
+                    { 1L, 1L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 1", "Bairro Exemplo", "11", "EX", "Rua Exemplo 1", null },
+                    { 2L, 2L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 2", "Bairro Exemplo", "21", "EX", "Rua Exemplo 2", null },
+                    { 3L, 3L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 3", "Bairro Exemplo", "31", "EX", "Rua Exemplo 3", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "product_category",
+                columns: new[] { "id", "company_id", "description", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, 1L, "Hortifruti", null },
+                    { 2L, 1L, "Bebidas", null },
+                    { 3L, 1L, "Carnes, Aves e Peixes", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "supplier",
+                columns: new[] { "id", "business_name", "city", "company_id", "country", "is_active", "legal_name", "neighborhood", "number", "phone", "state", "street", "tax_id", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 1", "Bairro Exemplo", "12", "55 47 0001-0002", "EX", "Rua Exemplo 1", "00.000.000/0001-02", null },
+                    { 2L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 2", "Bairro Exemplo", "22", "55 47 0002-0002", "EX", "Rua Exemplo 2", "00.000.000/0002-02", null },
+                    { 3L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 3", "Bairro Exemplo", "32", "55 47 0003-0002", "EX", "Rua Exemplo 3", "00.000.000/0003-02", null },
+                    { 4L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 4", "Bairro Exemplo", "42", "55 47 0004-0002", "EX", "Rua Exemplo 4", "00.000.000/0004-02", null },
+                    { 5L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 5", "Bairro Exemplo", "52", "55 47 0005-0002", "EX", "Rua Exemplo 5", "00.000.000/0005-02", null },
+                    { 6L, "Fornecedor Padrão {i}", "Cidade Exemplo", 1L, "Brasil", true, "Fornecedor Padrão 6", "Bairro Exemplo", "62", "55 47 0006-0002", "EX", "Rua Exemplo 6", "00.000.000/0006-02", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "order",
+                columns: new[] { "id", "company_id", "delivery_date_time", "order_date_time", "order_status_id", "supplier_id", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 1L, null },
+                    { 2L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 2L, null },
+                    { 3L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 3L, null },
+                    { 4L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 4L, null },
+                    { 5L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 5L, null },
+                    { 6L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3L, 6L, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "product",
+                columns: new[] { "id", "company_id", "description", "image_url", "minimal_stock_quantity", "name", "product_category_id", "unitary_selling_price", "unity_of_measure_id", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, 1L, "Banana Prata", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/152c5248ec73694bf1cf8be92c1d8e4720240227033525/450/banana-prata-kg_2019.jpg", 10, "Banana Prata", 1L, 6.89m, 2L, null },
+                    { 2L, 1L, "Batata Inglesa Lavada", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/fb1a588af874d79db3c0c6ae8512a83e20240226225359/450/batata-inglesa-lavada-kg_7172.jpg", 10, "Batata Inglesa Lavada", 1L, 5.98m, 2L, null },
+                    { 3L, 1L, "Suco Integral Laranja Prat's Garrafa 1,5l", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/0b2f3c4a5e6f7b8c9d0e1f2a3b4c5d6e20240226225359/450/suco-integral-laranja-prats-garrafa-15l_7172.jpg", 10, "Suco Integral Laranja Prat's Garrafa 1,5l", 2L, 23.99m, 1L, null },
+                    { 4L, 1L, "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/e7e4a170a063c2102b4470ce991b714a20250409101224/450/vinho-chileno-cabernet-sauvignon-montes-reserva-garrafa-750ml_8040.jpg", 10, "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml", 2L, 99.90m, 1L, null },
+                    { 5L, 1L, "Costela Bovina Precoce Verdi", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/620ec78bf82c5deb224d95c0544a8f1e20250514171231/450/costela-bovina-precoce-verdi-kg_2380.jpg", 10, "Costela Bovina Precoce Verdi", 3L, 36.98m, 2L, null },
+                    { 6L, 1L, "Filé Simples Bovino Precoce Verdi", "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/8e15f72024db65d4faac6f3f07b2777920250509081238/450/file-simples-bovino-precoce-verdi-kg_4970.jpg", 10, "Filé Simples Bovino Precoce Verdi", 3L, 47.90m, 2L, null }
                 });
 
             migrationBuilder.InsertData(
@@ -605,6 +662,86 @@ namespace Projeto_Aplicado_II_API.Migrations
                     { 1L, 1L, null, null, 1L, null },
                     { 2L, 2L, null, null, 1L, null },
                     { 3L, 3L, null, null, 1L, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "batch",
+                columns: new[] { "id", "batch_date", "expiration_date", "product_id", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 1L, null },
+                    { 2L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 2L, null },
+                    { 3L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 3L, null },
+                    { 4L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 4L, null },
+                    { 5L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 5L, null },
+                    { 6L, new DateOnly(2025, 1, 1), new DateOnly(2025, 1, 1), 6L, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "product_in_inventory",
+                columns: new[] { "id", "bar_code", "batch_id", "branch_id", "is_sold", "order_id", "product_id", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, "1234567890121", 1L, 1L, false, 1L, 1L, null },
+                    { 2L, "1234567890122", 1L, 1L, false, 1L, 1L, null },
+                    { 3L, "1234567890123", 1L, 1L, false, 1L, 1L, null },
+                    { 4L, "1234567890124", 1L, 1L, false, 1L, 1L, null },
+                    { 5L, "1234567890125", 1L, 1L, false, 1L, 1L, null },
+                    { 6L, "1234567890126", 1L, 1L, false, 1L, 1L, null },
+                    { 7L, "1234567890127", 1L, 1L, false, 1L, 1L, null },
+                    { 8L, "1234567890128", 1L, 1L, false, 1L, 1L, null },
+                    { 9L, "1234567890129", 1L, 1L, false, 1L, 1L, null },
+                    { 10L, "12345678901210", 1L, 1L, false, 1L, 1L, null },
+                    { 11L, "12345678901211", 2L, 1L, false, 2L, 2L, null },
+                    { 12L, "12345678901212", 2L, 1L, false, 2L, 2L, null },
+                    { 13L, "12345678901213", 2L, 1L, false, 2L, 2L, null },
+                    { 14L, "12345678901214", 2L, 1L, false, 2L, 2L, null },
+                    { 15L, "12345678901215", 2L, 1L, false, 2L, 2L, null },
+                    { 16L, "12345678901216", 2L, 1L, false, 2L, 2L, null },
+                    { 17L, "12345678901217", 2L, 1L, false, 2L, 2L, null },
+                    { 18L, "12345678901218", 2L, 1L, false, 2L, 2L, null },
+                    { 19L, "12345678901219", 2L, 1L, false, 2L, 2L, null },
+                    { 20L, "12345678901220", 2L, 1L, false, 2L, 2L, null },
+                    { 21L, "12345678901221", 3L, 1L, false, 3L, 3L, null },
+                    { 22L, "12345678901222", 3L, 1L, false, 3L, 3L, null },
+                    { 23L, "12345678901223", 3L, 1L, false, 3L, 3L, null },
+                    { 24L, "12345678901224", 3L, 1L, false, 3L, 3L, null },
+                    { 25L, "12345678901225", 3L, 1L, false, 3L, 3L, null },
+                    { 26L, "12345678901226", 3L, 1L, false, 3L, 3L, null },
+                    { 27L, "12345678901227", 3L, 1L, false, 3L, 3L, null },
+                    { 28L, "12345678901228", 3L, 1L, false, 3L, 3L, null },
+                    { 29L, "12345678901229", 3L, 1L, false, 3L, 3L, null },
+                    { 30L, "12345678901230", 3L, 1L, false, 3L, 3L, null },
+                    { 31L, "12345678901231", 4L, 1L, false, 4L, 4L, null },
+                    { 32L, "12345678901232", 4L, 1L, false, 4L, 4L, null },
+                    { 33L, "12345678901233", 4L, 1L, false, 4L, 4L, null },
+                    { 34L, "12345678901234", 4L, 1L, false, 4L, 4L, null },
+                    { 35L, "12345678901235", 4L, 1L, false, 4L, 4L, null },
+                    { 36L, "12345678901236", 4L, 1L, false, 4L, 4L, null },
+                    { 37L, "12345678901237", 4L, 1L, false, 4L, 4L, null },
+                    { 38L, "12345678901238", 4L, 1L, false, 4L, 4L, null },
+                    { 39L, "12345678901239", 4L, 1L, false, 4L, 4L, null },
+                    { 40L, "12345678901240", 4L, 1L, false, 4L, 4L, null },
+                    { 41L, "12345678901241", 5L, 1L, false, 5L, 5L, null },
+                    { 42L, "12345678901242", 5L, 1L, false, 5L, 5L, null },
+                    { 43L, "12345678901243", 5L, 1L, false, 5L, 5L, null },
+                    { 44L, "12345678901244", 5L, 1L, false, 5L, 5L, null },
+                    { 45L, "12345678901245", 5L, 1L, false, 5L, 5L, null },
+                    { 46L, "12345678901246", 5L, 1L, false, 5L, 5L, null },
+                    { 47L, "12345678901247", 5L, 1L, false, 5L, 5L, null },
+                    { 48L, "12345678901248", 5L, 1L, false, 5L, 5L, null },
+                    { 49L, "12345678901249", 5L, 1L, false, 5L, 5L, null },
+                    { 50L, "12345678901250", 5L, 1L, false, 5L, 5L, null },
+                    { 51L, "12345678901251", 6L, 1L, false, 6L, 6L, null },
+                    { 52L, "12345678901252", 6L, 1L, false, 6L, 6L, null },
+                    { 53L, "12345678901253", 6L, 1L, false, 6L, 6L, null },
+                    { 54L, "12345678901254", 6L, 1L, false, 6L, 6L, null },
+                    { 55L, "12345678901255", 6L, 1L, false, 6L, 6L, null },
+                    { 56L, "12345678901256", 6L, 1L, false, 6L, 6L, null },
+                    { 57L, "12345678901257", 6L, 1L, false, 6L, 6L, null },
+                    { 58L, "12345678901258", 6L, 1L, false, 6L, 6L, null },
+                    { 59L, "12345678901259", 6L, 1L, false, 6L, 6L, null },
+                    { 60L, "12345678901260", 6L, 1L, false, 6L, 6L, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -680,9 +817,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "company_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_product_in_inventory_BatchId",
+                name: "IX_product_in_inventory_batch_id",
                 table: "product_in_inventory",
-                column: "BatchId");
+                column: "batch_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_in_inventory_branch_id",
@@ -690,9 +827,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "branch_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_product_in_inventory_OrderId",
+                name: "IX_product_in_inventory_order_id",
                 table: "product_in_inventory",
-                column: "OrderId");
+                column: "order_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_in_inventory_product_id",

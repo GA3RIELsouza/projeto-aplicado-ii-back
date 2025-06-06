@@ -47,5 +47,68 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<Order> builder)
+        {
+            var defaultOrders = new Order[]
+            {
+                new()
+                {
+                    Id = 1,
+                    BranchId = 1,
+                    SupplierId = 1,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                },
+                new()
+                {
+                    Id = 2,
+                    BranchId = 1,
+                    SupplierId = 2,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                },
+                new()
+                {
+                    Id = 3,
+                    BranchId = 1,
+                    SupplierId = 3,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                },
+                new()
+                {
+                    Id = 4,
+                    BranchId = 1,
+                    SupplierId = 4,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                },
+                new()
+                {
+                    Id = 5,
+                    BranchId = 1,
+                    SupplierId = 5,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                },
+                new()
+                {
+                    Id = 6,
+                    BranchId = 1,
+                    SupplierId = 6,
+                    OrderDateTime = DEFAULT_CREATED_AT,
+                    DeliveryDateTime = DEFAULT_CREATED_AT,
+                    OrderStatusId = 3
+                }
+            };
+
+            builder.HasData(defaultOrders);
+        }
     }
 }
