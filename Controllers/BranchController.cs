@@ -6,9 +6,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BranchController(BranchService branchService) : ControllerBase
+    public class BranchController(BranchService branchService,
+        ProductCategoryService productCategoryService,
+        ProductInInventoryService productInInventoryService) : ControllerBase
     {
         private readonly BranchService _branchService = branchService;
+        private readonly ProductCategoryService _productCategoryService = productCategoryService;
+        private readonly ProductInInventoryService _productInInventoryService = productInInventoryService;
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync(CreateBranchDto dto)
@@ -30,6 +34,22 @@ namespace Projeto_Aplicado_II_API.Controllers
         public async Task<IActionResult> ListBranchProducts(uint id)
         {
             var response = await _branchService.ListBranchProducts(id);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}/product-categories")]
+        public async Task<IActionResult> ListProductCategoriesByBranchAsync(uint id)
+        {
+            var response = await _productCategoryService.ListProductCategoriesByBranchAsync(id);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}/inventory")]
+        public async Task<IActionResult> ListBranchInventory(uint id)
+        {
+            var response = await _productInInventoryService.ListBranchInventory(id);
 
             return Ok(response);
         }

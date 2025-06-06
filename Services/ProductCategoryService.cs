@@ -5,10 +5,15 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class ProductCategoryService(MainDbContext db, IProductCategoryRepository productCategoryRepository)
+    public class ProductCategoryService(MainDbContext db,
+        IProductCategoryRepository productCategoryRepository,
+        IBranchRepository branchRepository,
+        ICompanyRepository companyRepository)
     {
         private readonly MainDbContext _db = db;
         private readonly IProductCategoryRepository _productCategoryRepository = productCategoryRepository;
+        private readonly IBranchRepository _branchRepository = branchRepository;
+        private readonly ICompanyRepository _companyRepository = companyRepository;
 
         public async Task<uint> CreateAsync(CreateProductCategoryDto dto)
         {
@@ -27,6 +32,20 @@ namespace Projeto_Aplicado_II_API.Services
             var productCategory = await _productCategoryRepository.GetByIdIncludesThrowsIfNullAsync(id, null, pc => pc.Company);
 
             return ProductCategoryDto.FromProductCategory(productCategory);
+        }
+
+        public async Task<List<ProductCategoryDto>> ListProductCategoriesByBranchAsync(uint branchId)
+        {
+            var branch = await _branchRepository.GetByIdThrowsIfNullAsync(branchId);
+
+            return await ListProductCategoriesByCompanyAsync(branch.CompanyId);
+        }
+
+        public async Task<List<ProductCategoryDto>> ListProductCategoriesByCompanyAsync(uint companyId)
+        {
+            var response = await _productCategoryRepository.ListProductCategoriesByCompanyAsync(companyId);
+
+            return response;
         }
     }
 }

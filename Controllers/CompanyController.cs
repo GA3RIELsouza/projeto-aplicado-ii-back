@@ -6,7 +6,8 @@ namespace Projeto_Aplicado_II_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CompanyController(CompanyService companyService, ProductService productService) : ControllerBase
+    public class CompanyController(CompanyService companyService,
+        ProductService productService) : ControllerBase
     {
         private readonly CompanyService _companyService = companyService;
         private readonly ProductService _productService = productService;
@@ -28,9 +29,9 @@ namespace Projeto_Aplicado_II_API.Controllers
         }
 
         [HttpGet("{id}/products")]
-        public async Task<IActionResult> ListCompanyProducts(uint id)
+        public async Task<IActionResult> ListCompanyProductsAsync(uint id)
         {
-            var response = await _productService.ListCompanyProducts(id);
+            var response = await _productService.ListCompanyProductsAsync(id);
 
             return Ok(response);
         }

@@ -42,8 +42,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("unity_of_measure_id")
                 .IsRequired(true);
 
-            builder.Property(x => x.MinimalStockQuantity)
-                .HasColumnName("minimal_stock_quantity")
+            builder.Property(x => x.MinimalInventoryQuantity)
+                .HasColumnName("minimal_inventory_quantity")
                 .HasDefaultValue(10)
                 .IsRequired(true);
 
@@ -84,7 +84,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/152c5248ec73694bf1cf8be92c1d8e4720240227033525/450/banana-prata-kg_2019.jpg",
                     ProductCategoryId = 1,
                     UnitarySellingPrice = 6.89m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
                 },
                 new()
@@ -96,7 +96,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/fb1a588af874d79db3c0c6ae8512a83e20240226225359/450/batata-inglesa-lavada-kg_7172.jpg",
                     ProductCategoryId = 1,
                     UnitarySellingPrice = 5.98m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
                 },
                 new()
@@ -105,10 +105,10 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     CompanyId = 1,
                     Name = "Suco Integral Laranja Prat's Garrafa 1,5l",
                     Description = "Suco Integral Laranja Prat's Garrafa 1,5l",
-                    ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/0b2f3c4a5e6f7b8c9d0e1f2a3b4c5d6e20240226225359/450/suco-integral-laranja-prats-garrafa-15l_7172.jpg",
+                    ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/d72ca3f78b35715d1308a4cb6a6fcba220250520141235/450/suco-integral-laranja-prats-garrafa-1-5l_2294.jpg",
                     ProductCategoryId = 2,
                     UnitarySellingPrice = 23.99m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY
                 },
                 new()
@@ -120,7 +120,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/e7e4a170a063c2102b4470ce991b714a20250409101224/450/vinho-chileno-cabernet-sauvignon-montes-reserva-garrafa-750ml_8040.jpg",
                     ProductCategoryId = 2,
                     UnitarySellingPrice = 99.90m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY
                 },
                 new()
@@ -132,7 +132,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/620ec78bf82c5deb224d95c0544a8f1e20250514171231/450/costela-bovina-precoce-verdi-kg_2380.jpg",
                     ProductCategoryId = 3,
                     UnitarySellingPrice = 36.98m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
                 },
                 new()
@@ -144,7 +144,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/8e15f72024db65d4faac6f3f07b2777920250509081238/450/file-simples-bovino-precoce-verdi-kg_4970.jpg",
                     ProductCategoryId = 3,
                     UnitarySellingPrice = 47.90m,
-                    MinimalStockQuantity = 10,
+                    MinimalInventoryQuantity = 10,
                     UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
                 }
             };

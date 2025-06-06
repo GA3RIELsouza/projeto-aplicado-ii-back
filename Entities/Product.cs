@@ -12,7 +12,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
-        public int MinimalStockQuantity { get; set; } = 10;
+        public int MinimalInventoryQuantity { get; set; } = 10;
         public bool IsActive { get; set; } = true;
 
         public virtual ProductCategory? ProductCategory { get; set; }
@@ -34,7 +34,8 @@ namespace Projeto_Aplicado_II_API.Entities
                 ImageUrl = dto.ImageUrl,
                 ProductCategoryId = dto.ProductCategoryId,
                 UnitarySellingPrice = dto.UnitarySellingPrice,
-                UnityOfMeasureId = dto.UnityOfMeasureId
+                UnityOfMeasureId = dto.UnityOfMeasureId,
+                MinimalInventoryQuantity = dto.MinimalInventoryQuantity
             };
         }
     }

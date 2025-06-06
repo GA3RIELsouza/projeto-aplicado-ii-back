@@ -12,13 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.Designer.cs
-    [Migration("20250606112056_mssql.onprem_migration_414")]
-    partial class mssqlonprem_migration_414
-========
-    [Migration("20250606003350_mssql.onprem_migration_694")]
-    partial class mssqlonprem_migration_694
->>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.Designer.cs
+    [Migration("20250606113838_mssql.onprem_migration_202")]
+    partial class mssqlonprem_migration_202
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -694,19 +689,17 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("image_url");
 
-<<<<<<<< HEAD:Migrations/20250606112056_mssql.onprem_migration_414.Designer.cs
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true)
                         .HasColumnName("is_active");
-========
-                    b.Property<int>("MinimalStockQuantity")
+
+                    b.Property<int>("MinimalInventoryQuantity")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(10)
-                        .HasColumnName("minimal_stock_quantity");
->>>>>>>> master:Migrations/20250606003350_mssql.onprem_migration_694.Designer.cs
+                        .HasColumnName("minimal_inventory_quantity");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -749,7 +742,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Banana Prata",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/152c5248ec73694bf1cf8be92c1d8e4720240227033525/450/banana-prata-kg_2019.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Banana Prata",
                             ProductCategoryId = 1L,
                             UnitarySellingPrice = 6.89m,
@@ -762,7 +756,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Batata Inglesa Lavada",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/fb1a588af874d79db3c0c6ae8512a83e20240226225359/450/batata-inglesa-lavada-kg_7172.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Batata Inglesa Lavada",
                             ProductCategoryId = 1L,
                             UnitarySellingPrice = 5.98m,
@@ -775,7 +770,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Suco Integral Laranja Prat's Garrafa 1,5l",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/0b2f3c4a5e6f7b8c9d0e1f2a3b4c5d6e20240226225359/450/suco-integral-laranja-prats-garrafa-15l_7172.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Suco Integral Laranja Prat's Garrafa 1,5l",
                             ProductCategoryId = 2L,
                             UnitarySellingPrice = 23.99m,
@@ -788,7 +784,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/e7e4a170a063c2102b4470ce991b714a20250409101224/450/vinho-chileno-cabernet-sauvignon-montes-reserva-garrafa-750ml_8040.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
                             ProductCategoryId = 2L,
                             UnitarySellingPrice = 99.90m,
@@ -801,7 +798,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Costela Bovina Precoce Verdi",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/620ec78bf82c5deb224d95c0544a8f1e20250514171231/450/costela-bovina-precoce-verdi-kg_2380.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Costela Bovina Precoce Verdi",
                             ProductCategoryId = 3L,
                             UnitarySellingPrice = 36.98m,
@@ -814,7 +812,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Filé Simples Bovino Precoce Verdi",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/8e15f72024db65d4faac6f3f07b2777920250509081238/450/file-simples-bovino-precoce-verdi-kg_4970.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Filé Simples Bovino Precoce Verdi",
                             ProductCategoryId = 3L,
                             UnitarySellingPrice = 47.90m,
@@ -911,7 +910,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<bool>("IsSold")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
+                        .HasDefaultValue(false)
                         .HasColumnName("is_sold");
 
                     b.Property<long>("OrderId")

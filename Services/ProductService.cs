@@ -30,11 +30,25 @@ namespace Projeto_Aplicado_II_API.Services
             return ProductDto.FromProduct(product);
         }
 
-        public async Task<List<CompanyProductDto>> ListCompanyProducts(uint companyId)
+        public async Task<List<CompanyProductDto>> ListCompanyProductsAsync(uint companyId)
         {
             await _companyRepository.ThrowIfNotExists(c => c.Id == companyId);
 
             return await _productRepository.ListCompanyProducts(companyId);
+        }
+
+        public async Task<bool> ToggleProductAsync(uint productId)
+        {
+            var product = await _productRepository.GetByIdThrowsIfNullAsync(productId);
+
+            product.IsActive = !product.IsActive;
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _productRepository.Update(product);
+            });
+
+            return product.IsActive;
         }
     }
 }

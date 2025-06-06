@@ -4,12 +4,12 @@ namespace Projeto_Aplicado_II_API.DTO
 {
     public class CreateProductCategoryDto
     {
-        public uint CompanyId { get; set; }
         public string Description { get; set; } = string.Empty;
     }
 
     public class ProductCategoryDto
     {
+        public uint Id { get; set; }
         public CompanyDto Company { get; set; } = null!;
         public string Description { get; set; } = string.Empty;
 

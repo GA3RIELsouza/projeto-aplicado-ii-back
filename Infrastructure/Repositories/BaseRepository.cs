@@ -12,8 +12,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
     {
         private readonly string entityName = typeof(TEntity).Name;
 
-        private readonly MainDbContext _db = db;
-        private protected readonly DbSet<TEntity> _dbSet = db.Set<TEntity>();
+        private protected readonly MainDbContext _db = db;
+        private readonly DbSet<TEntity> _dbSet = db.Set<TEntity>();
         
         public async Task AddAsync(TEntity entity)
         {

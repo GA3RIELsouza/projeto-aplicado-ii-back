@@ -7,7 +7,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
 {
     public class MainDbContext : DbContext
     {
-
         public DbSet<Branch> Branches => Set<Branch>();
         public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
         public DbSet<Client> Clients => Set<Client>();

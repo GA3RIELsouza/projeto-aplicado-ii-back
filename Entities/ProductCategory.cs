@@ -13,7 +13,6 @@ namespace Projeto_Aplicado_II_API.Entities
         {
             return new()
             {
-                CompanyId = dto.CompanyId,
                 Description = dto.Description,
             };
         }

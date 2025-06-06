@@ -34,7 +34,7 @@ namespace Projeto_Aplicado_II_API.Services
         {
             var branch = await _branchRepository.GetByIdThrowsIfNullAsync(branchId);
 
-            var response = await _productService.ListCompanyProducts(branch.CompanyId);
+            var response = await _productService.ListCompanyProductsAsync(branch.CompanyId);
 
             return response;
         }
