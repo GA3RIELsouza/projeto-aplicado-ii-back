@@ -18,7 +18,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    Description = p.Description,
+                    Ean13BarCode = p.Ean13BarCode,
                     ImageUrl = p.ImageUrl,
                     ProductCategory = new() { Description = p.ProductCategory!.Description },
                     UnitarySellingPrice = p.UnitarySellingPrice,
@@ -29,7 +29,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     UpdatedAt = p.UpdatedAt
                 })
                 .OrderByDescending(p => p.IsActive)
-                .ThenBy(p => p.Id)
+                .ThenBy(p => p.Name)
                 .ToListAsync();
         }
     }

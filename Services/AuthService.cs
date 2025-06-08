@@ -9,15 +9,18 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class AuthService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, MainDbContext db, IUserRepository userRepository)
+    public class AuthService(MainDbContext db, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IBranchRepository branchRepository)
     {
+
+        private readonly MainDbContext _db = db;
         private readonly IConfiguration _configuration = configuration;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
-        private readonly MainDbContext _db = db;
         private readonly IUserRepository _userRepository = userRepository;
+        private readonly IBranchRepository _branchRepository = branchRepository;
 
         public async Task<UserDto> RegisterAsync(RegisterDto dto)
         {
@@ -106,6 +109,20 @@ namespace Projeto_Aplicado_II_API.Services
             var user = await _userRepository.GetByIdThrowsIfNullAsync(id);
 
             return user;
+        }
+
+        public async Task<Branch> GetLoggedBranchAsync()
+        {
+            var loggedBranchIdStr = _httpContextAccessor?.HttpContext?.Request.Headers["X-Logged-Branch"].ToString() ?? string.Empty;
+
+            if (!uint.TryParse(loggedBranchIdStr, out var loggedBranchId))
+            {
+                throw new BusinessException("Usuário não está logado em nenhuma filial.", HttpStatusCode.Unauthorized);
+            }
+
+            var loggedBranch = await _branchRepository.GetByIdThrowsIfNullAsync(loggedBranchId);
+
+            return loggedBranch;
         }
     }
 }

@@ -11,8 +11,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
         public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
         public DbSet<Client> Clients => Set<Client>();
         public DbSet<Company> Companies => Set<Company>();
-        public DbSet<Order> Orders => Set<Order>();
-        public DbSet<OrderStatus> OrderStatuses => Set<OrderStatus>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();
         public DbSet<ProductInInventory> ProductsInInventory => Set<ProductInInventory>();

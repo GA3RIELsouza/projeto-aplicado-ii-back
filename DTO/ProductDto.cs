@@ -5,7 +5,7 @@ namespace Projeto_Aplicado_II_API.DTO
     public class ProductDto
     {
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string Ean13BarCode { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
         public CreateProductCategoryDto? ProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }
@@ -16,7 +16,7 @@ namespace Projeto_Aplicado_II_API.DTO
             return new ProductDto
             {
                 Name = product.Name,
-                Description = product.Description,
+                Ean13BarCode = product.Ean13BarCode,
                 ImageUrl = product.ImageUrl,
                 ProductCategory = product.ProductCategory != null ? new CreateProductCategoryDto { Description = product.ProductCategory.Description } : null,
                 UnitarySellingPrice = product.UnitarySellingPrice,
@@ -27,9 +27,7 @@ namespace Projeto_Aplicado_II_API.DTO
 
     public class CreateProductDto
     {
-        public uint CompanyId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
         public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
@@ -41,7 +39,7 @@ namespace Projeto_Aplicado_II_API.DTO
     {
         public uint Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string Ean13BarCode { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
         public CreateProductCategoryDto? ProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }

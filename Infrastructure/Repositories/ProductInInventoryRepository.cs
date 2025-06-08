@@ -11,6 +11,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         public async Task<List<ProductInInventoryDto>> ListBranchInventory(uint branchId)
         {
             return await _db.Products
+                .Where(p => p.IsActive)
                 .GroupJoin(
                     _db.ProductsInInventory,
                     p => p.Id,
@@ -24,7 +25,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                             ImageUrl = p.ImageUrl
                         },
                         MinimalInventoryQuantity = p.MinimalInventoryQuantity,
-                        QuantityInInventory = piins.Count(),
+                        QuantityInInventory = piins.Count(pii => pii.BranchId == branchId),
                         UpdatedAt = (piins.Max(i => i.UpdatedAt) > piins.Max(i => i.CreatedAt) ? piins.Max(i => i.UpdatedAt) : piins.Max(i => i.CreatedAt)) ?? DateTime.Now
                     }
                 )

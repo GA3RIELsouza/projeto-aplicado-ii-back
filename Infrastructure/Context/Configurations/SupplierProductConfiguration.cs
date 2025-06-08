@@ -5,7 +5,7 @@ using Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 {
-    public class SupplierProductConfiguration : CompanyOwnedEntityBaseConfiguration<SupplierProduct>
+    public class SupplierProductConfiguration : EntityBaseConfiguration<SupplierProduct>
     {
         public override void Configure(EntityTypeBuilder<SupplierProduct> builder)
         {
@@ -26,10 +26,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasPrecision(8, 2)
                 .IsRequired(true);
 
-            builder.Property(x => x.UnityOfMeasureId)
-                .HasColumnName("unity_of_measure_id")
-                .IsRequired(true);
-
             builder.HasOne(x => x.Supplier)
                 .WithMany(y => y.SupplierProducts)
                 .HasForeignKey(x => x.SupplierId)
@@ -44,6 +40,24 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
             builder.HasIndex(x => new { x.SupplierId, x.ProductId })
                 .IsUnique(true);
+        }
+
+        private protected override void SetData(EntityTypeBuilder<SupplierProduct> builder)
+        {
+            const int count = 6;
+            var defaultSuppliersProducts = new SupplierProduct[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                defaultSuppliersProducts[i] = new()
+                {
+                    Id = (uint)(i + 1),
+                    SupplierId = (uint)(i + 1),
+                    ProductId = (uint)(i + 1)
+                };
+            }
+
+            builder.HasData(defaultSuppliersProducts);
         }
     }
 }
