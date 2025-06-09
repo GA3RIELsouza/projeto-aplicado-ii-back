@@ -44,7 +44,7 @@ namespace Projeto_Aplicado_II_API.Services
 
             await _db.RunInTransactionAsync(async () =>
             {
-                if (category.Id != 0) await _productCategoryRepository.AddAsync(category);
+                if (dto.ProductCategoryId == 0) await _productCategoryRepository.AddAsync(category);
                 await _productRepository.AddAsync(product);
                 await _db.SaveChangesAsync();
 
@@ -91,9 +91,45 @@ namespace Projeto_Aplicado_II_API.Services
 
         public async Task<ProductDto> GetByIdAsync(uint id)
         {
-            var product = await _productRepository.GetByIdIncludesThrowsIfNullAsync(id, null, p => p.ProductCategory, p => p.UnityOfMeasure);
+            var product = await _productRepository.GetByIdThrowsIfNullAsync(id);
 
             return ProductDto.FromProduct(product);
+        }
+
+        public async Task<uint> UpdateAsync(uint id, CreateProductDto dto)
+        {
+            var branch = await _authService.GetLoggedBranchAsync();
+            var product = await _productRepository.GetByIdThrowsIfNullAsync(id);
+
+            product.Name = dto.Name;
+
+            var category = new ProductCategory();
+
+            if (dto.ProductCategoryId == 0)
+            {
+                category = new()
+                {
+                    CompanyId = branch.CompanyId,
+                    Description = dto.OtherProductCategory ?? "Nova categoria"
+                };
+            }
+            else
+            {
+                category = await _productCategoryRepository.GetByIdThrowsIfNullAsync(dto.ProductCategoryId);
+            }
+
+            product.ProductCategory = category;
+            product.UnitarySellingPrice = dto.UnitarySellingPrice;
+            product.UnityOfMeasureId = dto.UnityOfMeasureId;
+            product.MinimalInventoryQuantity = dto.MinimalInventoryQuantity;
+
+            await _db.RunInTransactionAsync(async () =>
+            {
+                if (dto.ProductCategoryId == 0) await _productCategoryRepository.AddAsync(category);
+                _productRepository.Update(product);
+            });
+
+            return product.Id;
         }
 
         public async Task<List<CompanyProductDto>> ListCompanyProductsAsync(uint companyId)

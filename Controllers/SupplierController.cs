@@ -11,10 +11,42 @@ namespace Projeto_Aplicado_II_API.Controllers
         private readonly SupplierService _supplierService = supplierService;
         private readonly SupplierProductService _supplierProductService = supplierProductService;
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(uint id)
+        {
+            var response = await _supplierService.GetByIdAsync(id);
+
+            return Ok(response);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateSupplierAsync([FromBody] CreateSupplerDto dto)
+        public async Task<IActionResult> CreateSupplierAsync([FromBody] CreateSupplierDto dto)
         {
             var response = await _supplierService.CreateSupplierAsync(dto);
+
+            return Ok(response);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(uint id, [FromBody] CreateSupplierDto dto)
+        {
+            var response = await _supplierService.UpdateAsync(id, dto);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{supplierId}/product/{productId}")]
+        public async Task<IActionResult> GetSupplierProductAsync(uint supplierId, uint productId)
+        {
+            var response = await _supplierProductService.GetByIdAsync(supplierId, productId);
+
+            return Ok(response);
+        }
+
+        [HttpPut("{supplierId}/product/{productId}")]
+        public async Task<IActionResult> UpdateSupplierProductAsync(uint supplierId, uint productId, CreateSupplierProductDto dto)
+        {
+            var response = await _supplierProductService.UpdateAsync(supplierId, productId, dto);
 
             return Ok(response);
         }

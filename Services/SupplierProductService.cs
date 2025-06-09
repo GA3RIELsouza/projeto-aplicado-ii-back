@@ -13,6 +13,32 @@ namespace Projeto_Aplicado_II_API.Services
         private readonly ISupplierProductRepository _supplierProductRepository = supplierProductRepository;
         private readonly ISupplierRepository _supplierRepository = supplierRepository;
 
+        public async Task<CreateSupplierProductDto> GetByIdAsync(uint supplierId, uint productId)
+        {
+            var supplierProduct = await _supplierProductRepository.GetBySupplierAndProductAsync(supplierId, productId);
+
+            return new()
+            {
+                SupplierId = supplierProduct!.SupplierId,
+                ProductId = supplierProduct.ProductId,
+                UnitaryPrice = supplierProduct.UnitaryPrice
+            };
+        }
+
+        public async Task<uint> UpdateAsync(uint supplierId, uint productId, CreateSupplierProductDto dto)
+        {
+            var supplierProduct = await _supplierProductRepository.GetBySupplierAndProductAsync(supplierId, productId);
+
+            supplierProduct!.UnitaryPrice = dto.UnitaryPrice;
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _supplierProductRepository.Update(supplierProduct);
+            });
+
+            return supplierProduct.Id;
+        }
+
         public async Task<uint> CreateSupplierProductAsync(CreateSupplierProductDto dto)
         {
             var supplierProduct = SupplierProduct.CreateFromDto(dto);

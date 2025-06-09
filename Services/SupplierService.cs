@@ -2,6 +2,10 @@
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
+using System.Diagnostics.Metrics;
+using System.IO;
+using System.Numerics;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Projeto_Aplicado_II_API.Services
 {
@@ -13,7 +17,27 @@ namespace Projeto_Aplicado_II_API.Services
         private readonly IBranchRepository _branchRepository = branchRepository;
         private readonly AuthService _authService = authService;
 
-        public async Task<uint> CreateSupplierAsync(CreateSupplerDto dto)
+        public async Task<CreateSupplierDto> GetByIdAsync(uint supplerId)
+        {
+            var supplier = await _supplierRepository.GetByIdThrowsIfNullAsync(supplerId);
+
+            return new()
+            {
+                LegalName = supplier.LegalName,
+                BusinessName = supplier.BusinessName,
+                TaxId = supplier.TaxId,
+                Street = supplier.Street,
+                Number = supplier.Number,
+                Neighborhood = supplier.Neighborhood,
+                City = supplier.City,
+                State = supplier.State,
+                Country = supplier.Country,
+                Email = supplier.Email,
+                Phone = supplier.Phone
+            };
+        }
+
+        public async Task<uint> CreateSupplierAsync(CreateSupplierDto dto)
         {
             var supplier = Supplier.CreateFromDto(dto);
 
@@ -24,6 +48,30 @@ namespace Projeto_Aplicado_II_API.Services
             await _db.RunInTransactionAsync(async () =>
             {
                 await _supplierRepository.AddAsync(supplier);
+            });
+
+            return supplier.Id;
+        }
+
+        public async Task<uint> UpdateAsync(uint id, CreateSupplierDto dto)
+        {
+            var supplier = await _supplierRepository.GetByIdThrowsIfNullAsync(id);
+
+            supplier.LegalName = dto.LegalName;
+            supplier.BusinessName = dto.BusinessName;
+            supplier.TaxId = dto.TaxId;
+            supplier.Street = dto.Street;
+            supplier.Number = dto.Number;
+            supplier.Neighborhood = dto.Neighborhood;
+            supplier.City = dto.City;
+            supplier.State = dto.State;
+            supplier.Country = dto.Country;
+            supplier.Email = dto.Email;
+            supplier.Phone = dto.Phone;
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _supplierRepository.Update(supplier);
             });
 
             return supplier.Id;
