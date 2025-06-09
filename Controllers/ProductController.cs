@@ -28,6 +28,14 @@ namespace Projeto_Aplicado_II_API.Controllers
             return Ok(response);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(uint id, [FromBody] CreateProductDto dto)
+        {
+            var response = await _productService.UpdateAsync(id, dto);
+
+            return Ok(response);
+        }
+
         [HttpPost("{id}/toggle")]
         public async Task<IActionResult> ToggleProductAsync(uint id)
         {

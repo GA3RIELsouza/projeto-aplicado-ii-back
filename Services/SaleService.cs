@@ -11,13 +11,37 @@ namespace Projeto_Aplicado_II_API.Services
         ISaleRepository saleRepository,
         ISaleItemRepository saleItemRepository,
         IProductInInventoryRepository productInInventoryRepository,
-        IBranchRepository branchRepository)
+        AuthService authService)
     {
         private readonly MainDbContext _db = db;
         private readonly ISaleRepository _saleRepository = saleRepository;
         private readonly ISaleItemRepository _saleItemRepository = saleItemRepository;
         private readonly IProductInInventoryRepository _productInInventoryRepository = productInInventoryRepository;
-        private readonly IBranchRepository _branchRepository = branchRepository;
+        private readonly AuthService _authService = authService;
+
+        public async Task<CreateSaleDto> GetByIdAsync(uint id)
+        {
+            var sale = await _saleRepository.GetByIdThrowsIfNullAsync(id);
+
+            return new()
+            {
+                SaleDateTime = sale.SaleDateTime
+            };
+        }
+
+        public async Task<uint> UpdateAsync(uint id, CreateSaleDto dto)
+        {
+            var sale = await _saleRepository.GetByIdThrowsIfNullAsync(id);
+
+            sale.SaleDateTime = dto.SaleDateTime;
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _saleRepository.Update(sale);
+            });
+
+            return sale.Id;
+        }
 
         public async Task<uint> CreateSaleAsync(CreateSaleDto dto)
         {
@@ -38,35 +62,44 @@ namespace Projeto_Aplicado_II_API.Services
             return response;
         }
 
-        public async Task<List<SaleItemDto>> ListSaleItemsAsync(uint branchId, uint saleId)
+        public async Task<List<SaleItemDto>> ListSaleItemsAsync(uint saleId)
         {
+            var branchId = _authService.GetLoggedBranchId();
             var response = await _saleItemRepository.ListSaleItemsAsync(branchId, saleId);
 
             return response;
         }
 
-        public async Task<List<ProductMiniDto>> ListSaleItemsNotIncludedAsync(uint branchId, uint saleId)
+        public async Task<List<ProductMiniDto>> ListSaleItemsNotIncludedAsync(uint saleId)
         {
-            var branch = await _branchRepository.GetByIdThrowsIfNullAsync(branchId);
-
+            var branch = await _authService.GetLoggedBranchAsync();
             var response = await _saleItemRepository.ListSaleItemsNotIncludedAsync(branch.CompanyId, saleId);
 
             return response;
         }
 
-        public async Task<uint> AddItemToSaleAsync(CreateItemSaleDto dto)
+        public async Task<uint> AddItemToSaleAsync(CreateSaleItemDto dto, SaleItem? saleItem = null)
         {
-            var productsInInventory = await _productInInventoryRepository.ListOldestProductsInInventory(dto.BranchId, dto.ProductId, dto.Quantity);
+            var add = saleItem is null;
+
+            var productsInInventory = await _productInInventoryRepository.ListOldestProductsInInventory(_authService.GetLoggedBranchId(), dto.ProductId, dto.Quantity);
 
             var productsInInventoryAmount = productsInInventory.Length;
             if (productsInInventoryAmount < dto.Quantity) throw new BusinessException($"Produtos insuficientes em estoque ({productsInInventoryAmount}).", HttpStatusCode.UnprocessableEntity);
 
-            var saleItem = SaleItem.CreateFromDto(dto);
+            saleItem ??= SaleItem.CreateFromDto(dto);
 
             await _db.RunInTransactionAsync(async () =>
             {
-                await _saleItemRepository.AddAsync(saleItem);
-                await _db.SaveChangesAsync();
+                if (add)
+                {
+                    await _saleItemRepository.AddAsync(saleItem);
+                    await _db.SaveChangesAsync();
+                }
+                else
+                {
+                    _saleItemRepository.Update(saleItem);
+                }
 
                 for (int i = 0; i < productsInInventoryAmount; i++) productsInInventory[i].SaleItemId = saleItem.Id;
                 _productInInventoryRepository.UpdateRange(productsInInventory);
@@ -75,9 +108,53 @@ namespace Projeto_Aplicado_II_API.Services
             return saleItem.Id;
         }
 
-        public async Task DeleteSaleItemAsync(uint branchId, uint saleId, uint saleItemId)
+        public async Task<CreateSaleItemDto> GetSaleItemAsync(uint saleId, uint saleItemId)
         {
-            await _branchRepository.ThrowIfNotExists(b => b.Id == branchId);
+            await _saleRepository.ThrowIfNotExists(s => s.Id == saleId);
+            var saleItem = await _saleItemRepository.GetByIdThrowsIfNullAsync(saleItemId);
+
+            return new()
+            {
+                Quantity = saleItem.Quantity
+            };
+        }
+
+        public async Task<uint> UpdateSaleItemAsync(uint saleId, uint saleItemId, CreateSaleItemDto dto)
+        {
+            await _saleRepository.ThrowIfNotExists(s => s.Id == saleId);
+            var saleItem = await _saleItemRepository.GetByIdThrowsIfNullAsync(saleItemId);
+
+            var difference = dto.Quantity - saleItem.Quantity;
+
+            ProductInInventory[] productsInInventory = [];
+
+            if (difference > 0)
+            {
+                dto.SaleId = saleId;
+                dto.ProductId = saleItem.ProductId;
+                await AddItemToSaleAsync(dto, saleItem);
+            }
+            else
+            {
+                productsInInventory = await _productInInventoryRepository.ListBySaleAsync(saleId);
+                productsInInventory = [.. productsInInventory.OrderByDescending(pii => pii.ManufacturingDate).Take(Math.Abs(difference))];
+                for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
+            }
+
+            saleItem.Quantity = dto.Quantity;
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _saleItemRepository.Update(saleItem);
+                _productInInventoryRepository.UpdateRange(productsInInventory);
+            });
+
+            return saleItem.Id;
+        }
+
+        public async Task DeleteSaleItemAsync(uint saleId, uint saleItemId)
+        {
+            var branch = await _authService.GetLoggedBranchAsync();
             await _saleRepository.ThrowIfNotExists(s => s.Id == saleId);
             var saleItem = await _saleItemRepository.GetByIdIncludesThrowsIfNullAsync(saleItemId);
             var productsInInventory = await _productInInventoryRepository.ListBySaleItemAsync(saleItemId);
@@ -90,16 +167,17 @@ namespace Projeto_Aplicado_II_API.Services
             });
         }
 
-        public async Task DeleteSaleAsync(uint branchId, uint saleId)
+        public async Task DeleteSaleAsync(uint saleId)
         {
-            await _branchRepository.ThrowIfNotExists(b => b.Id == branchId);
+            var branch = await _authService.GetLoggedBranchAsync();
             var sale = await _saleRepository.GetByIdIncludesThrowsIfNullAsync(saleId);
             var productsInInventory = await _productInInventoryRepository.ListBySaleAsync(saleId);
+
+            for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
 
             await _db.RunInTransactionAsync(() =>
             {
                 _saleRepository.Remove(sale);
-                for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
                 _productInInventoryRepository.UpdateRange(productsInInventory);
             });
         }

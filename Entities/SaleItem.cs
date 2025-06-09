@@ -13,7 +13,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public virtual Product? Product { get; set; }
         public virtual ICollection<ProductInInventory>? ProductsInInventory { get; set; }
 
-        public static SaleItem CreateFromDto(CreateItemSaleDto dto)
+        public static SaleItem CreateFromDto(CreateSaleItemDto dto)
         {
             return new()
             {

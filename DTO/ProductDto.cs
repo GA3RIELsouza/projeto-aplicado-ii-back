@@ -4,23 +4,27 @@ namespace Projeto_Aplicado_II_API.DTO
 {
     public class ProductDto
     {
+        public uint Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Ean13BarCode { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
-        public CreateProductCategoryDto? ProductCategory { get; set; }
+        public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
-        public UnityOfMeasureDto? UnityOfMeasure { get; set; }
+        public uint UnityOfMeasureId { get; set; }
+        public int MinimalInventoryQuantity { get; set; }
 
         public static ProductDto FromProduct(Product product)
         {
             return new ProductDto
             {
+                Id = product.Id,
                 Name = product.Name,
                 Ean13BarCode = product.Ean13BarCode,
                 ImageUrl = product.ImageUrl,
-                ProductCategory = product.ProductCategory != null ? new CreateProductCategoryDto { Description = product.ProductCategory.Description } : null,
+                ProductCategoryId = product.ProductCategoryId,
                 UnitarySellingPrice = product.UnitarySellingPrice,
-                UnityOfMeasure = product.UnityOfMeasure != null ? new UnityOfMeasureDto { Description = product.UnityOfMeasure.Description } : null
+                UnityOfMeasureId = product.UnityOfMeasureId,
+                MinimalInventoryQuantity = product.MinimalInventoryQuantity
             };
         }
     }
@@ -34,11 +38,6 @@ namespace Projeto_Aplicado_II_API.DTO
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
         public int MinimalInventoryQuantity { get; set; } = 10;
-    }
-
-    public class GetProductForUpdateDto : CreateProductDto
-    {
-        public uint Id { get; set; }
     }
 
     public class CompanyProductDto

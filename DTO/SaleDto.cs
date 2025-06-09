@@ -21,12 +21,10 @@
         public decimal ItemSaleTotal { get; set; }
     }
 
-    public class CreateItemSaleDto
+    public class CreateSaleItemDto
     {
-        public uint BranchId { get; set; }
         public uint SaleId { get; set; }
         public uint ProductId { get; set; }
-        public uint SupplierId { get; set; }
         public int Quantity { get; set; }
     }
 }

@@ -111,7 +111,7 @@ namespace Projeto_Aplicado_II_API.Services
             return user;
         }
 
-        public async Task<Branch> GetLoggedBranchAsync()
+        public uint GetLoggedBranchId()
         {
             var loggedBranchIdStr = _httpContextAccessor?.HttpContext?.Request.Headers["X-Logged-Branch"].ToString() ?? string.Empty;
 
@@ -119,6 +119,13 @@ namespace Projeto_Aplicado_II_API.Services
             {
                 throw new BusinessException("Usuário não está logado em nenhuma filial.", HttpStatusCode.Unauthorized);
             }
+
+            return loggedBranchId;
+        }
+
+        public async Task<Branch> GetLoggedBranchAsync()
+        {
+            var loggedBranchId = GetLoggedBranchId();
 
             var loggedBranch = await _branchRepository.GetByIdThrowsIfNullAsync(loggedBranchId);
 

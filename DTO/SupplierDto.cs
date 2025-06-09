@@ -1,6 +1,6 @@
 ﻿namespace Projeto_Aplicado_II_API.DTO
 {
-    public class CreateSupplerDto
+    public class CreateSupplierDto
     {
         public string LegalName { get; set; } = string.Empty;
         public string BusinessName { get; set; } = string.Empty;

@@ -23,7 +23,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public ICollection<SupplierProduct>? SupplierProducts { get; set; }
         public ICollection<SaleItem>? SaleItems { get; set; }
 
-        public static Supplier CreateFromDto(CreateSupplerDto dto)
+        public static Supplier CreateFromDto(CreateSupplierDto dto)
         {
             return new()
             {

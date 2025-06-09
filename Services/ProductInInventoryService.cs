@@ -6,10 +6,12 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 namespace Projeto_Aplicado_II_API.Services
 {
     public class ProductInInventoryService(MainDbContext db,
-        IProductInInventoryRepository productInInventoryRepository)
+        IProductInInventoryRepository productInInventoryRepository,
+        AuthService authService)
     {
         private readonly MainDbContext _db = db;
         private readonly IProductInInventoryRepository _productInInventoryRepository = productInInventoryRepository;
+        private readonly AuthService _authService = authService;
 
         public async Task<List<ProductInInventoryDto>> ListBranchInventory(uint branchId)
         {
@@ -18,6 +20,7 @@ namespace Projeto_Aplicado_II_API.Services
 
         public async Task<int> AdjustProductInventoryAsync(AdjustProductInventoryDto dto)
         {
+            dto.BranchId = _authService.GetLoggedBranchId();
             var productsInInventory = new ProductInInventory[dto.Quantity];
 
             for (int i = 0; i < dto.Quantity; i++)
