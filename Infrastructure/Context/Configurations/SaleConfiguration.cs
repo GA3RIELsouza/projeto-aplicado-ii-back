@@ -13,25 +13,27 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
             builder.ToTable("sale");
 
-            builder.Property(x => x.SupplierId)
-                .HasColumnName("supplier_id")
+            builder.Property(x => x.SaleDateTime)
+                .HasColumnName("sale_date_time")
                 .IsRequired(true);
+        }
 
-            builder.Property(x => x.ClientId)
-                .HasColumnName("client_id")
-                .IsRequired(false);
+        private protected override void SetData(EntityTypeBuilder<Sale> builder)
+        {
+            const int count = 12;
+            var defaultSales = new Sale[count];
 
-            builder.HasOne(x => x.Supplier)
-                .WithMany(y => y.Sales)
-                .HasForeignKey(x => x.SupplierId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
+            for (int i = 0; i < count; i++)
+            {
+                defaultSales[i] = new()
+                {
+                    Id = (uint)(i + 1),
+                    BranchId = 1,
+                    SaleDateTime = DEFAULT_CREATED_AT
+                };
+            }
 
-            builder.HasOne(x => x.Client)
-                .WithMany(y => y.Sales)
-                .HasForeignKey(x => x.ClientId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(false);
+            builder.HasData(defaultSales);
         }
     }
 }

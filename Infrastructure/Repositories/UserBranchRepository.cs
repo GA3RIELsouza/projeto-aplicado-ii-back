@@ -10,7 +10,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
     {
         public async Task<List<UserBranchesDto>> GetUsersBranches(User user)
         {
-            return await _dbSet
+            return await _db.UserBranches
                 .Include(ub => ub.Branch)
                     .ThenInclude(b => b!.BranchSize)
                 .Where(ub => ub.UserId == user.Id && ub.Branch!.IsActive)

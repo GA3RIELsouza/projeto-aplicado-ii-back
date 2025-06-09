@@ -23,6 +23,11 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasMaxLength(128)
                 .IsRequired(true);
 
+            builder.Property(x => x.TaxId)
+                .HasColumnName("tax_id")
+                .HasMaxLength(20)
+                .IsRequired(true);
+
             builder.Property(x => x.Street)
                 .HasColumnName("street")
                 .HasMaxLength(256)
@@ -53,16 +58,16 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasMaxLength(128)
                 .IsRequired(true);
 
+            builder.Property(x => x.Email)
+                .HasColumnName("email")
+                .HasMaxLength(254)
+                .IsRequired(true);
+
             builder.Property(x => x.Phone)
                 .HasColumnName("phone")
                 .HasMaxLength(15)
                 .IsRequired(true);
-
-            builder.Property(x => x.TaxId)
-                .HasColumnName("tax_id")
-                .HasMaxLength(20)
-                .IsRequired(true);
-
+            
             builder.Property(x => x.IsActive)
                 .HasColumnName("is_active")
                 .IsRequired(true)
@@ -81,13 +86,14 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     Id = (uint)i,
                     CompanyId = 1,
                     LegalName = $"Fornecedor Padrão {i}",
-                    BusinessName = "Fornecedor Padrão {i}",
+                    BusinessName = $"Fornecedor Padrão {i}",
                     Street = $"Rua Exemplo {i}",
                     Number = $"{i}2",
                     Neighborhood = "Bairro Exemplo",
                     City = "Cidade Exemplo",
                     State = "EX",
                     Country = "Brasil",
+                    Email = $"fornecedor.padrao{i}@supplier.com",
                     Phone = $"55 47 000{i}-0002",
                     TaxId = $"00.000.000/000{i}-02",
                     IsActive = true

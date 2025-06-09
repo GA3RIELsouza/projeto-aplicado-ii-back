@@ -10,5 +10,10 @@ public static class ConfigureServices
         services.AddScoped<BranchService>();
         services.AddScoped<CompanyService>();
         services.AddScoped<ProductCategoryService>();
+        services.AddScoped<UnityOfMeasureService>();
+        services.AddScoped<ProductInInventoryService>();
+        services.AddScoped<SupplierService>();
+        services.AddScoped<SupplierProductService>();
+        services.AddScoped<SaleService>();
     }
 }

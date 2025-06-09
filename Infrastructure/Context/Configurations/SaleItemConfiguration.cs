@@ -37,5 +37,24 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }
+
+        private protected override void SetData(EntityTypeBuilder<SaleItem> builder)
+        {
+            const int count = 12;
+            var defaultSaleItems = new SaleItem[count];
+
+            for (int i = 0; i < count; i++)
+            {
+                defaultSaleItems[i] = new()
+                {
+                    Id = (uint)(i + 1),
+                    SaleId = (uint)(i + 1),
+                    ProductId = (uint)Math.Ceiling((i + 1) / 2m),
+                    Quantity = 2
+                };
+            }
+
+            builder.HasData(defaultSaleItems);
+        }
     }
 }

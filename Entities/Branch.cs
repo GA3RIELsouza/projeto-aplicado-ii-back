@@ -20,7 +20,6 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
         public ICollection<UserBranch>? UserBranches { get; set; }
-        public ICollection<Order>? Orders { get; set; }
 
         public static Branch CreateFromDto(CreateBranchDto dto)
         {

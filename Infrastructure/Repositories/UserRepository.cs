@@ -9,14 +9,14 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
     {
         public async Task<User?> GetByEmailAsync(string email)
         {
-            return await _dbSet
+            return await _db.Users
                 .Where(user => user.Email.Equals(email))
                 .FirstOrDefaultAsync();
         }
 
         public async Task<bool> ExistsByEmailAsync(string email)
         {
-            return await _dbSet
+            return await _db.Users
                 .Where(user => user.Email.Equals(email))
                 .AnyAsync();
         }

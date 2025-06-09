@@ -5,10 +5,11 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class BranchService(MainDbContext db, IBranchRepository branchRepository)
+    public class BranchService(MainDbContext db, IBranchRepository branchRepository, ProductService productService)
     {
         private readonly MainDbContext _db = db;
         private readonly IBranchRepository _branchRepository = branchRepository;
+        private readonly ProductService _productService = productService;
 
         public async Task<uint> CreateAsync(CreateBranchDto dto)
         {
@@ -27,6 +28,15 @@ namespace Projeto_Aplicado_II_API.Services
             var branch = await _branchRepository.GetByIdThrowsIfNullAsync(id);
 
             return BranchDto.FromBranch(branch);
+        }
+
+        public async Task<List<CompanyProductDto>> ListBranchProducts(uint branchId)
+        {
+            var branch = await _branchRepository.GetByIdThrowsIfNullAsync(branchId);
+
+            var response = await _productService.ListCompanyProductsAsync(branch.CompanyId);
+
+            return response;
         }
     }
 }

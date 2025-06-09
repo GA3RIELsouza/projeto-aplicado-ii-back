@@ -8,10 +8,10 @@
 
         public void SetCreatedNow()
         {
-            CreatedAt = DateTime.UtcNow;
+            CreatedAt = DateTime.Now;
             UpdatedAt = null;
         }
 
-        public void SetUpdatedNow() => UpdatedAt = DateTime.UtcNow;
+        public void SetUpdatedNow() => UpdatedAt = DateTime.Now;
     }
 }

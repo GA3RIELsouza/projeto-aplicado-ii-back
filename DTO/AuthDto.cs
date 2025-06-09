@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Projeto_Aplicado_II_API.DTO
+﻿namespace Projeto_Aplicado_II_API.DTO
 {
     public class RegisterDto
     {

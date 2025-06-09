@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250606003350_mssql.onprem_migration_694")]
-    partial class mssqlonprem_migration_694
+    [Migration("20250609022916_mssql.onprem_migration_277")]
+    partial class mssqlonprem_migration_277
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,94 +24,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Batch", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateOnly>("BatchDate")
-                        .HasColumnType("date")
-                        .HasColumnName("batch_date");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<DateOnly>("ExpirationDate")
-                        .HasColumnType("date")
-                        .HasColumnName("expiration_date");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("product_id");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("batch", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 2L
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 3L
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 4L
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 5L
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            BatchDate = new DateOnly(2025, 1, 1),
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ExpirationDate = new DateOnly(2025, 1, 1),
-                            ProductId = 6L
-                        });
-                });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Branch", b =>
                 {
@@ -157,7 +69,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Neighborhood")
                         .IsRequired()
@@ -293,99 +206,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Client", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateOnly?>("BirthDate")
-                        .HasColumnType("date")
-                        .HasColumnName("birth_date");
-
-                    b.Property<string>("City")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("city");
-
-                    b.Property<long>("CompanyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("company_id");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("country");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(254)
-                        .HasColumnType("nvarchar(254)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)")
-                        .HasColumnName("first_name");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("Neighborhood")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("neighborhood");
-
-                    b.Property<string>("Number")
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)")
-                        .HasColumnName("number");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
-                        .HasColumnName("phone");
-
-                    b.Property<string>("State")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("state");
-
-                    b.Property<string>("Street")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)")
-                        .HasColumnName("street");
-
-                    b.Property<string>("TaxId")
-                        .IsRequired()
-                        .HasMaxLength(14)
-                        .HasColumnType("nvarchar(14)")
-                        .HasColumnName("tax_id")
-                        .HasComment("CPF");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("client", (string)null);
-                });
-
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Company", b =>
                 {
                     b.Property<long>("Id")
@@ -408,6 +228,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)")
+                        .HasColumnName("email");
+
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -422,6 +248,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasComment("Razão Social");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)")
                         .HasColumnName("phone");
@@ -450,212 +277,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 1L,
                             BusinessName = "Empresa Padrão LTDA",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "empresa.padrao@company.com",
                             IsActive = true,
                             LegalName = "Empresa Padrão",
                             Phone = "55 47 0001-0001",
                             TaxId = "00.000.000/0001-01"
-                        });
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Order", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("BranchId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("company_id");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<DateTime?>("DeliveryDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("delivery_date_time");
-
-                    b.Property<DateTime>("OrderDateTime")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("order_date_time");
-
-                    b.Property<long>("OrderStatusId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("order_status_id");
-
-                    b.Property<long>("SupplierId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("supplier_id");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("OrderStatusId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("order", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 2L
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 3L
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 4L
-                        },
-                        new
-                        {
-                            Id = 5L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 5L
-                        },
-                        new
-                        {
-                            Id = 6L,
-                            BranchId = 1L,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeliveryDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            OrderStatusId = 3L,
-                            SupplierId = 6L
-                        });
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<long>("OrderId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("order_id");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("product_id");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int")
-                        .HasColumnName("quantity");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("OrderId", "ProductId")
-                        .IsUnique();
-
-                    b.ToTable("order_item", (string)null);
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderStatus", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("updated_at");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("order_status", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Solicitado"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "A caminho"
-                        },
-                        new
-                        {
-                            Id = 3L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Concluído"
                         });
                 });
 
@@ -678,22 +304,29 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Ean13BarCode")
                         .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)")
-                        .HasColumnName("description");
+                        .HasMaxLength(13)
+                        .HasColumnType("nchar(13)")
+                        .HasColumnName("ean_13_bar_code")
+                        .IsFixedLength();
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)")
                         .HasColumnName("image_url");
 
-                    b.Property<int>("MinimalStockQuantity")
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<int>("MinimalInventoryQuantity")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(10)
-                        .HasColumnName("minimal_stock_quantity");
+                        .HasColumnName("minimal_inventory_quantity");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -722,6 +355,9 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasIndex("CompanyId");
 
+                    b.HasIndex("Ean13BarCode")
+                        .IsUnique();
+
                     b.HasIndex("ProductCategoryId");
 
                     b.HasIndex("UnityOfMeasureId");
@@ -734,9 +370,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 1L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Banana Prata",
+                            Ean13BarCode = "7890000010016",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/152c5248ec73694bf1cf8be92c1d8e4720240227033525/450/banana-prata-kg_2019.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Banana Prata",
                             ProductCategoryId = 1L,
                             UnitarySellingPrice = 6.89m,
@@ -747,9 +384,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 2L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Batata Inglesa Lavada",
+                            Ean13BarCode = "7890000010026",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/fb1a588af874d79db3c0c6ae8512a83e20240226225359/450/batata-inglesa-lavada-kg_7172.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Batata Inglesa Lavada",
                             ProductCategoryId = 1L,
                             UnitarySellingPrice = 5.98m,
@@ -760,9 +398,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 3L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Suco Integral Laranja Prat's Garrafa 1,5l",
-                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/0b2f3c4a5e6f7b8c9d0e1f2a3b4c5d6e20240226225359/450/suco-integral-laranja-prats-garrafa-15l_7172.jpg",
-                            MinimalStockQuantity = 10,
+                            Ean13BarCode = "7890000010036",
+                            ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/d72ca3f78b35715d1308a4cb6a6fcba220250520141235/450/suco-integral-laranja-prats-garrafa-1-5l_2294.jpg",
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Suco Integral Laranja Prat's Garrafa 1,5l",
                             ProductCategoryId = 2L,
                             UnitarySellingPrice = 23.99m,
@@ -773,9 +412,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 4L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
+                            Ean13BarCode = "7890000010046",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/e7e4a170a063c2102b4470ce991b714a20250409101224/450/vinho-chileno-cabernet-sauvignon-montes-reserva-garrafa-750ml_8040.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Vinho Chileno Cabernet Sauvignon Montes Reserva Garrafa 750ml",
                             ProductCategoryId = 2L,
                             UnitarySellingPrice = 99.90m,
@@ -786,9 +426,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 5L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Costela Bovina Precoce Verdi",
+                            Ean13BarCode = "7890000010056",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/620ec78bf82c5deb224d95c0544a8f1e20250514171231/450/costela-bovina-precoce-verdi-kg_2380.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Costela Bovina Precoce Verdi",
                             ProductCategoryId = 3L,
                             UnitarySellingPrice = 36.98m,
@@ -799,9 +440,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 6L,
                             CompanyId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Filé Simples Bovino Precoce Verdi",
+                            Ean13BarCode = "7890000010066",
                             ImageUrl = "https://d8vlg9z1oftyc.cloudfront.net/minhacooper/image/product/8e15f72024db65d4faac6f3f07b2777920250509081238/450/file-simples-bovino-precoce-verdi-kg_4970.jpg",
-                            MinimalStockQuantity = 10,
+                            IsActive = true,
+                            MinimalInventoryQuantity = 10,
                             Name = "Filé Simples Bovino Precoce Verdi",
                             ProductCategoryId = 3L,
                             UnitarySellingPrice = 47.90m,
@@ -877,16 +519,6 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("BarCode")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)")
-                        .HasColumnName("bar_code");
-
-                    b.Property<long>("BatchId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("batch_id");
-
                     b.Property<long>("BranchId")
                         .HasColumnType("bigint")
                         .HasColumnName("branch_id");
@@ -897,17 +529,19 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<bool>("IsSold")
-                        .HasColumnType("bit")
-                        .HasColumnName("is_sold");
-
-                    b.Property<long>("OrderId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("order_id");
+                    b.Property<DateOnly>("ManufacturingDate")
+                        .HasColumnType("date");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint")
                         .HasColumnName("product_id");
+
+                    b.Property<long?>("SaleItemId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("sale_item_id");
+
+                    b.Property<long>("SupplierId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -915,13 +549,13 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BatchId");
-
                     b.HasIndex("BranchId");
 
-                    b.HasIndex("OrderId");
-
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("SaleItemId");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("product_in_inventory", (string)null);
 
@@ -929,662 +563,782 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 1L,
-                            BarCode = "1234567890121",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 2L,
-                            BarCode = "1234567890122",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 3L,
-                            BarCode = "1234567890123",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 4L,
-                            BarCode = "1234567890124",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 5L,
-                            BarCode = "1234567890125",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 6L,
-                            BarCode = "1234567890126",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 7L,
-                            BarCode = "1234567890127",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 8L,
-                            BarCode = "1234567890128",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 9L,
-                            BarCode = "1234567890129",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 10L,
-                            BarCode = "12345678901210",
-                            BatchId = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 1L,
-                            ProductId = 1L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SupplierId = 1L
                         },
                         new
                         {
                             Id = 11L,
-                            BarCode = "12345678901211",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 12L,
-                            BarCode = "12345678901212",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 13L,
-                            BarCode = "12345678901213",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 14L,
-                            BarCode = "12345678901214",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 15L,
-                            BarCode = "12345678901215",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 16L,
-                            BarCode = "12345678901216",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 17L,
-                            BarCode = "12345678901217",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 18L,
-                            BarCode = "12345678901218",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 19L,
-                            BarCode = "12345678901219",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 20L,
-                            BarCode = "12345678901220",
-                            BatchId = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 2L,
-                            ProductId = 2L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SupplierId = 2L
                         },
                         new
                         {
                             Id = 21L,
-                            BarCode = "12345678901221",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 22L,
-                            BarCode = "12345678901222",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 23L,
-                            BarCode = "12345678901223",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 24L,
-                            BarCode = "12345678901224",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 25L,
-                            BarCode = "12345678901225",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 26L,
-                            BarCode = "12345678901226",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 27L,
-                            BarCode = "12345678901227",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 28L,
-                            BarCode = "12345678901228",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 29L,
-                            BarCode = "12345678901229",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 30L,
-                            BarCode = "12345678901230",
-                            BatchId = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 3L,
-                            ProductId = 3L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SupplierId = 3L
                         },
                         new
                         {
                             Id = 31L,
-                            BarCode = "12345678901231",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 32L,
-                            BarCode = "12345678901232",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 33L,
-                            BarCode = "12345678901233",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 34L,
-                            BarCode = "12345678901234",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 35L,
-                            BarCode = "12345678901235",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 36L,
-                            BarCode = "12345678901236",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 37L,
-                            BarCode = "12345678901237",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 38L,
-                            BarCode = "12345678901238",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 39L,
-                            BarCode = "12345678901239",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 40L,
-                            BarCode = "12345678901240",
-                            BatchId = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 4L,
-                            ProductId = 4L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SupplierId = 4L
                         },
                         new
                         {
                             Id = 41L,
-                            BarCode = "12345678901241",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 42L,
-                            BarCode = "12345678901242",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 43L,
-                            BarCode = "12345678901243",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 44L,
-                            BarCode = "12345678901244",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 45L,
-                            BarCode = "12345678901245",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 46L,
-                            BarCode = "12345678901246",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 47L,
-                            BarCode = "12345678901247",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 48L,
-                            BarCode = "12345678901248",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 49L,
-                            BarCode = "12345678901249",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 50L,
-                            BarCode = "12345678901250",
-                            BatchId = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 5L,
-                            ProductId = 5L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SupplierId = 5L
                         },
                         new
                         {
                             Id = 51L,
-                            BarCode = "12345678901251",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 52L,
-                            BarCode = "12345678901252",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 53L,
-                            BarCode = "12345678901253",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 54L,
-                            BarCode = "12345678901254",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 55L,
-                            BarCode = "12345678901255",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 56L,
-                            BarCode = "12345678901256",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 57L,
-                            BarCode = "12345678901257",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 58L,
-                            BarCode = "12345678901258",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 59L,
-                            BarCode = "12345678901259",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
                         },
                         new
                         {
                             Id = 60L,
-                            BarCode = "12345678901260",
-                            BatchId = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsSold = false,
-                            OrderId = 6L,
-                            ProductId = 6L
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SupplierId = 6L
+                        },
+                        new
+                        {
+                            Id = 61L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SaleItemId = 1L,
+                            SupplierId = 1L
+                        },
+                        new
+                        {
+                            Id = 62L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SaleItemId = 1L,
+                            SupplierId = 1L
+                        },
+                        new
+                        {
+                            Id = 63L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SaleItemId = 2L,
+                            SupplierId = 1L
+                        },
+                        new
+                        {
+                            Id = 64L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 1L,
+                            SaleItemId = 2L,
+                            SupplierId = 1L
+                        },
+                        new
+                        {
+                            Id = 65L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SaleItemId = 3L,
+                            SupplierId = 2L
+                        },
+                        new
+                        {
+                            Id = 66L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SaleItemId = 3L,
+                            SupplierId = 2L
+                        },
+                        new
+                        {
+                            Id = 67L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SaleItemId = 4L,
+                            SupplierId = 2L
+                        },
+                        new
+                        {
+                            Id = 68L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 2L,
+                            SaleItemId = 4L,
+                            SupplierId = 2L
+                        },
+                        new
+                        {
+                            Id = 69L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SaleItemId = 5L,
+                            SupplierId = 3L
+                        },
+                        new
+                        {
+                            Id = 70L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SaleItemId = 5L,
+                            SupplierId = 3L
+                        },
+                        new
+                        {
+                            Id = 71L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SaleItemId = 6L,
+                            SupplierId = 3L
+                        },
+                        new
+                        {
+                            Id = 72L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 3L,
+                            SaleItemId = 6L,
+                            SupplierId = 3L
+                        },
+                        new
+                        {
+                            Id = 73L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SaleItemId = 7L,
+                            SupplierId = 4L
+                        },
+                        new
+                        {
+                            Id = 74L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SaleItemId = 7L,
+                            SupplierId = 4L
+                        },
+                        new
+                        {
+                            Id = 75L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SaleItemId = 8L,
+                            SupplierId = 4L
+                        },
+                        new
+                        {
+                            Id = 76L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 4L,
+                            SaleItemId = 8L,
+                            SupplierId = 4L
+                        },
+                        new
+                        {
+                            Id = 77L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SaleItemId = 9L,
+                            SupplierId = 5L
+                        },
+                        new
+                        {
+                            Id = 78L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SaleItemId = 9L,
+                            SupplierId = 5L
+                        },
+                        new
+                        {
+                            Id = 79L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SaleItemId = 10L,
+                            SupplierId = 5L
+                        },
+                        new
+                        {
+                            Id = 80L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 5L,
+                            SaleItemId = 10L,
+                            SupplierId = 5L
+                        },
+                        new
+                        {
+                            Id = 81L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SaleItemId = 11L,
+                            SupplierId = 6L
+                        },
+                        new
+                        {
+                            Id = 82L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SaleItemId = 11L,
+                            SupplierId = 6L
+                        },
+                        new
+                        {
+                            Id = 83L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SaleItemId = 12L,
+                            SupplierId = 6L
+                        },
+                        new
+                        {
+                            Id = 84L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ManufacturingDate = new DateOnly(1, 1, 1),
+                            ProductId = 6L,
+                            SaleItemId = 12L,
+                            SupplierId = 6L
                         });
                 });
 
@@ -1601,19 +1355,18 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
 
-                    b.Property<long?>("ClientId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("client_id");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<long>("SupplierId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("supplier_id");
+                    b.Property<DateTime>("SaleDateTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("sale_date_time");
+
+                    b.Property<long?>("SupplierId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
@@ -1623,11 +1376,95 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasIndex("BranchId");
 
-                    b.HasIndex("ClientId");
-
                     b.HasIndex("SupplierId");
 
                     b.ToTable("sale", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            BranchId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.SaleItem", b =>
@@ -1657,6 +1494,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("sale_id");
 
+                    b.Property<long?>("SupplierId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
@@ -1667,7 +1507,107 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     b.HasIndex("SaleId");
 
+                    b.HasIndex("SupplierId");
+
                     b.ToTable("sale_item", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1L,
+                            Quantity = 2,
+                            SaleId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1L,
+                            Quantity = 2,
+                            SaleId = 2L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2L,
+                            Quantity = 2,
+                            SaleId = 3L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2L,
+                            Quantity = 2,
+                            SaleId = 4L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 3L,
+                            Quantity = 2,
+                            SaleId = 5L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 3L,
+                            Quantity = 2,
+                            SaleId = 6L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 4L,
+                            Quantity = 2,
+                            SaleId = 7L
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 4L,
+                            Quantity = 2,
+                            SaleId = 8L
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 5L,
+                            Quantity = 2,
+                            SaleId = 9L
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 5L,
+                            Quantity = 2,
+                            SaleId = 10L
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 6L,
+                            Quantity = 2,
+                            SaleId = 11L
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 6L,
+                            Quantity = 2,
+                            SaleId = 12L
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Supplier", b =>
@@ -1706,6 +1646,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)")
+                        .HasColumnName("email");
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -1769,11 +1715,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 1L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 1",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao1@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 1",
                             Neighborhood = "Bairro Exemplo",
@@ -1786,11 +1733,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 2L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 2",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao2@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 2",
                             Neighborhood = "Bairro Exemplo",
@@ -1803,11 +1751,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 3L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 3",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao3@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 3",
                             Neighborhood = "Bairro Exemplo",
@@ -1820,11 +1769,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 4L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 4",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao4@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 4",
                             Neighborhood = "Bairro Exemplo",
@@ -1837,11 +1787,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 5L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 5",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao5@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 5",
                             Neighborhood = "Bairro Exemplo",
@@ -1854,11 +1805,12 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 6L,
-                            BusinessName = "Fornecedor Padrão {i}",
+                            BusinessName = "Fornecedor Padrão 6",
                             City = "Cidade Exemplo",
                             CompanyId = 1L,
                             Country = "Brasil",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "fornecedor.padrao6@supplier.com",
                             IsActive = true,
                             LegalName = "Fornecedor Padrão 6",
                             Neighborhood = "Bairro Exemplo",
@@ -1879,10 +1831,6 @@ namespace Projeto_Aplicado_II_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long>("CompanyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("company_id");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -1902,26 +1850,68 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("decimal(8,2)")
                         .HasColumnName("unitary_price");
 
-                    b.Property<long>("UnityOfMeasureId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("unity_of_measure_id");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
                         .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("UnityOfMeasureId");
 
                     b.HasIndex("SupplierId", "ProductId")
                         .IsUnique();
 
                     b.ToTable("supplier_product", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1L,
+                            SupplierId = 1L,
+                            UnitaryPrice = 0.99m
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2L,
+                            SupplierId = 2L,
+                            UnitaryPrice = 1.98m
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 3L,
+                            SupplierId = 3L,
+                            UnitaryPrice = 2.97m
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 4L,
+                            SupplierId = 4L,
+                            UnitaryPrice = 3.96m
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 5L,
+                            SupplierId = 5L,
+                            UnitaryPrice = 4.95m
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 6L,
+                            SupplierId = 6L,
+                            UnitaryPrice = 5.94m
+                        });
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.UnityOfMeasure", b =>
@@ -2114,9 +2104,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("company_id");
 
-                    b.Property<long?>("BranchId1")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -2131,16 +2118,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("user_id");
 
-                    b.Property<long?>("UserId1")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BranchId");
-
-                    b.HasIndex("BranchId1");
-
-                    b.HasIndex("UserId1");
 
                     b.HasIndex("UserId", "BranchId")
                         .IsUnique();
@@ -2171,17 +2151,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Batch", b =>
-                {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Product", "Product")
-                        .WithMany("Batches")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Branch", b =>
                 {
                     b.HasOne("Projeto_Aplicado_II_API.Entities.BranchSize", "BranchSize")
@@ -2199,63 +2168,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.Navigation("BranchSize");
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Client", b =>
-                {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Order", b =>
-                {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Branch", "Branch")
-                        .WithMany("Orders")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.OrderStatus", "OrderStatus")
-                        .WithMany("Orders")
-                        .HasForeignKey("OrderStatusId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Supplier", "Supplier")
-                        .WithMany("Orders")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("OrderStatus");
-
-                    b.Navigation("Supplier");
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderItem", b =>
-                {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Product", "Product")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Product", b =>
@@ -2298,21 +2210,9 @@ namespace Projeto_Aplicado_II_API.Migrations
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.ProductInInventory", b =>
                 {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Batch", "Batch")
-                        .WithMany("ProductsInInventory")
-                        .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Branch", "Branch")
                         .WithMany("ProductsInInventory")
                         .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Order", "Order")
-                        .WithMany("ProductsInInventory")
-                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -2322,13 +2222,25 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Batch");
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.SaleItem", "SaleItem")
+                        .WithMany("ProductsInInventory")
+                        .HasForeignKey("SaleItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.Supplier", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Branch");
 
-                    b.Navigation("Order");
-
                     b.Navigation("Product");
+
+                    b.Navigation("SaleItem");
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Sale", b =>
@@ -2339,22 +2251,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Client", "Client")
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.Supplier", null)
                         .WithMany("Sales")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Supplier", "Supplier")
-                        .WithMany("Sales")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Branch");
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.SaleItem", b =>
@@ -2370,6 +2271,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Projeto_Aplicado_II_API.Entities.Supplier", null)
+                        .WithMany("SaleItems")
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Product");
 
@@ -2389,12 +2294,6 @@ namespace Projeto_Aplicado_II_API.Migrations
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.SupplierProduct", b =>
                 {
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Product", "Product")
                         .WithMany("SupplierProducts")
                         .HasForeignKey("ProductId")
@@ -2407,57 +2306,32 @@ namespace Projeto_Aplicado_II_API.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.UnityOfMeasure", "UnityOfMeasure")
-                        .WithMany()
-                        .HasForeignKey("UnityOfMeasureId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
                     b.Navigation("Product");
 
                     b.Navigation("Supplier");
-
-                    b.Navigation("UnityOfMeasure");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.UserBranch", b =>
                 {
                     b.HasOne("Projeto_Aplicado_II_API.Entities.Branch", "Branch")
-                        .WithMany()
+                        .WithMany("UserBranches")
                         .HasForeignKey("BranchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.Branch", null)
-                        .WithMany("UserBranches")
-                        .HasForeignKey("BranchId1");
-
                     b.HasOne("Projeto_Aplicado_II_API.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("UserBranches")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Projeto_Aplicado_II_API.Entities.User", null)
-                        .WithMany("UserBranches")
-                        .HasForeignKey("UserId1");
 
                     b.Navigation("Branch");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Batch", b =>
-                {
-                    b.Navigation("ProductsInInventory");
-                });
-
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Branch", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("ProductsInInventory");
 
                     b.Navigation("UserBranches");
@@ -2466,11 +2340,6 @@ namespace Projeto_Aplicado_II_API.Migrations
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.BranchSize", b =>
                 {
                     b.Navigation("Branches");
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Client", b =>
-                {
-                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Company", b =>
@@ -2482,24 +2351,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Order", b =>
-                {
-                    b.Navigation("OrderItems");
-
-                    b.Navigation("ProductsInInventory");
-                });
-
-            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.OrderStatus", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Product", b =>
                 {
-                    b.Navigation("Batches");
-
-                    b.Navigation("OrderItems");
-
                     b.Navigation("ProductsInInventory");
 
                     b.Navigation("SaleItems");
@@ -2517,9 +2370,14 @@ namespace Projeto_Aplicado_II_API.Migrations
                     b.Navigation("SaleItems");
                 });
 
+            modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.SaleItem", b =>
+                {
+                    b.Navigation("ProductsInInventory");
+                });
+
             modelBuilder.Entity("Projeto_Aplicado_II_API.Entities.Supplier", b =>
                 {
-                    b.Navigation("Orders");
+                    b.Navigation("SaleItems");
 
                     b.Navigation("Sales");
 

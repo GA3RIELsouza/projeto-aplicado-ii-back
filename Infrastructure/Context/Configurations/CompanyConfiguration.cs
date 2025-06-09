@@ -25,10 +25,15 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasComment("Nome Fantasia")
                 .IsRequired(true);
 
+            builder.Property(x => x.Email)
+                .HasColumnName("email")
+                .HasMaxLength(254)
+                .IsRequired(true);
+
             builder.Property(x => x.Phone)
                 .HasColumnName("phone")
                 .HasMaxLength(32)
-                .IsRequired(false);
+                .IsRequired(true);
 
             builder.Property(x => x.TaxId)
                 .HasColumnName("tax_id")
@@ -52,6 +57,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 Id = 1,
                 LegalName = "Empresa Padrão",
                 BusinessName = "Empresa Padrão LTDA",
+                Email = "empresa.padrao@company.com",
                 Phone = "55 47 0001-0001",
                 TaxId = "00.000.000/0001-01",
                 IsActive = true

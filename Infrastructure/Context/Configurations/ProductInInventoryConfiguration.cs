@@ -21,27 +21,10 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("branch_id")
                 .IsRequired(true);
 
-            builder.Property(x => x.OrderId)
-                .HasColumnName("order_id")
-                .IsRequired(true);
-
-            builder.Property(x => x.BatchId)
-                .HasColumnName("batch_id")
-                .IsRequired(true);
-
-            builder.Property(x => x.BranchId)
-                .HasColumnName("branch_id")
-                .IsRequired(true);
-
-            builder.Property(x => x.BarCode)
-                .HasColumnName("bar_code")
-                .HasMaxLength(128)
-                .IsRequired(true);
-
-            builder.Property(x => x.IsSold)
-                .HasColumnName("is_sold")
-                .HasDefaultValue(false)
-                .IsRequired(true);
+            builder.Property(x => x.SaleItemId)
+                .HasColumnName("sale_item_id")
+                .HasDefaultValue(null)
+                .IsRequired(false);
 
             builder.HasOne(x => x.Product)
                 .WithMany(y => y.ProductsInInventory)
@@ -55,15 +38,9 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
 
-            builder.HasOne(x => x.Order)
+            builder.HasOne(x => x.SaleItem)
                 .WithMany(y => y.ProductsInInventory)
-                .HasForeignKey(x => x.OrderId)
-                .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
-
-            builder.HasOne(x => x.Batch)
-                .WithMany(y => y.ProductsInInventory)
-                .HasForeignKey(x => x.BatchId)
+                .HasForeignKey(x => x.SaleItemId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
         }
@@ -79,15 +56,28 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 {
                     Id = (uint)(i + 1),
                     ProductId = (uint)((i / 10) + 1),
+                    SupplierId = (uint)((i / 10) + 1),
                     BranchId = 1,
-                    OrderId = (uint)((i / 10) + 1),
-                    BatchId = (uint)((i / 10) + 1),
-                    BarCode = $"123456789012{i + 1}",
-                    IsSold = false,
+                    SaleItemId = null,
                 };
             }
 
-            builder.HasData(defaultProductsInInventory);
+            const int totalSaleItemProductInInventory = 24;
+            var saleItemProductsInInventory = new ProductInInventory[totalSaleItemProductInInventory];
+
+            for (int i = 0; i < totalSaleItemProductInInventory; i++)
+            {
+                saleItemProductsInInventory[i] = new()
+                {
+                    Id = (uint)(count + i + 1),
+                    ProductId = (uint)Math.Ceiling((i + 1) / 4m),
+                    SupplierId = (uint)Math.Ceiling((i + 1) / 4m),
+                    BranchId = 1,
+                    SaleItemId = (uint)Math.Ceiling((i + 1) / 2m)
+                };
+            }
+
+            builder.HasData(defaultProductsInInventory.Concat(saleItemProductsInInventory));
         }
     }
 }
