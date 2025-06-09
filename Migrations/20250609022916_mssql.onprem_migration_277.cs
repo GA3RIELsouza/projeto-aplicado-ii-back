@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqlonprem_migration_314 : Migration
+    public partial class mssqlonprem_migration_277 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -90,7 +90,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     street = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     neighborhood = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
@@ -118,39 +118,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                         principalTable: "company",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "client",
-                columns: table => new
-                {
-                    id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    first_name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    last_name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    tax_id = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false, comment: "CPF"),
-                    birth_date = table.Column<DateOnly>(type: "date", nullable: true),
-                    email = table.Column<string>(type: "nvarchar(254)", maxLength: 254, nullable: true),
-                    phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    street = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
-                    neighborhood = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    city = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    state = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    country = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
-                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    company_id = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_client", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_client_company_company_id",
-                        column: x => x.company_id,
-                        principalTable: "company",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -215,8 +182,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     user_id = table.Column<long>(type: "bigint", nullable: false),
-                    BranchId1 = table.Column<long>(type: "bigint", nullable: true),
-                    UserId1 = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -225,21 +190,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     table.PrimaryKey("PK_user_branch", x => x.id);
                     table.ForeignKey(
-                        name: "FK_user_branch_branch_BranchId1",
-                        column: x => x.BranchId1,
-                        principalTable: "branch",
-                        principalColumn: "id");
-                    table.ForeignKey(
                         name: "FK_user_branch_branch_company_id",
                         column: x => x.company_id,
                         principalTable: "branch",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_user_branch_user_UserId1",
-                        column: x => x.UserId1,
-                        principalTable: "user",
-                        principalColumn: "id");
                     table.ForeignKey(
                         name: "FK_user_branch_user_user_id",
                         column: x => x.user_id,
@@ -295,8 +250,8 @@ namespace Projeto_Aplicado_II_API.Migrations
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    supplier_id = table.Column<long>(type: "bigint", nullable: false),
-                    client_id = table.Column<long>(type: "bigint", nullable: true),
+                    sale_date_time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SupplierId = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
                     company_id = table.Column<long>(type: "bigint", nullable: false)
@@ -311,54 +266,10 @@ namespace Projeto_Aplicado_II_API.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_sale_client_client_id",
-                        column: x => x.client_id,
-                        principalTable: "client",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_sale_supplier_supplier_id",
-                        column: x => x.supplier_id,
-                        principalTable: "supplier",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "product_in_inventory",
-                columns: table => new
-                {
-                    id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    product_id = table.Column<long>(type: "bigint", nullable: false),
-                    SupplierId = table.Column<long>(type: "bigint", nullable: false),
-                    ManufacturingDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    is_sold = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
-                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    branch_id = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_product_in_inventory", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_product_in_inventory_branch_branch_id",
-                        column: x => x.branch_id,
-                        principalTable: "branch",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_product_in_inventory_product_product_id",
-                        column: x => x.product_id,
-                        principalTable: "product",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_product_in_inventory_supplier_SupplierId",
+                        name: "FK_sale_supplier_SupplierId",
                         column: x => x.SupplierId,
                         principalTable: "supplier",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -399,6 +310,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                     sale_id = table.Column<long>(type: "bigint", nullable: false),
                     product_id = table.Column<long>(type: "bigint", nullable: false),
                     quantity = table.Column<int>(type: "int", nullable: false),
+                    SupplierId = table.Column<long>(type: "bigint", nullable: true),
                     created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updated_at = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -415,6 +327,54 @@ namespace Projeto_Aplicado_II_API.Migrations
                         name: "FK_sale_item_sale_sale_id",
                         column: x => x.sale_id,
                         principalTable: "sale",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_sale_item_supplier_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "supplier",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "product_in_inventory",
+                columns: table => new
+                {
+                    id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    product_id = table.Column<long>(type: "bigint", nullable: false),
+                    SupplierId = table.Column<long>(type: "bigint", nullable: false),
+                    ManufacturingDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    sale_item_id = table.Column<long>(type: "bigint", nullable: true),
+                    created_at = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    branch_id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_product_in_inventory", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_product_in_inventory_branch_branch_id",
+                        column: x => x.branch_id,
+                        principalTable: "branch",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_product_in_inventory_product_product_id",
+                        column: x => x.product_id,
+                        principalTable: "product",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_product_in_inventory_sale_item_sale_item_id",
+                        column: x => x.sale_item_id,
+                        principalTable: "sale_item",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_product_in_inventory_supplier_SupplierId",
+                        column: x => x.SupplierId,
+                        principalTable: "supplier",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -457,7 +417,7 @@ namespace Projeto_Aplicado_II_API.Migrations
 
             migrationBuilder.InsertData(
                 table: "branch",
-                columns: new[] { "id", "branch_size_id", "city", "company_id", "country", "is_active", "Name", "neighborhood", "number", "state", "street", "updated_at" },
+                columns: new[] { "id", "branch_size_id", "city", "company_id", "country", "is_active", "name", "neighborhood", "number", "state", "street", "updated_at" },
                 values: new object[,]
                 {
                     { 1L, 1L, "Cidade Exemplo", 1L, "Brasil", true, "Filial Padrão 1", "Bairro Exemplo", "11", "EX", "Rua Exemplo 1", null },
@@ -502,80 +462,118 @@ namespace Projeto_Aplicado_II_API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "user_branch",
-                columns: new[] { "id", "company_id", "BranchId1", "updated_at", "user_id", "UserId1" },
+                table: "sale",
+                columns: new[] { "id", "company_id", "sale_date_time", "SupplierId", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, 1L, null, null, 1L, null },
-                    { 2L, 2L, null, null, 1L, null },
-                    { 3L, 3L, null, null, 1L, null }
+                    { 1L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 2L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 3L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 4L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 5L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 6L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 7L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 8L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 9L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 10L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 11L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
+                    { 12L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "user_branch",
+                columns: new[] { "id", "company_id", "updated_at", "user_id" },
+                values: new object[,]
+                {
+                    { 1L, 1L, null, 1L },
+                    { 2L, 2L, null, 1L },
+                    { 3L, 3L, null, 1L }
                 });
 
             migrationBuilder.InsertData(
                 table: "product_in_inventory",
-                columns: new[] { "id", "branch_id", "ManufacturingDate", "product_id", "SupplierId", "updated_at" },
+                columns: new[] { "id", "branch_id", "ManufacturingDate", "product_id", "sale_item_id", "SupplierId", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 2L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 3L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 4L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 5L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 6L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 7L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 8L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 9L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 10L, 1L, new DateOnly(1, 1, 1), 1L, 1L, null },
-                    { 11L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 12L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 13L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 14L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 15L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 16L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 17L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 18L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 19L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 20L, 1L, new DateOnly(1, 1, 1), 2L, 2L, null },
-                    { 21L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 22L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 23L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 24L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 25L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 26L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 27L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 28L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 29L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 30L, 1L, new DateOnly(1, 1, 1), 3L, 3L, null },
-                    { 31L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 32L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 33L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 34L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 35L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 36L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 37L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 38L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 39L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 40L, 1L, new DateOnly(1, 1, 1), 4L, 4L, null },
-                    { 41L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 42L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 43L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 44L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 45L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 46L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 47L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 48L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 49L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 50L, 1L, new DateOnly(1, 1, 1), 5L, 5L, null },
-                    { 51L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 52L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 53L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 54L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 55L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 56L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 57L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 58L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 59L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null },
-                    { 60L, 1L, new DateOnly(1, 1, 1), 6L, 6L, null }
+                    { 1L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 2L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 3L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 4L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 5L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 6L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 7L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 8L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 9L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 10L, 1L, new DateOnly(1, 1, 1), 1L, null, 1L, null },
+                    { 11L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 12L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 13L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 14L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 15L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 16L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 17L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 18L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 19L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 20L, 1L, new DateOnly(1, 1, 1), 2L, null, 2L, null },
+                    { 21L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 22L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 23L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 24L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 25L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 26L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 27L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 28L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 29L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 30L, 1L, new DateOnly(1, 1, 1), 3L, null, 3L, null },
+                    { 31L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 32L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 33L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 34L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 35L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 36L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 37L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 38L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 39L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 40L, 1L, new DateOnly(1, 1, 1), 4L, null, 4L, null },
+                    { 41L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 42L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 43L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 44L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 45L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 46L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 47L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 48L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 49L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 50L, 1L, new DateOnly(1, 1, 1), 5L, null, 5L, null },
+                    { 51L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 52L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 53L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 54L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 55L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 56L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 57L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 58L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 59L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null },
+                    { 60L, 1L, new DateOnly(1, 1, 1), 6L, null, 6L, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "sale_item",
+                columns: new[] { "id", "product_id", "quantity", "sale_id", "SupplierId", "updated_at" },
+                values: new object[,]
+                {
+                    { 1L, 1L, 2, 1L, null, null },
+                    { 2L, 1L, 2, 2L, null, null },
+                    { 3L, 2L, 2, 3L, null, null },
+                    { 4L, 2L, 2, 4L, null, null },
+                    { 5L, 3L, 2, 5L, null, null },
+                    { 6L, 3L, 2, 6L, null, null },
+                    { 7L, 4L, 2, 7L, null, null },
+                    { 8L, 4L, 2, 8L, null, null },
+                    { 9L, 5L, 2, 9L, null, null },
+                    { 10L, 5L, 2, 10L, null, null },
+                    { 11L, 6L, 2, 11L, null, null },
+                    { 12L, 6L, 2, 12L, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -583,12 +581,43 @@ namespace Projeto_Aplicado_II_API.Migrations
                 columns: new[] { "id", "product_id", "supplier_id", "unitary_price", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, 1L, 1L, 0m, null },
-                    { 2L, 2L, 2L, 0m, null },
-                    { 3L, 3L, 3L, 0m, null },
-                    { 4L, 4L, 4L, 0m, null },
-                    { 5L, 5L, 5L, 0m, null },
-                    { 6L, 6L, 6L, 0m, null }
+                    { 1L, 1L, 1L, 0.99m, null },
+                    { 2L, 2L, 2L, 1.98m, null },
+                    { 3L, 3L, 3L, 2.97m, null },
+                    { 4L, 4L, 4L, 3.96m, null },
+                    { 5L, 5L, 5L, 4.95m, null },
+                    { 6L, 6L, 6L, 5.94m, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "product_in_inventory",
+                columns: new[] { "id", "branch_id", "ManufacturingDate", "product_id", "sale_item_id", "SupplierId", "updated_at" },
+                values: new object[,]
+                {
+                    { 61L, 1L, new DateOnly(1, 1, 1), 1L, 1L, 1L, null },
+                    { 62L, 1L, new DateOnly(1, 1, 1), 1L, 1L, 1L, null },
+                    { 63L, 1L, new DateOnly(1, 1, 1), 1L, 2L, 1L, null },
+                    { 64L, 1L, new DateOnly(1, 1, 1), 1L, 2L, 1L, null },
+                    { 65L, 1L, new DateOnly(1, 1, 1), 2L, 3L, 2L, null },
+                    { 66L, 1L, new DateOnly(1, 1, 1), 2L, 3L, 2L, null },
+                    { 67L, 1L, new DateOnly(1, 1, 1), 2L, 4L, 2L, null },
+                    { 68L, 1L, new DateOnly(1, 1, 1), 2L, 4L, 2L, null },
+                    { 69L, 1L, new DateOnly(1, 1, 1), 3L, 5L, 3L, null },
+                    { 70L, 1L, new DateOnly(1, 1, 1), 3L, 5L, 3L, null },
+                    { 71L, 1L, new DateOnly(1, 1, 1), 3L, 6L, 3L, null },
+                    { 72L, 1L, new DateOnly(1, 1, 1), 3L, 6L, 3L, null },
+                    { 73L, 1L, new DateOnly(1, 1, 1), 4L, 7L, 4L, null },
+                    { 74L, 1L, new DateOnly(1, 1, 1), 4L, 7L, 4L, null },
+                    { 75L, 1L, new DateOnly(1, 1, 1), 4L, 8L, 4L, null },
+                    { 76L, 1L, new DateOnly(1, 1, 1), 4L, 8L, 4L, null },
+                    { 77L, 1L, new DateOnly(1, 1, 1), 5L, 9L, 5L, null },
+                    { 78L, 1L, new DateOnly(1, 1, 1), 5L, 9L, 5L, null },
+                    { 79L, 1L, new DateOnly(1, 1, 1), 5L, 10L, 5L, null },
+                    { 80L, 1L, new DateOnly(1, 1, 1), 5L, 10L, 5L, null },
+                    { 81L, 1L, new DateOnly(1, 1, 1), 6L, 11L, 6L, null },
+                    { 82L, 1L, new DateOnly(1, 1, 1), 6L, 11L, 6L, null },
+                    { 83L, 1L, new DateOnly(1, 1, 1), 6L, 12L, 6L, null },
+                    { 84L, 1L, new DateOnly(1, 1, 1), 6L, 12L, 6L, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -599,11 +628,6 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_branch_company_id",
                 table: "branch",
-                column: "company_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_client_company_id",
-                table: "client",
                 column: "company_id");
 
             migrationBuilder.CreateIndex(
@@ -649,14 +673,14 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "product_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_product_in_inventory_sale_item_id",
+                table: "product_in_inventory",
+                column: "sale_item_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_product_in_inventory_SupplierId",
                 table: "product_in_inventory",
                 column: "SupplierId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_sale_client_id",
-                table: "sale",
-                column: "client_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_sale_company_id",
@@ -664,9 +688,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                 column: "company_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_sale_supplier_id",
+                name: "IX_sale_SupplierId",
                 table: "sale",
-                column: "supplier_id");
+                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_sale_item_product_id",
@@ -677,6 +701,11 @@ namespace Projeto_Aplicado_II_API.Migrations
                 name: "IX_sale_item_sale_id",
                 table: "sale_item",
                 column: "sale_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_sale_item_SupplierId",
+                table: "sale_item",
+                column: "SupplierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_supplier_company_id",
@@ -701,11 +730,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_branch_BranchId1",
-                table: "user_branch",
-                column: "BranchId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_user_branch_company_id",
                 table: "user_branch",
                 column: "company_id");
@@ -715,11 +739,6 @@ namespace Projeto_Aplicado_II_API.Migrations
                 table: "user_branch",
                 columns: new[] { "user_id", "company_id" },
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_user_branch_UserId1",
-                table: "user_branch",
-                column: "UserId1");
         }
 
         /// <inheritdoc />
@@ -729,37 +748,34 @@ namespace Projeto_Aplicado_II_API.Migrations
                 name: "product_in_inventory");
 
             migrationBuilder.DropTable(
-                name: "sale_item");
-
-            migrationBuilder.DropTable(
                 name: "supplier_product");
 
             migrationBuilder.DropTable(
                 name: "user_branch");
 
             migrationBuilder.DropTable(
-                name: "sale");
-
-            migrationBuilder.DropTable(
-                name: "product");
+                name: "sale_item");
 
             migrationBuilder.DropTable(
                 name: "user");
 
             migrationBuilder.DropTable(
-                name: "branch");
+                name: "product");
 
             migrationBuilder.DropTable(
-                name: "client");
-
-            migrationBuilder.DropTable(
-                name: "supplier");
+                name: "sale");
 
             migrationBuilder.DropTable(
                 name: "product_category");
 
             migrationBuilder.DropTable(
                 name: "unity_of_measure");
+
+            migrationBuilder.DropTable(
+                name: "branch");
+
+            migrationBuilder.DropTable(
+                name: "supplier");
 
             migrationBuilder.DropTable(
                 name: "branch_size");

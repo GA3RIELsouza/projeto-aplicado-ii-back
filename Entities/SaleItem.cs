@@ -1,4 +1,5 @@
-﻿using Projeto_Aplicado_II_API.Entities.Base;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Entities
 {
@@ -10,5 +11,16 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public virtual Sale? Sale { get; set; }
         public virtual Product? Product { get; set; }
+        public virtual ICollection<ProductInInventory>? ProductsInInventory { get; set; }
+
+        public static SaleItem CreateFromDto(CreateItemSaleDto dto)
+        {
+            return new()
+            {
+                SaleId = dto.SaleId,
+                ProductId = dto.ProductId,
+                Quantity = dto.Quantity
+            };
+        }
     }
 }

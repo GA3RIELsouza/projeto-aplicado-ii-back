@@ -1,4 +1,5 @@
-﻿using Projeto_Aplicado_II_API.Entities.Base;
+﻿using Projeto_Aplicado_II_API.DTO;
+using Projeto_Aplicado_II_API.Entities.Base;
 
 namespace Projeto_Aplicado_II_API.Entities
 {
@@ -10,5 +11,15 @@ namespace Projeto_Aplicado_II_API.Entities
 
         public virtual Supplier? Supplier { get; set; }
         public virtual Product? Product { get; set; }
+
+        public static SupplierProduct CreateFromDto(CreateSupplierProductDto dto)
+        {
+            return new()
+            {
+                SupplierId = dto.SupplierId,
+                ProductId = dto.ProductId,
+                UnitaryPrice = dto.UnitaryPrice
+            };
+        }
     }
 }

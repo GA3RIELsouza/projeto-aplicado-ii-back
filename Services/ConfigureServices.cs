@@ -14,5 +14,6 @@ public static class ConfigureServices
         services.AddScoped<ProductInInventoryService>();
         services.AddScoped<SupplierService>();
         services.AddScoped<SupplierProductService>();
+        services.AddScoped<SaleService>();
     }
 }

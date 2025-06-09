@@ -18,13 +18,13 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired();
 
             builder.HasOne(x => x.User)
-                .WithMany()
+                .WithMany(y => y.UserBranches)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired(true);
 
             builder.HasOne(x => x.Branch)
-                .WithMany()
+                .WithMany(y => y.UserBranches)
                 .HasForeignKey(x => x.BranchId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired(true);

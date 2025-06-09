@@ -6,11 +6,16 @@ using System.Text;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class ProductService(MainDbContext db, IProductRepository productRepository, ICompanyRepository companyRepository, AuthService authService)
+    public class ProductService(MainDbContext db,
+        IProductRepository productRepository,
+        ICompanyRepository companyRepository,
+        IProductCategoryRepository productCategoryRepository,
+        AuthService authService)
     {
         private readonly MainDbContext _db = db;
         private readonly IProductRepository _productRepository = productRepository;
         private readonly ICompanyRepository _companyRepository = companyRepository;
+        private readonly IProductCategoryRepository _productCategoryRepository = productCategoryRepository;
         private readonly AuthService _authService = authService;
 
         public async Task<uint> CreateAsync(CreateProductDto dto)
@@ -19,10 +24,27 @@ namespace Projeto_Aplicado_II_API.Services
 
             var branch = await _authService.GetLoggedBranchAsync();
 
+            ProductCategory? category;
+
+            if (dto.ProductCategoryId == 0)
+            {
+                category = new()
+                {
+                    CompanyId = branch.CompanyId,
+                    Description = dto.OtherProductCategory ?? "Nova categoria"
+                };
+            }
+            else
+            {
+                category = await _productCategoryRepository.GetByIdThrowsIfNullAsync(dto.ProductCategoryId);
+            }
+
             product.CompanyId = branch.CompanyId;
+            product.ProductCategory = category;
 
             await _db.RunInTransactionAsync(async () =>
             {
+                if (category.Id != 0) await _productCategoryRepository.AddAsync(category);
                 await _productRepository.AddAsync(product);
                 await _db.SaveChangesAsync();
 

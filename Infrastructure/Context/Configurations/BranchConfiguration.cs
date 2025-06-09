@@ -14,6 +14,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.ToTable("branch");
 
             builder.Property(x => x.Name)
+                .HasColumnName("name")
                 .HasMaxLength(128)
                 .IsRequired(true);
 

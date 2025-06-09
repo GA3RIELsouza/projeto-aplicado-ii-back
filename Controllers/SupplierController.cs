@@ -34,5 +34,30 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{supplierId}/product/{productId}")]
+        public async Task<IActionResult> DeleteSupplierProductAsync(uint supplierId, uint productId)
+        {
+            await _supplierProductService.DeleteSupplierProductAsync(supplierId, productId);
+
+            return Ok();
+        }
+
+        [HttpPost("{supplierId}/product")]
+        public async Task<IActionResult> AddProductToSupplierAsync(uint supplierId, [FromBody] CreateSupplierProductDto dto)
+        {
+            dto.SupplierId = supplierId;
+            var response = await _supplierProductService.CreateSupplierProductAsync(dto);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{id}/products/does-not-sell")]
+        public async Task<IActionResult> ListSupplierProductsDoesNotSellAsync(uint id)
+        {
+            var response = await _supplierProductService.ListSupplierProductsDoesNotSellAsync(id);
+
+            return Ok(response);
+        }
     }
 }

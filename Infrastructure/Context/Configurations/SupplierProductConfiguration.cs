@@ -53,7 +53,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 {
                     Id = (uint)(i + 1),
                     SupplierId = (uint)(i + 1),
-                    ProductId = (uint)(i + 1)
+                    ProductId = (uint)(i + 1),
+                    UnitaryPrice = (i + 1) * 0.99m
                 };
             }
 

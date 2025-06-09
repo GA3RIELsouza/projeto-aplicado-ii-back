@@ -8,7 +8,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         {
             repositories.AddScoped<IBranchRepository, BranchRepository>();
             repositories.AddScoped<IBranchSizeRepository, BranchSizeRepository>();
-            repositories.AddScoped<IClientRepository, ClientRepository>();
             repositories.AddScoped<ICompanyRepository, CompanyRepository>();
             repositories.AddScoped<IProductRepository, ProductRepository>();
             repositories.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();

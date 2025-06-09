@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Entities.Base;
 using System.Reflection;
@@ -9,7 +10,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context
     {
         public DbSet<Branch> Branches => Set<Branch>();
         public DbSet<BranchSize> BranchSizes => Set<BranchSize>();
-        public DbSet<Client> Clients => Set<Client>();
         public DbSet<Company> Companies => Set<Company>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<ProductCategory> ProductCategories => Set<ProductCategory>();

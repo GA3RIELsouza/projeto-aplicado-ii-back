@@ -30,9 +30,15 @@ namespace Projeto_Aplicado_II_API.DTO
         public string Name { get; set; } = string.Empty;
         public string? ImageUrl { get; set; }
         public uint ProductCategoryId { get; set; }
+        public string? OtherProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
         public int MinimalInventoryQuantity { get; set; } = 10;
+    }
+
+    public class GetProductForUpdateDto : CreateProductDto
+    {
+        public uint Id { get; set; }
     }
 
     public class CompanyProductDto
