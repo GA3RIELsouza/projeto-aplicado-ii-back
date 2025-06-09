@@ -14,7 +14,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 .Include(si => si.Sale)
                 .Include(si => si.Product)
                     .ThenInclude(p => p.SupplierProducts)
-                .Where(si => si.Product!.IsActive && si.Sale!.BranchId == branchId && si.SaleId == saleId)
+                .Where(si => si.Sale!.BranchId == branchId && si.SaleId == saleId)
                 .Select(si => new SaleItemDto
                 {
                     Id = si.Id,
