@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     /// <inheritdoc />
-    public partial class mssqlonprem_migration_277 : Migration
+    public partial class mssqlonprem_migration_921 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -384,9 +384,9 @@ namespace Projeto_Aplicado_II_API.Migrations
                 columns: new[] { "id", "created_at", "description", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Pequena", null },
-                    { 2L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Média", null },
-                    { 3L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Grande", null }
+                    { 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), "Pequena", null },
+                    { 2L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), "Média", null },
+                    { 3L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), "Grande", null }
                 });
 
             migrationBuilder.InsertData(
@@ -413,7 +413,7 @@ namespace Projeto_Aplicado_II_API.Migrations
             migrationBuilder.InsertData(
                 table: "user",
                 columns: new[] { "id", "created_at", "email", "is_active", "is_admin", "name", "password_hash", "password_salt_hash", "updated_at" },
-                values: new object[] { 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@admin.com", true, true, "Admin", new byte[] { 106, 81, 44, 80, 75, 157, 220, 207, 185, 250, 202, 13, 10, 59, 117, 138, 172, 230, 74, 223, 189, 1, 152, 66, 146, 180, 174, 9, 104, 9, 3, 126 }, new byte[] { 99, 212, 93, 197, 93, 127, 86, 151, 50, 94, 80, 108, 64, 232, 22, 152 }, null });
+                values: new object[] { 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), "admin@admin.com", true, true, "Admin", new byte[] { 106, 81, 44, 80, 75, 157, 220, 207, 185, 250, 202, 13, 10, 59, 117, 138, 172, 230, 74, 223, 189, 1, 152, 66, 146, 180, 174, 9, 104, 9, 3, 126 }, new byte[] { 99, 212, 93, 197, 93, 127, 86, 151, 50, 94, 80, 108, 64, 232, 22, 152 }, null });
 
             migrationBuilder.InsertData(
                 table: "branch",
@@ -466,18 +466,18 @@ namespace Projeto_Aplicado_II_API.Migrations
                 columns: new[] { "id", "company_id", "sale_date_time", "SupplierId", "updated_at" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 2L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 3L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 4L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 5L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 6L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 7L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 8L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 9L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 10L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 11L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null },
-                    { 12L, 1L, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null }
+                    { 1L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 2L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 3L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 4L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 5L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 6L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 7L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 8L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 9L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 10L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 11L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null },
+                    { 12L, 1L, new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc), null, null }
                 });
 
             migrationBuilder.InsertData(

@@ -89,6 +89,8 @@ namespace Projeto_Aplicado_II_API.Services
 
             saleItem ??= SaleItem.CreateFromDto(dto);
 
+            for (int i = 0; i < productsInInventoryAmount; i++) productsInInventory[i].SaleItemId = saleItem.Id;
+
             await _db.RunInTransactionAsync(async () =>
             {
                 if (add)
@@ -98,10 +100,10 @@ namespace Projeto_Aplicado_II_API.Services
                 }
                 else
                 {
+                    saleItem.Quantity += dto.Quantity;
                     _saleItemRepository.Update(saleItem);
                 }
 
-                for (int i = 0; i < productsInInventoryAmount; i++) productsInInventory[i].SaleItemId = saleItem.Id;
                 _productInInventoryRepository.UpdateRange(productsInInventory);
             });
 
@@ -124,29 +126,34 @@ namespace Projeto_Aplicado_II_API.Services
             await _saleRepository.ThrowIfNotExists(s => s.Id == saleId);
             var saleItem = await _saleItemRepository.GetByIdThrowsIfNullAsync(saleItemId);
 
-            var difference = dto.Quantity - saleItem.Quantity;
-
             ProductInInventory[] productsInInventory = [];
 
-            if (difference > 0)
+            var add = dto.Quantity > saleItem.Quantity;
+
+            if (add)
             {
                 dto.SaleId = saleId;
                 dto.ProductId = saleItem.ProductId;
+                dto.Quantity -= saleItem.Quantity;
+
                 await AddItemToSaleAsync(dto, saleItem);
             }
             else
             {
                 productsInInventory = await _productInInventoryRepository.ListBySaleAsync(saleId);
-                productsInInventory = [.. productsInInventory.OrderByDescending(pii => pii.ManufacturingDate).Take(Math.Abs(difference))];
+                productsInInventory = [.. productsInInventory.OrderByDescending(pii => pii.ManufacturingDate).Take(Math.Abs(dto.Quantity - saleItem.Quantity))];
                 for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
-            }
 
-            saleItem.Quantity = dto.Quantity;
+                saleItem.Quantity = dto.Quantity;
+            }
 
             await _db.RunInTransactionAsync(() =>
             {
-                _saleItemRepository.Update(saleItem);
-                _productInInventoryRepository.UpdateRange(productsInInventory);
+                if (!add)
+                {
+                    _saleItemRepository.Update(saleItem);
+                    _productInInventoryRepository.UpdateRange(productsInInventory);
+                }
             });
 
             return saleItem.Id;

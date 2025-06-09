@@ -6,7 +6,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base
 {
     public abstract class EntityBaseConfiguration<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : EntityBase
     {
-        public static readonly DateTime DEFAULT_CREATED_AT = new(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        public static readonly DateTime DEFAULT_CREATED_AT = new(2025, 09, 06, 12, 30, 0, DateTimeKind.Utc);
 
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {

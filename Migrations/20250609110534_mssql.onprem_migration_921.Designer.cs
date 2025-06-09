@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250609022916_mssql.onprem_migration_277")]
-    partial class mssqlonprem_migration_277
+    [Migration("20250609110534_mssql.onprem_migration_921")]
+    partial class mssqlonprem_migration_921
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -189,19 +189,19 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Pequena"
                         },
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Média"
                         },
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc),
                             Description = "Grande"
                         });
                 });
@@ -1386,84 +1386,84 @@ namespace Projeto_Aplicado_II_API.Migrations
                             Id = 1L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 2L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 3L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 4L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 5L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 6L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 7L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 8L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 9L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 10L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 11L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 12L,
                             BranchId = 1L,
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SaleDateTime = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            SaleDateTime = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -2081,7 +2081,7 @@ namespace Projeto_Aplicado_II_API.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 9, 6, 12, 30, 0, 0, DateTimeKind.Utc),
                             Email = "admin@admin.com",
                             IsActive = true,
                             IsAdmin = true,
