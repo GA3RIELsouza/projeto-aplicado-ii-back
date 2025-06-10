@@ -73,15 +73,7 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Projeto Aplicado II API v1");
-});
-
 app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHandlerMiddleware>();
-app.UseAuthentication();
-app.UseAuthorization();
 app.MapControllers();
 app.Run();
