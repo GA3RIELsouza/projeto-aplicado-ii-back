@@ -21,6 +21,10 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("branch_id")
                 .IsRequired(true);
 
+            builder.Property(x => x.SupplierId)
+                .HasColumnName("supplier_id")
+                .IsRequired(true);
+
             builder.Property(x => x.SaleItemId)
                 .HasColumnName("sale_item_id")
                 .HasDefaultValue(null)
@@ -29,6 +33,12 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.HasOne(x => x.Product)
                 .WithMany(y => y.ProductsInInventory)
                 .HasForeignKey(x => x.ProductId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired(true);
+            
+            builder.HasOne(x => x.Supplier)
+                .WithMany(y => y.ProductsInInventory)
+                .HasForeignKey(x => x.SupplierId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
 

@@ -16,6 +16,12 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
             builder.Property(x => x.SaleDateTime)
                 .HasColumnName("sale_date_time")
                 .IsRequired(true);
+            
+            builder.HasOne(x => x.Branch)
+                .WithMany(y => y.Sales)
+                .HasForeignKey(x => x.BranchId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<Sale> builder)

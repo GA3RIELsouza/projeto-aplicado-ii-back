@@ -11,7 +11,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base
             base.Configure(builder);
 
             builder.Property(x => x.BranchId)
-                .HasColumnName("company_id")
+                .HasColumnName("branch_id")
                 .IsRequired(true);
 
             //builder.HasOne(x => x.Branch)

@@ -45,6 +45,8 @@ namespace Projeto_Aplicado_II_API.Services
 
         public async Task<uint> CreateSaleAsync(CreateSaleDto dto)
         {
+            var branchId = _authService.GetLoggedBranchId();
+            dto.BranchId = branchId;
             var sale = Sale.CreateFromDto(dto);
 
             await _db.RunInTransactionAsync(async () =>

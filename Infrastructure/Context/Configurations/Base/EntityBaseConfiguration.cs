@@ -19,7 +19,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base
 
             builder.Property(e => e.CreatedAt)
                 .HasColumnName("created_at")
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired(true);
 
             builder.Property(e => e.UpdatedAt)
