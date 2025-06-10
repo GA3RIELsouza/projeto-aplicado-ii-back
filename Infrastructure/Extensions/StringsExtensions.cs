@@ -4,25 +4,32 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Extensions
 {
     public static class StringsExtensions
     {
+        private static readonly int iterations = 100_000;
+        private static readonly int bytesAmount = 32;
+
         public static (byte[] passwordHash, byte[] saltHash) HashPassword(this string password)
         {
             byte[] saltBytes = RandomNumberGenerator.GetBytes(16);
+            byte[] hashBytes;
 
-            using var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, 100_000, HashAlgorithmName.SHA256);
-            byte[] hashBytes = pbkdf2.GetBytes(32);
+            using (var pbkdf2 = new Rfc2898DeriveBytes(password, saltBytes, iterations, HashAlgorithmName.SHA256))
+            {
+                hashBytes = pbkdf2.GetBytes(bytesAmount);
+            }
 
             return (hashBytes, saltBytes);
         }
 
         public static bool VerifyPassword(this string informedPassword, byte[] storedPasswordBytes, byte[] saltBytes)
         {
-            using var pbkdf2 = new Rfc2898DeriveBytes(informedPassword, saltBytes, 100_000, HashAlgorithmName.SHA256);
+            byte[] hashBytes;
 
-            var qtdBytes = 32;
+            using (var pbkdf2 = new Rfc2898DeriveBytes(informedPassword, saltBytes, iterations, HashAlgorithmName.SHA256))
+            {
+                hashBytes = pbkdf2.GetBytes(bytesAmount);
+            }
 
-            byte[] hashBytes = pbkdf2.GetBytes(qtdBytes);
-
-            for (int i = 0; i < qtdBytes; i++)
+            for (int i = 0; i < bytesAmount; i++)
             {
                 if (hashBytes[i] != storedPasswordBytes[i])
                 {
