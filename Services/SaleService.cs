@@ -91,14 +91,13 @@ namespace Projeto_Aplicado_II_API.Services
 
             saleItem ??= SaleItem.CreateFromDto(dto);
 
-            for (int i = 0; i < productsInInventoryAmount; i++) productsInInventory[i].SaleItemId = saleItem.Id;
-
             await _db.RunInTransactionAsync(async () =>
             {
                 if (add)
                 {
                     await _saleItemRepository.AddAsync(saleItem);
                     await _db.SaveChangesAsync();
+                    for (int i = 0; i < productsInInventoryAmount; i++) productsInInventory[i].SaleItemId = saleItem.Id;
                 }
                 else
                 {
@@ -132,6 +131,8 @@ namespace Projeto_Aplicado_II_API.Services
 
             var add = dto.Quantity > saleItem.Quantity;
 
+            for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
+
             if (add)
             {
                 dto.SaleId = saleId;
@@ -144,8 +145,7 @@ namespace Projeto_Aplicado_II_API.Services
             {
                 productsInInventory = await _productInInventoryRepository.ListBySaleAsync(saleId);
                 productsInInventory = [.. productsInInventory.OrderByDescending(pii => pii.ManufacturingDate).Take(Math.Abs(dto.Quantity - saleItem.Quantity))];
-                for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
-
+                
                 saleItem.Quantity = dto.Quantity;
             }
 

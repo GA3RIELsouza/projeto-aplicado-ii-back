@@ -27,8 +27,10 @@ docker network create %NOME_NETWORK%
 :: SQL Server
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Gabriel@13242872924" -p %PORTA_DOCKER_BANCO%:%PORTA_DOCKER_BANCO% --network %NOME_NETWORK% --name %NOME_DOCKER_BANCO% -d mcr.microsoft.com/mssql/server:2019-latest
 
+timeout /t 5
+
 :: API
 docker build -t %NOME_DOCKERFILE%:latest .
-docker run -d -p %PORTA_DOCKER_API%:%PORTA_DOCKER_API% --network projeto-aplicado-ii --name %NOME_DOCKER_API% %NOME_DOCKERFILE%
+docker run -d -p %PORTA_DOCKER_API%:%PORTA_DOCKER_API% --network %NOME_NETWORK% --name %NOME_DOCKER_API% %NOME_DOCKERFILE%
 
 pause
