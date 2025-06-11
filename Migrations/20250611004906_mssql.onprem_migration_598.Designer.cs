@@ -12,8 +12,8 @@ using Projeto_Aplicado_II_API.Infrastructure.Context;
 namespace Projeto_Aplicado_II_API.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20250610223730_mgrt")]
-    partial class mgrt
+    [Migration("20250611004906_mssql.onprem_migration_598")]
+    partial class mssqlonprem_migration_598
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

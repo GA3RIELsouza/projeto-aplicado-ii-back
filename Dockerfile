@@ -11,12 +11,15 @@ RUN dotnet tool install --global dotnet-ef
 
 # Adiciona o diretório das ferramentas globais ao PATH
 ENV PATH="${PATH}:/root/.dotnet/tools"
+ENV ASPNETCORE_ENVIRONMENT=Production
 
 # Restaura as dependências
 RUN dotnet restore
+RUN dotnet tool restore
 
-# (Opcional) Rodar migrações aqui, se desejar
-# RUN dotnet ef migrations add MinhaMigrationInicial
+# Migrations
+RUN dotnet ef migrations add docker_migration
+RUN dotnet ef database update
 
 # Publica o projeto
 RUN dotnet publish -c Release -o /app
@@ -25,8 +28,6 @@ RUN dotnet publish -c Release -o /app
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 WORKDIR /app
-
-ENV ASPNETCORE_ENVIRONMENT=Development
 
 # Copia o build publicado
 COPY --from=build /app .
