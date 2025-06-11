@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Projeto_Aplicado_II_API.Entities;
-using Projeto_Aplicado_II_API.Entities.Base;
 using Projeto_Aplicado_II_API.Infrastructure.Context.Configurations.Base;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations

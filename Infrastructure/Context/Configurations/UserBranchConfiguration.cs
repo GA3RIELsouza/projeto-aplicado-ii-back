@@ -41,19 +41,22 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 {
                     Id = 1,
                     UserId = 1,
-                    BranchId = 1
+                    BranchId = 1,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
                     Id = 2,
                     UserId = 1,
-                    BranchId = 2
+                    BranchId = 2,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
                     Id = 3,
                     UserId = 1,
-                    BranchId = 3
+                    BranchId = 3,
+                    CreatedAt = DEFAULT_CREATED_AT
                 }
             };
 

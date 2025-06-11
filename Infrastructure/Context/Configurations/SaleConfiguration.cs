@@ -35,7 +35,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 {
                     Id = (uint)(i + 1),
                     BranchId = 1,
-                    SaleDateTime = DEFAULT_CREATED_AT
+                    SaleDateTime = DEFAULT_CREATED_AT,
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 

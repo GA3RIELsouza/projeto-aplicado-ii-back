@@ -70,8 +70,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     0x32, 0x5E, 0x50, 0x6C, 0x40, 0xE8, 0x16, 0x98
                 ],
                 IsAdmin = true,
-                CreatedAt = DEFAULT_CREATED_AT,
-                UpdatedAt = null
+                CreatedAt = DEFAULT_CREATED_AT
             };
 
             builder.HasData(admin);

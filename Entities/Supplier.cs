@@ -18,11 +18,9 @@ namespace Projeto_Aplicado_II_API.Entities
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public bool IsActive { get; set; } = true;
-
-        public ICollection<Sale>? Sales { get; set; }
+        
         public ICollection<SupplierProduct>? SupplierProducts { get; set; }
         public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
-        public ICollection<SaleItem>? SaleItems { get; set; }
 
         public static Supplier CreateFromDto(CreateSupplierDto dto)
         {

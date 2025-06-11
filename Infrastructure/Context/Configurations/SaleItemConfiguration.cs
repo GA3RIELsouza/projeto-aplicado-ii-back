@@ -50,7 +50,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     Id = (uint)(i + 1),
                     SaleId = (uint)(i + 1),
                     ProductId = (uint)Math.Ceiling((i + 1) / 2m),
-                    Quantity = 2
+                    Quantity = 2,
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 

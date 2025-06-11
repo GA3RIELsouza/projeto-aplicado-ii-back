@@ -25,6 +25,10 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasColumnName("supplier_id")
                 .IsRequired(true);
 
+            builder.Property(x => x.ManufacturingDate)
+                .HasColumnName("manufacturing_date")
+                .IsRequired(true);
+
             builder.Property(x => x.SaleItemId)
                 .HasColumnName("sale_item_id")
                 .HasDefaultValue(null)
@@ -69,6 +73,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     SupplierId = (uint)((i / 10) + 1),
                     BranchId = 1,
                     SaleItemId = null,
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 
@@ -83,7 +88,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductId = (uint)Math.Ceiling((i + 1) / 4m),
                     SupplierId = (uint)Math.Ceiling((i + 1) / 4m),
                     BranchId = 1,
-                    SaleItemId = (uint)Math.Ceiling((i + 1) / 2m)
+                    SaleItemId = (uint)Math.Ceiling((i + 1) / 2m),
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 

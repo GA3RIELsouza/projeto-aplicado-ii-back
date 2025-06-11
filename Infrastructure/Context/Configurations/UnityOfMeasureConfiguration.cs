@@ -26,15 +26,15 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
         {
             var unitiesOfMeasure = new UnityOfMeasure[]
             {
-                new() { Id = 1, Description = "Unidade", Symbol = "UN" },
-                new() { Id = 2, Description = "Quilograma", Symbol = "kg" },
-                new() { Id = 3, Description = "Grama", Symbol = "g" },
-                new() { Id = 4, Description = "Miligrama", Symbol = "mg" },
-                new() { Id = 5, Description = "Litro", Symbol = "L" },
-                new() { Id = 6, Description = "Mililitro", Symbol = "mL" },
-                new() { Id = 7, Description = "Quilômetro", Symbol = "km" },
-                new() { Id = 8, Description = "Metro", Symbol = "m" },
-                new() { Id = 9, Description = "Milímetro", Symbol = "ml" }
+                new() { Id = 1, Description = "Unidade", Symbol = "UN", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 2, Description = "Quilograma", Symbol = "kg", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 3, Description = "Grama", Symbol = "g", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 4, Description = "Miligrama", Symbol = "mg", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 5, Description = "Litro", Symbol = "L", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 6, Description = "Mililitro", Symbol = "mL", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 7, Description = "Quilômetro", Symbol = "km", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 8, Description = "Metro", Symbol = "m", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 9, Description = "Milímetro", Symbol = "ml", CreatedAt = DEFAULT_CREATED_AT }
             };
 
             builder.HasData(unitiesOfMeasure);

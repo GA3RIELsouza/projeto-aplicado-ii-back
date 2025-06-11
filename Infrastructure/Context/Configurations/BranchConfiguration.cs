@@ -89,7 +89,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     State = "EX",
                     Country = "Brasil",
                     BranchSizeId = (uint)(i),
-                    IsActive = true
+                    IsActive = true,
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 

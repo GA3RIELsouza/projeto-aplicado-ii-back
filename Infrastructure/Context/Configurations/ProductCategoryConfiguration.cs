@@ -29,9 +29,27 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
         {
             var defaultProductCategories = new ProductCategory[]
             {
-                new() { Id = 1, CompanyId = 1, Description = "Hortifruti" },
-                new() { Id = 2, CompanyId = 1, Description = "Bebidas" },
-                new() { Id = 3, CompanyId = 1, Description = "Carnes, Aves e Peixes" }
+                new()
+                {
+                    Id = 1,
+                    CompanyId = 1,
+                    Description = "Hortifruti",
+                    CreatedAt = DEFAULT_CREATED_AT
+                },
+                new()
+                {
+                    Id = 2,
+                    CompanyId = 1,
+                    Description = "Bebidas",
+                    CreatedAt = DEFAULT_CREATED_AT
+                },
+                new()
+                {
+                    Id = 3,
+                    CompanyId = 1,
+                    Description = "Carnes, Aves e Peixes",
+                    CreatedAt = DEFAULT_CREATED_AT
+                }
             };
 
             builder.HasData(defaultProductCategories);

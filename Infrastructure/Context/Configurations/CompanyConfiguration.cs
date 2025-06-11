@@ -60,7 +60,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 Email = "empresa.padrao@company.com",
                 Phone = "55 47 0001-0001",
                 TaxId = "00.000.000/0001-01",
-                IsActive = true
+                IsActive = true,
+                CreatedAt = DEFAULT_CREATED_AT
             };
 
             builder.HasData(defaultCompany);

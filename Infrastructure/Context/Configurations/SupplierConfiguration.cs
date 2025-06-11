@@ -96,7 +96,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     Email = $"fornecedor.padrao{i}@supplier.com",
                     Phone = $"55 47 000{i}-0002",
                     TaxId = $"00.000.000/000{i}-02",
-                    IsActive = true
+                    IsActive = true,
+                    CreatedAt = DEFAULT_CREATED_AT
                 };
             }
 

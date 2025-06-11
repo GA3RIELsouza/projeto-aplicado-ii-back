@@ -89,7 +89,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 1,
                     UnitarySellingPrice = 6.89m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
@@ -101,7 +102,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 1,
                     UnitarySellingPrice = 5.98m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
@@ -113,7 +115,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 2,
                     UnitarySellingPrice = 23.99m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
@@ -125,7 +128,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 2,
                     UnitarySellingPrice = 99.90m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.UNITY,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
@@ -137,7 +141,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 3,
                     UnitarySellingPrice = 36.98m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM,
+                    CreatedAt = DEFAULT_CREATED_AT
                 },
                 new()
                 {
@@ -149,7 +154,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                     ProductCategoryId = 3,
                     UnitarySellingPrice = 47.90m,
                     MinimalInventoryQuantity = 10,
-                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM
+                    UnityOfMeasureId = (uint)EUnityOfMeasure.KILOGRAM,
+                    CreatedAt = DEFAULT_CREATED_AT
                 }
             };
 
