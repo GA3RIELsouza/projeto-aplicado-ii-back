@@ -179,7 +179,7 @@ namespace Projeto_Aplicado_II_API.Services
         public async Task DeleteSaleAsync(uint saleId)
         {
             var branch = await _authService.GetLoggedBranchAsync();
-            var sale = await _saleRepository.GetByIdIncludesThrowsIfNullAsync(saleId);
+            var sale = await _saleRepository.GetByIdThrowsIfNullAsync(saleId);
             var productsInInventory = await _productInInventoryRepository.ListBySaleAsync(saleId);
 
             for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;

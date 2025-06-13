@@ -21,6 +21,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     ImageUrl = sp.Product.ImageUrl,
                     UnitaryPrice = sp.UnitaryPrice
                 })
+                .OrderBy(sp => sp.Name)
                 .ToListAsync();
         }
 
@@ -37,6 +38,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     ImageUrl = p.ImageUrl,
                     UnitaryPrice = 0
                 })
+                .OrderBy(p => p.Name)
                 .ToListAsync();
         }
 
