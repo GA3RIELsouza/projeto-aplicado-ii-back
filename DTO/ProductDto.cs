@@ -32,7 +32,7 @@ namespace Projeto_Aplicado_II_API.DTO
     public class CreateProductDto
     {
         public string Name { get; set; } = string.Empty;
-        public string ImageBase64 { get; set; } = string.Empty;
+        public string? ImageBase64 { get; set; }
         public uint ProductCategoryId { get; set; }
         public string? OtherProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }

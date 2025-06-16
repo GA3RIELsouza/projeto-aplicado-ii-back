@@ -88,6 +88,7 @@ namespace Projeto_Aplicado_II_API.Services
             product.UnitarySellingPrice = dto.UnitarySellingPrice;
             product.UnityOfMeasureId = dto.UnityOfMeasureId;
             product.MinimalInventoryQuantity = dto.MinimalInventoryQuantity;
+            if (dto.ImageBase64 is not null) product.ImageBase64 = dto.ImageBase64;
 
             await _db.RunInTransactionAsync(async () =>
             {

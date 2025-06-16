@@ -60,7 +60,7 @@ namespace Projeto_Aplicado_II_API.Entities
             return new()
             {
                 Name = dto.Name,
-                ImageBase64 = dto.ImageBase64,
+                ImageBase64 = dto.ImageBase64 ?? string.Empty,
                 ProductCategoryId = dto.ProductCategoryId,
                 UnitarySellingPrice = dto.UnitarySellingPrice,
                 UnityOfMeasureId = dto.UnityOfMeasureId,
