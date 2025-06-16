@@ -1,7 +1,7 @@
-﻿using Projeto_Aplicado_II_API.DTO;
+﻿using System.Text;
+using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities.Base;
 using Projeto_Aplicado_II_API.Entities.Interfaces;
-using System.Text;
 
 namespace Projeto_Aplicado_II_API.Entities
 {
@@ -22,6 +22,39 @@ namespace Projeto_Aplicado_II_API.Entities
         public ICollection<SaleItem>? SaleItems { get; set; }
         public ICollection<ProductInInventory>? ProductsInInventory { get; set; }
         public ICollection<SupplierProduct>? SupplierProducts { get; set; }
+
+        public void GenerateEan13BarCode()
+        {
+            var brazilEanPrefix = "789";
+
+            var strBuilder = new StringBuilder(brazilEanPrefix);
+
+            var companyIdentifier = this.CompanyId.ToString().PadLeft(6, '0');
+            var productIdentifier = this.Id.ToString().PadLeft(3, '0');
+
+            strBuilder.Append(companyIdentifier);
+            strBuilder.Append(productIdentifier);
+
+            var ean12 = strBuilder.ToString();
+
+            int evenSum = 0;
+            int oddSum = 0;
+
+            for (int i = 0; i < 12; i++)
+            {
+                int digit = ean12[i] - '0';
+                if ((i + 1) % 2 == 0) evenSum += digit;
+                else oddSum += digit;
+            }
+
+            int total = oddSum + (evenSum * 3);
+            int nearestTen = (int)Math.Ceiling(total / 10f) * 10;
+            int checkDigit = nearestTen - total;
+
+            if (checkDigit == 10) checkDigit = 0;
+
+            this.Ean13BarCode = ean12 + checkDigit;
+        }
 
         public static Product CreateFromDto(CreateProductDto dto)
         {
