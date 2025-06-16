@@ -26,7 +26,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .IsRequired(true);
 
             builder.Property(x => x.ImageBase64)
-                .HasColumnName("image_url")
+                .HasColumnName("image_base64")
                 .IsRequired(false);
 
             builder.Property(x => x.ProductCategoryId)
