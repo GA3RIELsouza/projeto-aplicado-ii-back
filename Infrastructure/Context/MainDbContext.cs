@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Entities.Base;
-using System.Reflection;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Context
 {
