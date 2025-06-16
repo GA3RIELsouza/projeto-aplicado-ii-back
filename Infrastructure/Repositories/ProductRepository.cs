@@ -19,7 +19,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     Id = p.Id,
                     Name = p.Name,
                     Ean13BarCode = p.Ean13BarCode,
-                    ImageUrl = p.ImageUrl,
+                    ImageBase64 = p.ImageBase64,
                     ProductCategory = new() { Description = p.ProductCategory!.Description },
                     UnitarySellingPrice = p.UnitarySellingPrice,
                     UnityOfMeasure = new() { Description = p.UnityOfMeasure!.Description, Symbol = p.UnityOfMeasure.Symbol },

@@ -9,7 +9,7 @@ namespace Projeto_Aplicado_II_API.Entities
     {
         public string Name { get; set; } = string.Empty;
         public string Ean13BarCode { get; set; } = string.Empty;
-        public string? ImageUrl { get; set; }
+        public string ImageBase64 { get; set; } = string.Empty;
         public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
@@ -32,17 +32,14 @@ namespace Projeto_Aplicado_II_API.Entities
             var companyIdentifier = this.CompanyId.ToString().PadLeft(6, '0');
             var productIdentifier = this.Id.ToString().PadLeft(3, '0');
 
-            strBuilder.Append(companyIdentifier);
-            strBuilder.Append(productIdentifier);
-
-            var ean12 = strBuilder.ToString();
+            strBuilder.Append(companyIdentifier).Append(productIdentifier);
 
             int evenSum = 0;
             int oddSum = 0;
 
             for (int i = 0; i < 12; i++)
             {
-                int digit = ean12[i] - '0';
+                int digit = strBuilder[i] - '0';
                 if ((i + 1) % 2 == 0) evenSum += digit;
                 else oddSum += digit;
             }
@@ -53,7 +50,9 @@ namespace Projeto_Aplicado_II_API.Entities
 
             if (checkDigit == 10) checkDigit = 0;
 
-            this.Ean13BarCode = ean12 + checkDigit;
+            strBuilder.Append(checkDigit);
+
+            this.Ean13BarCode = strBuilder.ToString();
         }
 
         public static Product CreateFromDto(CreateProductDto dto)
@@ -61,7 +60,7 @@ namespace Projeto_Aplicado_II_API.Entities
             return new()
             {
                 Name = dto.Name,
-                ImageUrl = dto.ImageUrl,
+                ImageBase64 = dto.ImageBase64,
                 ProductCategoryId = dto.ProductCategoryId,
                 UnitarySellingPrice = dto.UnitarySellingPrice,
                 UnityOfMeasureId = dto.UnityOfMeasureId,

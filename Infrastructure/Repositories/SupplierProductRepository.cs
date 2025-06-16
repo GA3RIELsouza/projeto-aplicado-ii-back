@@ -18,7 +18,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 {
                     Id = sp.ProductId,
                     Name = sp.Product!.Name,
-                    ImageUrl = sp.Product.ImageUrl,
+                    ImageBase64 = sp.Product.ImageBase64,
                     UnitaryPrice = sp.UnitaryPrice
                 })
                 .OrderBy(sp => sp.Name)
@@ -35,7 +35,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 {
                     Id = p.Id,
                     Name = p.Name,
-                    ImageUrl = p.ImageUrl,
+                    ImageBase64 = p.ImageBase64,
                     UnitaryPrice = 0
                 })
                 .OrderBy(p => p.Name)

@@ -7,7 +7,7 @@ namespace Projeto_Aplicado_II_API.DTO
         public uint Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Ean13BarCode { get; set; } = string.Empty;
-        public string? ImageUrl { get; set; }
+        public string? ImageBase64 { get; set; }
         public uint ProductCategoryId { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public uint UnityOfMeasureId { get; set; }
@@ -20,7 +20,7 @@ namespace Projeto_Aplicado_II_API.DTO
                 Id = product.Id,
                 Name = product.Name,
                 Ean13BarCode = product.Ean13BarCode,
-                ImageUrl = product.ImageUrl,
+                ImageBase64 = product.ImageBase64,
                 ProductCategoryId = product.ProductCategoryId,
                 UnitarySellingPrice = product.UnitarySellingPrice,
                 UnityOfMeasureId = product.UnityOfMeasureId,
@@ -32,7 +32,7 @@ namespace Projeto_Aplicado_II_API.DTO
     public class CreateProductDto
     {
         public string Name { get; set; } = string.Empty;
-        public string? ImageUrl { get; set; }
+        public string ImageBase64 { get; set; } = string.Empty;
         public uint ProductCategoryId { get; set; }
         public string? OtherProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }
@@ -45,7 +45,7 @@ namespace Projeto_Aplicado_II_API.DTO
         public uint Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Ean13BarCode { get; set; } = string.Empty;
-        public string? ImageUrl { get; set; }
+        public string? ImageBase64 { get; set; }
         public CreateProductCategoryDto? ProductCategory { get; set; }
         public decimal UnitarySellingPrice { get; set; }
         public UnityOfMeasureDto? UnityOfMeasure { get; set; }
@@ -59,6 +59,6 @@ namespace Projeto_Aplicado_II_API.DTO
     {
         public uint Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string? ImageUrl { get; set; }
+        public string? ImageBase64 { get; set; }
     }
 }

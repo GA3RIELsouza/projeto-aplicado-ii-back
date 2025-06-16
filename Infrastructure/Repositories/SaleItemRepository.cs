@@ -22,7 +22,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     {
                         Id = si.Product!.Id,
                         Name = si.Product.Name,
-                        ImageUrl = si.Product.ImageUrl
+                        ImageBase64 = si.Product.ImageBase64
                     },
                     Quantity = si.Quantity,
                     ItemSaleTotal = si.Quantity * si.Product!.UnitarySellingPrice

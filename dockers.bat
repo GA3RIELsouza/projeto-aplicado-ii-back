@@ -10,7 +10,7 @@ set NOME_DOCKERFILE=projeto-aplicado-ii
 set NOME_DOCKER_API=projeto-aplicado-ii-api
 set PORTA_DOCKER_API=6969
 
-set NOME_DOCKER_BANCO=sqlserver-container
+set NOME_DOCKER_BANCO=projeto-aplicado-ii-sqlserver
 set PORTA_DOCKER_BANCO=1433
 
 :: Excluir anteriores
@@ -24,10 +24,20 @@ docker rm %NOME_DOCKER_API%
 docker network rm %NOME_NETWORK%
 docker network create %NOME_NETWORK%
 
+cls
+
 :: SQL Server
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Gabriel@13242872924" -p %PORTA_DOCKER_BANCO%:%PORTA_DOCKER_BANCO% --network %NOME_NETWORK% --name %NOME_DOCKER_BANCO% -d mcr.microsoft.com/mssql/server:2019-latest
 
-timeout /t 5
+echo Aguardando inicializacao do SQL Server...
+:aguardando_banco
+docker logs %NOME_DOCKER_BANCO% 2>&1 | findstr /C:"Recovery is complete." >nul
+
+if errorlevel 1 (
+    timeout /t 1 >nul
+    goto aguardando_banco
+)
+echo SQL Server inicializado com sucesso.
 
 :: API
 docker build -t %NOME_DOCKERFILE%:latest .

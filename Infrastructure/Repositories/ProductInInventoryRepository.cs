@@ -22,7 +22,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                         {
                             Id = p.Id,
                             Name = p.Name,
-                            ImageUrl = p.ImageUrl
+                            ImageBase64 = p.ImageBase64
                         },
                         MinimalInventoryQuantity = p.MinimalInventoryQuantity,
                         QuantityInInventory = piins.Count(pii => pii.BranchId == branchId && !pii.SaleItemId.HasValue)
