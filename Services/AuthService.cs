@@ -1,21 +1,19 @@
-﻿using Projeto_Aplicado_II_API.DTO;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Exceptions;
 using Projeto_Aplicado_II_API.Infrastructure.Extensions;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projeto_Aplicado_II_API.Services
 {
     public class AuthService(MainDbContext db, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IBranchRepository branchRepository)
     {
-
         private readonly MainDbContext _db = db;
         private readonly IConfiguration _configuration = configuration;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
