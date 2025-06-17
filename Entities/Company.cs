@@ -16,6 +16,7 @@ namespace Projeto_Aplicado_II_API.Entities
         public ICollection<Branch>? Branches { get; set; }
         public ICollection<Product>? Products { get; set; }
         public ICollection<ProductCategory>? ProductCategories { get; set; }
+        public ICollection<UnityOfMeasure>? UnitiesOfMeasure { get; set; }
 
         public static Company CreateFromDto(CreateCompanyDto dto)
         {

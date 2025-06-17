@@ -2,7 +2,6 @@
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
-using System.Text;
 
 namespace Projeto_Aplicado_II_API.Services
 {
@@ -26,7 +25,8 @@ namespace Projeto_Aplicado_II_API.Services
 
             ProductCategory? category;
 
-            if (dto.ProductCategoryId == 0)
+            var newProductCategory = dto.ProductCategoryId == 0;
+            if (newProductCategory)
             {
                 category = new()
                 {
@@ -44,7 +44,8 @@ namespace Projeto_Aplicado_II_API.Services
 
             await _db.RunInTransactionAsync(async () =>
             {
-                if (dto.ProductCategoryId == 0) await _productCategoryRepository.AddAsync(category);
+                if (newProductCategory) await _productCategoryRepository.AddAsync(category);
+
                 await _productRepository.AddAsync(product);
                 await _db.SaveChangesAsync();
 

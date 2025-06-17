@@ -13,28 +13,36 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
             builder.ToTable("unity_of_measure");
 
+            builder.Property(x => x.CompanyId)
+                .IsRequired(false);
+
             builder.Property(x => x.Description)
                 .HasMaxLength(64)
-                .IsRequired();
+                .IsRequired(true);
 
             builder.Property(x => x.Symbol)
                 .HasMaxLength(8)
-                .IsRequired();
+                .IsRequired(true);
+
+            builder.HasOne(x => x.Company)
+                .WithMany(y => y.UnitiesOfMeasure)
+                .HasForeignKey(x => x.CompanyId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);
         }
 
         private protected override void SetData(EntityTypeBuilder<UnityOfMeasure> builder)
         {
             var unitiesOfMeasure = new UnityOfMeasure[]
             {
-                new() { Id = 1, Description = "Unidade", Symbol = "UN", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 2, Description = "Quilograma", Symbol = "kg", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 3, Description = "Grama", Symbol = "g", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 4, Description = "Miligrama", Symbol = "mg", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 5, Description = "Litro", Symbol = "L", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 6, Description = "Mililitro", Symbol = "mL", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 7, Description = "Quilômetro", Symbol = "km", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 8, Description = "Metro", Symbol = "m", CreatedAt = DEFAULT_CREATED_AT },
-                new() { Id = 9, Description = "Milímetro", Symbol = "ml", CreatedAt = DEFAULT_CREATED_AT }
+                new() { Id = 1, CompanyId = null, Description = "Unidade", Symbol = "UN", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 2, CompanyId = null, Description = "Quilograma", Symbol = "kg", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 3, CompanyId = null, Description = "Grama", Symbol = "g", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 4, CompanyId = null, Description = "Miligrama", Symbol = "mg", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 5, CompanyId = null, Description = "Litro", Symbol = "L", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 6, CompanyId = null, Description = "Mililitro", Symbol = "mL", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 7, CompanyId = null, Description = "Metro", Symbol = "m", CreatedAt = DEFAULT_CREATED_AT },
+                new() { Id = 8, CompanyId = null, Description = "Milímetro", Symbol = "ml", CreatedAt = DEFAULT_CREATED_AT }
             };
 
             builder.HasData(unitiesOfMeasure);
