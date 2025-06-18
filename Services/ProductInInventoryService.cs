@@ -1,5 +1,6 @@
 ﻿using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Enums;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
@@ -40,6 +41,13 @@ namespace Projeto_Aplicado_II_API.Services
             });
 
             return await _productInInventoryRepository.CountProductsInInventoryAsync(dto.BranchId, dto.ProductId);
+        }
+
+        public async Task<EInventoryStatus> GetInventoryStatusAsync(uint branchId)
+        {
+            var status = await _productInInventoryRepository.GetInventoryStatusAsync(branchId);
+
+            return status;
         }
     }
 }

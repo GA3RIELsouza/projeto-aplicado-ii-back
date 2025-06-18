@@ -129,5 +129,14 @@ namespace Projeto_Aplicado_II_API.Services
 
             return loggedBranch;
         }
+
+        public string? GetLoggedUserIpv4()
+        {
+            var httpContext = _httpContextAccessor.HttpContext;
+            var connection = httpContext?.Connection;
+            var ipv4 = connection?.RemoteIpAddress?.ToString();
+
+            return ipv4;
+        }
     }
 }

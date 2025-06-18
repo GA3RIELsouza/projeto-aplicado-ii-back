@@ -73,5 +73,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("{id}/inventory/status")]
+        public async Task<IActionResult> GetInventoryStatus(uint id)
+        {
+            var response = await _productInInventoryService.GetInventoryStatusAsync(id);
+
+            return Ok(response);
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     Quantity = si.Quantity,
                     ItemSaleTotal = si.Quantity * si.Product!.UnitarySellingPrice
                 })
+                .OrderBy(si => si.Product.Name)
                 .ToListAsync();
         }
 
@@ -40,6 +41,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                     Id = p.Id,
                     Name = p.Name
                 })
+                .OrderBy(p => p.Name)
                 .ToListAsync();
         }
     }

@@ -8,8 +8,7 @@
         MILIGRAM = 4,
         LITER = 5,
         MILILITER = 6,
-        KILOMETER = 7,
-        METER = 8,
-        CENTIMETER = 9
+        METER = 7,
+        CENTIMETER = 8
     }
 }

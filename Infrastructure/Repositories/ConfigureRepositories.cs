@@ -4,21 +4,21 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 {
     public static class ConfigureServices
     {
-        public static void AddRepositories(this IServiceCollection repositories)
+        public static void AddRepositories(this IServiceCollection collection)
         {
-            repositories.AddScoped<IBranchRepository, BranchRepository>();
-            repositories.AddScoped<IBranchSizeRepository, BranchSizeRepository>();
-            repositories.AddScoped<ICompanyRepository, CompanyRepository>();
-            repositories.AddScoped<IProductRepository, ProductRepository>();
-            repositories.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-            repositories.AddScoped<IProductInInventoryRepository, ProductInInventoryRepository>();
-            repositories.AddScoped<ISaleRepository, SaleRepository>();
-            repositories.AddScoped<ISaleItemRepository, SaleItemRepository>();
-            repositories.AddScoped<ISupplierRepository, SupplierRepository>();
-            repositories.AddScoped<ISupplierProductRepository, SupplierProductRepository>();
-            repositories.AddScoped<IUnityOfMeasureRepository, UnityOfMeasureRepository>();
-            repositories.AddScoped<IUserRepository, UserRepository>();
-            repositories.AddScoped<IUserBranchRepository, UserBranchRepository>();
+            collection.AddScoped<IBranchRepository, BranchRepository>();
+            collection.AddScoped<IBranchSizeRepository, BranchSizeRepository>();
+            collection.AddScoped<ICompanyRepository, CompanyRepository>();
+            collection.AddScoped<IProductRepository, ProductRepository>();
+            collection.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            collection.AddScoped<IProductInInventoryRepository, ProductInInventoryRepository>();
+            collection.AddScoped<ISaleRepository, SaleRepository>();
+            collection.AddScoped<ISaleItemRepository, SaleItemRepository>();
+            collection.AddScoped<ISupplierRepository, SupplierRepository>();
+            collection.AddScoped<ISupplierProductRepository, SupplierProductRepository>();
+            collection.AddScoped<IUnityOfMeasureRepository, UnityOfMeasureRepository>();
+            collection.AddScoped<IUserRepository, UserRepository>();
+            collection.AddScoped<IUserBranchRepository, UserBranchRepository>();
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
 
         private protected override void SetData(EntityTypeBuilder<ProductInInventory> builder)
         {
-            const int count = 60;
+            const int count = 120;
             var defaultProductsInInventory = new ProductInInventory[count];
 
             for (int i = 0; i < count; i++)
@@ -69,8 +69,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 defaultProductsInInventory[i] = new()
                 {
                     Id = (uint)(i + 1),
-                    ProductId = (uint)((i / 10) + 1),
-                    SupplierId = (uint)((i / 10) + 1),
+                    ProductId = (uint)((i / 20) + 1),
+                    SupplierId = (uint)((i / 20) + 1),
                     BranchId = 1,
                     SaleItemId = null,
                     CreatedAt = DEFAULT_CREATED_AT

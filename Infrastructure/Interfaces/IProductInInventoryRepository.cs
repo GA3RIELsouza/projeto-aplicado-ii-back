@@ -1,5 +1,6 @@
 ﻿using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Enums;
 
 namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
 {
@@ -10,5 +11,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
         Task<ProductInInventory[]> ListOldestProductsInInventory(uint branchId, uint productId, int quantity);
         Task<ProductInInventory[]> ListBySaleItemAsync(uint saleItemId);
         Task<ProductInInventory[]> ListBySaleAsync(uint saleId);
+        Task<EInventoryStatus> GetInventoryStatusAsync(uint branchId);
     }
 }

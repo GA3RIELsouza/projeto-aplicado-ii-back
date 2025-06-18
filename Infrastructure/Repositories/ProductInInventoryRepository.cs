@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projeto_Aplicado_II_API.DTO;
 using Projeto_Aplicado_II_API.Entities;
+using Projeto_Aplicado_II_API.Enums;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
@@ -28,7 +29,8 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                         QuantityInInventory = piins.Count(pii => pii.BranchId == branchId && !pii.SaleItemId.HasValue)
                     }
                 )
-                .OrderBy(pii => pii.Product.Name)
+                .OrderBy(pii => pii.QuantityInInventory)
+                .ThenBy(pii => pii.Product.Name)
                 .ToListAsync();
         }
 
@@ -61,6 +63,18 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 .Include(pii => pii.SaleItem)
                 .Where(pii => pii.SaleItem!.SaleId == saleId)
                 .ToArrayAsync();
+        }
+
+        public async Task<EInventoryStatus> GetInventoryStatusAsync(uint branchId)
+        {
+            return await _db.ProductsInInventory
+                .Include(pii => pii.Product)
+                .Where(pii => pii.BranchId == branchId && pii.SaleItemId == null)
+                .GroupBy(pii => new { pii.ProductId, pii.Product!.MinimalInventoryQuantity })
+                .Select(group => (EInventoryStatus)(group.Count() <= group.Key.MinimalInventoryQuantity ? 2
+                    : group.Count() <= group.Key.MinimalInventoryQuantity * 1.5 ? 1
+                    : 0))
+                .MaxAsync();
         }
     }
 }

@@ -2,18 +2,18 @@
 
 public static class ConfigureServices
 {
-    public static void AddServices(this IServiceCollection services)
+    public static void AddServices(this IServiceCollection collection)
     {
-        services.AddScoped<UserService>();
-        services.AddScoped<AuthService>();
-        services.AddScoped<ProductService>();
-        services.AddScoped<BranchService>();
-        services.AddScoped<CompanyService>();
-        services.AddScoped<ProductCategoryService>();
-        services.AddScoped<UnityOfMeasureService>();
-        services.AddScoped<ProductInInventoryService>();
-        services.AddScoped<SupplierService>();
-        services.AddScoped<SupplierProductService>();
-        services.AddScoped<SaleService>();
+        collection.AddScoped<UserService>();
+        collection.AddScoped<AuthService>();
+        collection.AddScoped<ProductService>();
+        collection.AddScoped<BranchService>();
+        collection.AddScoped<CompanyService>();
+        collection.AddScoped<ProductCategoryService>();
+        collection.AddScoped<UnityOfMeasureService>();
+        collection.AddScoped<ProductInInventoryService>();
+        collection.AddScoped<SupplierService>();
+        collection.AddScoped<SupplierProductService>();
+        collection.AddScoped<SaleService>();
     }
 }

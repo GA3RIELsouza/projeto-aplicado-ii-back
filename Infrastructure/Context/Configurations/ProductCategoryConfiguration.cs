@@ -23,6 +23,9 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .HasForeignKey(x => x.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
+
+            builder.HasIndex(x => x.Description)
+                .IsUnique(true);
         }
 
         private protected override void SetData(EntityTypeBuilder<ProductCategory> builder)

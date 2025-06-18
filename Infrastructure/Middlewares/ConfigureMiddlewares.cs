@@ -2,9 +2,16 @@
 {
     public static class ConfigureMiddlewares
     {
-        public static void AddMiddlewares(this IServiceCollection middlewares)
+        public static void AddMiddlewares(this WebApplication app)
         {
-            middlewares.AddTransient<ExceptionHandlerMiddleware>();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
+            app.UseMiddleware<RequestLimiterMiddleware>();
+        }
+
+        public static void AddMiddlewares(this IServiceCollection collection)
+        {
+            collection.AddTransient<ExceptionHandlerMiddleware>();
+            collection.AddTransient<RequestLimiterMiddleware>();
         }
     }
 }

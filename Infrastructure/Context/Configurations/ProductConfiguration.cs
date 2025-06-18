@@ -70,6 +70,9 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(true);
 
+            builder.HasIndex(x => x.Name)
+                .IsUnique(true);
+
             builder.HasIndex(x => x.Ean13BarCode)
                 .IsUnique(true);
         }
