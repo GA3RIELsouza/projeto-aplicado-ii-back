@@ -5,6 +5,7 @@
         public ProductMiniDto Product { get; set; } = null!;
         public int MinimalInventoryQuantity { get; set; }
         public int QuantityInInventory { get; set; }
+        public UnityOfMeasureDto? UnityOfMeasure { get; set; }
     }
 
     public class AdjustProductInventoryDto

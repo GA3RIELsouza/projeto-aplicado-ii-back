@@ -12,6 +12,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         public async Task<List<ProductInInventoryDto>> ListBranchInventoryAsync(uint branchId)
         {
             return await _db.Products
+                .Include(p => p.UnityOfMeasure)
                 .Where(p => p.IsActive)
                 .GroupJoin(
                     _db.ProductsInInventory,
@@ -26,7 +27,13 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                             ImageBase64 = p.ImageBase64
                         },
                         MinimalInventoryQuantity = p.MinimalInventoryQuantity,
-                        QuantityInInventory = piins.Count(pii => pii.BranchId == branchId && !pii.SaleItemId.HasValue)
+                        QuantityInInventory = piins.Count(pii => pii.BranchId == branchId && !pii.SaleItemId.HasValue),
+                        UnityOfMeasure = new()
+                        {
+                            Id = p.UnityOfMeasureId,
+                            Description = p.UnityOfMeasure!.Description,
+                            Symbol = p.UnityOfMeasure.Symbol
+                        }
                     }
                 )
                 .OrderBy(pii => pii.QuantityInInventory)
