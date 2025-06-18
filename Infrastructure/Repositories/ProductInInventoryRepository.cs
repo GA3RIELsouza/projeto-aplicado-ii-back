@@ -51,7 +51,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         public async Task<ProductInInventory[]> ListOldestProductsInInventory(uint branchId, uint productId, int quantity)
         {
             return await _db.ProductsInInventory
-                .Where(pii => pii.BranchId == branchId && pii.ProductId == productId)
+                .Where(pii => pii.BranchId == branchId && pii.ProductId == productId && pii.SaleItemId == null)
                 .OrderBy(pii => pii.CreatedAt)
                 .Take(quantity)
                 .ToArrayAsync();
