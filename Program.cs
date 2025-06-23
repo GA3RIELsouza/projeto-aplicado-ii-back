@@ -35,8 +35,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")!)
+#if DEBUG
         .EnableSensitiveDataLogging()
         .LogTo(Console.WriteLine, LogLevel.Information);
+#else
+    .EnableSensitiveDataLogging(false)
+    .EnableDetailedErrors(false);
+#endif
 });
 builder.Services.AddCors(options =>
 {
