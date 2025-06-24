@@ -34,8 +34,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                             Description = p.UnityOfMeasure!.Description,
                             Symbol = p.UnityOfMeasure.Symbol
                         }
-                    }
-                )
+                    })
                 .OrderBy(pii => pii.QuantityInInventory)
                 .ThenBy(pii => pii.Product.Name)
                 .ToListAsync();
@@ -74,14 +73,37 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
 
         public async Task<EInventoryStatus> GetInventoryStatusAsync(uint branchId)
         {
+            return await _db.Products
+                .Include(p => p.UnityOfMeasure)
+                .Where(p => p.IsActive)
+                .GroupJoin(
+                    _db.ProductsInInventory,
+                    p => p.Id,
+                    pii => pii.ProductId,
+                    (p, piins) => new
+                    {
+                        Product = p,
+                        InventoryCount = piins.Count(pii => pii.BranchId == branchId && !pii.SaleItemId.HasValue)
+                    })
+                .Select(x => x.InventoryCount <= x.Product.MinimalInventoryQuantity ? EInventoryStatus.CRITICAL
+                    : x.InventoryCount <= x.Product.MinimalInventoryQuantity * 1.5 ? EInventoryStatus.WARNING
+                    : EInventoryStatus.OK)
+                .MinAsync();
+        }
+
+        public async Task<ProductInInventory[]> ListByProductAsync(uint productId)
+        {
             return await _db.ProductsInInventory
-                .Include(pii => pii.Product)
-                .Where(pii => pii.BranchId == branchId && pii.SaleItemId == null)
-                .GroupBy(pii => new { pii.ProductId, pii.Product!.MinimalInventoryQuantity })
-                .Select(group => (EInventoryStatus)(group.Count() <= group.Key.MinimalInventoryQuantity ? 2
-                    : group.Count() <= group.Key.MinimalInventoryQuantity * 1.5 ? 1
-                    : 0))
-                .MaxAsync();
+                .Where(pii => pii.ProductId == productId)
+                .ToArrayAsync();
+        }
+
+        public async Task<ProductInInventory[]> ListBySupplierAsync(uint supplierId)
+        {
+            return await _db.ProductsInInventory
+                .Include(pii => pii.SaleItem)
+                .Where(pii => pii.SupplierId == supplierId)
+                .ToArrayAsync();
         }
     }
 }

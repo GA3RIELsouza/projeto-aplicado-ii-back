@@ -9,5 +9,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
         Task<List<SupplierProductDto>> ListSupplierProductsDoesNotSellAsync(uint supplierId);
         Task<SupplierProduct?> GetBySupplierAndProductAsync(uint supplierId, uint productId);
         Task<List<SupplierMiniDto>> ListProductSuppliersAsync(uint productId);
+        Task<SupplierProduct[]> ListByProductAsync(uint companyId, uint productId);
+        Task<SupplierProduct[]> ListBySupplierAsync(uint companyId, uint supplierId);
     }
 }

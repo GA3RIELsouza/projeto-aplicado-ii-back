@@ -7,5 +7,6 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
     {
         Task<List<SaleItemDto>> ListSaleItemsAsync(uint branchId, uint saleId);
         Task<List<ProductMiniDto>> ListSaleItemsNotIncludedAsync(uint companyId, uint saleId);
+        Task<SaleItem[]> ListByProductAsync(uint companyId, uint productId);
     }
 }

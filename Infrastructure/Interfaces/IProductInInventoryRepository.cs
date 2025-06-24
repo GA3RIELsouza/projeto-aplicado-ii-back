@@ -12,5 +12,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Interfaces
         Task<ProductInInventory[]> ListBySaleItemAsync(uint saleItemId);
         Task<ProductInInventory[]> ListBySaleAsync(uint saleId);
         Task<EInventoryStatus> GetInventoryStatusAsync(uint branchId);
+        Task<ProductInInventory[]> ListByProductAsync(uint productId);
+        Task<ProductInInventory[]> ListBySupplierAsync(uint supplierId);
     }
 }

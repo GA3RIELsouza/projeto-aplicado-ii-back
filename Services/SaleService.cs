@@ -168,10 +168,11 @@ namespace Projeto_Aplicado_II_API.Services
             var saleItem = await _saleItemRepository.GetByIdIncludesThrowsIfNullAsync(saleItemId);
             var productsInInventory = await _productInInventoryRepository.ListBySaleItemAsync(saleItemId);
 
+            for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
+
             await _db.RunInTransactionAsync(() =>
             {
                 _saleItemRepository.Remove(saleItem);
-                for (int i = 0; i < productsInInventory.Length; i++) productsInInventory[i].SaleItemId = null;
                 _productInInventoryRepository.UpdateRange(productsInInventory);
             });
         }

@@ -64,5 +64,21 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 })
                 .ToListAsync();
         }
+
+        public async Task<SupplierProduct[]> ListByProductAsync(uint companyId, uint productId)
+        {
+            return await _db.SupplierProducts
+                .Include(sp => sp.Product)
+                .Where(sp => sp.Product!.CompanyId == companyId && sp.ProductId == productId)
+                .ToArrayAsync();
+        }
+
+        public async Task<SupplierProduct[]> ListBySupplierAsync(uint companyId, uint supplierId)
+        {
+            return await _db.SupplierProducts
+                .Include(sp => sp.Product)
+                .Where(sp => sp.Product!.CompanyId == companyId && sp.SupplierId == supplierId)
+                .ToArrayAsync();
+        }
     }
 }

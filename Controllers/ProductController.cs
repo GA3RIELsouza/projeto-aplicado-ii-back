@@ -59,5 +59,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProductAsync(uint id)
+        {
+            await _productService.DeleteProductAsync(id);
+
+            return Ok();
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
         {
             return await _db.Products
                 .Include(p => p.SaleItems)
-                .Where(p => p.IsActive && p.CompanyId == companyId && !p.SaleItems!.Where(si => si.SaleId == saleId).Select(si => si.ProductId).ToList().Contains(p.Id))
+                .Where(p => p.IsActive && p.CompanyId == companyId && !p.SaleItems!.Where(si => si.SaleId == saleId).Select(si => si.ProductId).Contains(p.Id))
                 .Select(p => new ProductMiniDto
                 {
                     Id = p.Id,
@@ -43,6 +43,14 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Repositories
                 })
                 .OrderBy(p => p.Name)
                 .ToListAsync();
+        }
+
+        public async Task<SaleItem[]> ListByProductAsync(uint companyId, uint productId)
+        {
+            return await _db.SaleItems
+                .Include(si => si.Product)
+                .Where(si => si.Product!.CompanyId == companyId && si.ProductId == productId)
+                .ToArrayAsync();
         }
     }
 }

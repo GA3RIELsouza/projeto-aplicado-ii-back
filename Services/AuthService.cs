@@ -12,13 +12,19 @@ using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class AuthService(MainDbContext db, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IUserRepository userRepository, IBranchRepository branchRepository)
+    public class AuthService(MainDbContext db,
+        IConfiguration configuration,
+        IHttpContextAccessor httpContextAccessor,
+        IUserRepository userRepository,
+        IBranchRepository branchRepository,
+        ICompanyRepository companyRepository)
     {
         private readonly MainDbContext _db = db;
         private readonly IConfiguration _configuration = configuration;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IBranchRepository _branchRepository = branchRepository;
+        private readonly ICompanyRepository _companyRepository = companyRepository;
 
         public async Task<UserDto> RegisterAsync(RegisterDto dto)
         {

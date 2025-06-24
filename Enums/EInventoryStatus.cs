@@ -2,8 +2,9 @@
 {
     public enum EInventoryStatus : int
     {
-        OK = 0,
+
+        CRITICAL = 0,
         WARNING = 1,
-        CRITICAL = 2
+        OK = 2
     }
 }

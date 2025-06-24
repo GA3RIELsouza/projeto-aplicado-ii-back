@@ -9,12 +9,18 @@ namespace Projeto_Aplicado_II_API.Services
         IProductRepository productRepository,
         ICompanyRepository companyRepository,
         IProductCategoryRepository productCategoryRepository,
+        ISupplierProductRepository supplierProductRepository,
+        ISaleItemRepository saleItemRepository,
+        IProductInInventoryRepository productInInventoryRepository,
         AuthService authService)
     {
         private readonly MainDbContext _db = db;
         private readonly IProductRepository _productRepository = productRepository;
         private readonly ICompanyRepository _companyRepository = companyRepository;
         private readonly IProductCategoryRepository _productCategoryRepository = productCategoryRepository;
+        private readonly ISupplierProductRepository _supplierProductRepository = supplierProductRepository;
+        private readonly ISaleItemRepository _saleItemRepository = saleItemRepository;
+        private readonly IProductInInventoryRepository _productInInventoryRepository = productInInventoryRepository;
         private readonly AuthService _authService = authService;
 
         public async Task<uint> CreateAsync(CreateProductDto dto)
@@ -119,6 +125,25 @@ namespace Projeto_Aplicado_II_API.Services
             });
 
             return product.IsActive;
+        }
+
+        public async Task DeleteProductAsync(uint productId)
+        {
+            var product = await _productRepository.GetByIdThrowsIfNullAsync(productId);
+
+            var loggedBranch = await _authService.GetLoggedBranchAsync();
+
+            var supplierProducts = await _supplierProductRepository.ListByProductAsync(loggedBranch.CompanyId, productId);
+            var saleItems = await _saleItemRepository.ListByProductAsync(loggedBranch.CompanyId, productId);
+            var productsInInventory = await _productInInventoryRepository.ListByProductAsync(productId);
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _productInInventoryRepository.RemoveRange(productsInInventory);
+                _supplierProductRepository.RemoveRange(supplierProducts);
+                _saleItemRepository.RemoveRange(saleItems);
+                _productRepository.Remove(product);
+            });
         }
     }
 }

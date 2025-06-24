@@ -91,5 +91,13 @@ namespace Projeto_Aplicado_II_API.Controllers
 
             return Ok(response);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSupplierAsync(uint id)
+        {
+            await _supplierService.DeleteSupplierAsync(id);
+
+            return Ok();
+        }
     }
 }

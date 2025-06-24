@@ -56,7 +56,7 @@ namespace Projeto_Aplicado_II_API.Infrastructure.Context.Configurations
                 .WithMany(y => y.ProductsInInventory)
                 .HasForeignKey(x => x.SaleItemId)
                 .OnDelete(DeleteBehavior.Restrict)
-                .IsRequired(true);
+                .IsRequired(false);
         }
 
         private protected override void SetData(EntityTypeBuilder<ProductInInventory> builder)

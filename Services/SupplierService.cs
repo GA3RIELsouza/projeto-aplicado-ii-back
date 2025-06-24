@@ -2,24 +2,30 @@
 using Projeto_Aplicado_II_API.Entities;
 using Projeto_Aplicado_II_API.Infrastructure.Context;
 using Projeto_Aplicado_II_API.Infrastructure.Interfaces;
-using System.Diagnostics.Metrics;
-using System.IO;
-using System.Numerics;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Projeto_Aplicado_II_API.Services
 {
-    public class SupplierService(MainDbContext db, ISupplierRepository supplierRepository, ICompanyRepository companyRepository, IBranchRepository branchRepository, AuthService authService)
+    public class SupplierService(MainDbContext db,
+        ISupplierRepository supplierRepository,
+        ICompanyRepository companyRepository,
+        IBranchRepository branchRepository,
+        ISupplierProductRepository supplierProductRepository,
+        IProductInInventoryRepository productInInventoryRepository,
+        ISaleItemRepository saleItemRepository,
+        AuthService authService)
     {
         private readonly MainDbContext _db = db;
         private readonly ISupplierRepository _supplierRepository = supplierRepository;
         private readonly ICompanyRepository _companyRepository = companyRepository;
         private readonly IBranchRepository _branchRepository = branchRepository;
+        private readonly ISupplierProductRepository _supplierProductRepository = supplierProductRepository;
+        private readonly IProductInInventoryRepository _productInInventoryRepository = productInInventoryRepository;
+        private readonly ISaleItemRepository _saleItemRepository = saleItemRepository;
         private readonly AuthService _authService = authService;
 
-        public async Task<CreateSupplierDto> GetByIdAsync(uint supplerId)
+        public async Task<CreateSupplierDto> GetByIdAsync(uint supplierId)
         {
-            var supplier = await _supplierRepository.GetByIdThrowsIfNullAsync(supplerId);
+            var supplier = await _supplierRepository.GetByIdThrowsIfNullAsync(supplierId);
 
             return new()
             {
@@ -103,6 +109,25 @@ namespace Projeto_Aplicado_II_API.Services
             });
 
             return supplier.IsActive;
+        }
+
+        public async Task DeleteSupplierAsync(uint supplierId)
+        {
+            var supplier = await _supplierRepository.GetByIdThrowsIfNullAsync(supplierId);
+
+            var loggedBranch = await _authService.GetLoggedBranchAsync();
+
+            var supplierProducts = await _supplierProductRepository.ListBySupplierAsync(loggedBranch.CompanyId, supplierId);
+            var productsInInventory = await _productInInventoryRepository.ListBySupplierAsync(supplierId);
+            var saleItems = productsInInventory.Where(pii => pii.SaleItemId.HasValue).Select(pii => pii.SaleItem!).ToArray();
+
+            await _db.RunInTransactionAsync(() =>
+            {
+                _supplierProductRepository.RemoveRange(supplierProducts);
+                _productInInventoryRepository.RemoveRange(productsInInventory);
+                _saleItemRepository.RemoveRange(saleItems);
+                _supplierRepository.Remove(supplier);
+            });
         }
     }
 }
