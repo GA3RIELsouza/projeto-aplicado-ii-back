@@ -6,7 +6,6 @@ color 0f
 :: Variáveis
 set NOME_NETWORK=projeto-aplicado-ii
 
-set NOME_DOCKERFILE=projeto-aplicado-ii
 set NOME_DOCKER_API=projeto-aplicado-ii-api
 set PORTA_DOCKER_API=6969
 
@@ -46,8 +45,8 @@ if errorlevel 1 (
 echo.
 echo $ Criando o container da API...
 
-docker build -t %NOME_DOCKERFILE%:latest .
-docker run -d -p %PORTA_DOCKER_API%:%PORTA_DOCKER_API% --network %NOME_NETWORK% --name %NOME_DOCKER_API% %NOME_DOCKERFILE%
+docker build -t %NOME_DOCKER_API%:latest .
+docker run -d -p %PORTA_DOCKER_API%:%PORTA_DOCKER_API% --network %NOME_NETWORK% --name %NOME_DOCKER_API% %NOME_DOCKER_API%
 
 :: Fim
 echo.
